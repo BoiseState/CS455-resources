@@ -1,0 +1,1 @@
+alias rtele 'echo name		extension		location;rsh -n \!\!:1 egrep -i \!\!:2 $cwd/../rdb/personnel.dat'

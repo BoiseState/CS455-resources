@@ -1,0 +1,11 @@
+
+
+To build: 
+
+make
+
+To run:
+
+Use the script runserver.sh to run the server on onyx.
+
+Use the script runclient.sh to run the server on onyx.

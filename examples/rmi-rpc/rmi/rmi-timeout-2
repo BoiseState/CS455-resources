@@ -1,0 +1,17 @@
+
+import java.rmi.server.RMIClientSocketFactory;
+import java.net.Socket;
+import java.io.IOException;
+import java.io.Serializable;
+
+public class TimedRMIClientSocketFactory
+implements RMIClientSocketFactory, Serializable
+{
+    public Socket createSocket(String host, int port)
+    throws IOException
+    {
+        Socket s = new Socket(host, port);
+        s.setSoTimeout(10000); // ms
+    return s;
+    }
+}

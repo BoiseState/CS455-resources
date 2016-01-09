@@ -1,0 +1,37 @@
+#!/bin/csh -f
+
+if ($#argv != 1) then
+ echo a quick and dirty shell script to help you navigate thru the source code,
+ echo give as an arg the example number, name or unique key word you are interested in
+ exit
+endif
+
+set readme = './'$0
+set readme = $readme:h
+egrep 'Example [0-9,A-Z]' $readme/README | egrep -i $1 | uniq > /tmp/$$
+
+set lines = `wc /tmp/$$`
+if ($lines[1] < 1) then
+  echo no matches - try another example number, name or unique key word
+  /bin/rm -f /tmp/$$
+  exit
+endif
+
+@ occur = 0
+while ($occur < $lines[1]) 
+  set i = `head -1 /tmp/$$`
+  set page = `echo $i | awk '{print $NF}'`
+  set example = `echo $i | sed 's/\ \ *[0-9]*$//'`
+  set file = `echo $i | awk '{print $3}'`
+  echo $example
+  echo '	' page $page, see `find $readme -name $file -print`
+  echo ' '
+  egrep -v $page\$ < /tmp/$$ > /tmp/$$'.' ; /bin/mv -f /tmp/$$'.' /tmp/$$
+  @ occur++
+end
+	 
+if ($occur > 1) then
+  echo lots of matches - try a unique example number, name or key word
+endif
+
+/bin/rm -f /tmp/$$

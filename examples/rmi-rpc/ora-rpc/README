@@ -1,0 +1,594 @@
+This directory contains the source code developed in _Power Programming
+with RPC_ by John Bloomer, published by O'Reilly and Associates, 1992.
+Code is organized by chapter.  A number of makefiles are shared, as in
+the text.  When required, sample data or input files or shell scripts
+are included as well.  Read the makefile and READMEs found in the target
+directory to determine which clients are compatible with which server
+(asynchronous, multi-threaded/processing, different protocols, etc.)
+
+To build all the code at once or use the apropos utility, you need
+'make', 'find', 'sed', 'egrep', 'awk', 'wc', 'uniq' and 'head'  on your
+path, plus have both C and Bourne shells available.  Make the whole
+package with one make command issued in this directory.
+
+Note - ./xdr/macro.c fails to allocate streams correctly with XDR_INLINE
+under SunOS4.1.X.  A correction, if necessary, will be posted ASAP.  
+
+ **
+John J. Bloomer <jbloomer@crd.ge.com, uunet!rodson.crd.com!bloomer >
+KWC317, General Electric Corporate Research and Development, (518)387-6964
+PO Box 8, Schenectady NY 12301                                   21-Feb-92
+ **
+
+Table of Contents                                        page numbers not final!
+_________________________________________________________________________________
+Preface                                                                    xxi
+Scope of This Handbook                                                     xxii
+Some Assumptions About the Reader                                          xxv
+Software Mentioned in This Book                                            xxvi
+Examples                                                                   xxvii
+Additional Sources of Information                                          xxviii
+Conventions                                                                xxviii
+Acknowledgments                                                            xxix
+
+Chapter 1:  Introduction to Remote Procedure Calling                       1
+Client /Server Computing                                                   1
+Remote versus Local Procedure Calling                                      2
+RPC Application Development                                                3
+Defining the Protocol                                                      4
+Developing Server and Client Application Code                              6
+Compiling and Running the Application                                      9
+RPC Makes Interprocess Communications Less Painful                         10
+How RPC Systems Work                                                       11
+RPC Systems and the OSI Reference Model                                    12
+What is "State" and Why is it Important?                                   13
+Top Twenty Distributed Computing Terms and Acronyms                        15
+
+Chapter 2:  Network Computing Today                                        19
+Distributed Computing Standards                                            19
+Features of a Distributed Computing Environment                            20
+NCS                                                                        21
+ONC                                                                        22
+Examining ONC and NCS                                                      24
+Machine-independent Data Representation                                    24
+RPC Mechanism                                                              26
+Protocol Compilers: The Most Important Feature                             28
+Authentication Services                                                    30
+Network Resource Naming Services                                           30
+Network Time Service                                                       30
+Distributed File System                                                    30
+There May be a Common Application Environment in Your Future               30
+Netwise: A Second ONC Alternative                                          31
+Machine-independent Data Representation                                    32
+RPC Mechanism                                                              32
+Protocol Compiler                                                          33
+Authentication Services                                                    34
+Network Resource Naming Services                                           34
+Network Time Service                                                       34
+Distributed File System                                                    34
+Summary of Distributed Computing Environments                              34
+Rapid Evolution                                                            37
+Which One Should You Choose?                                               39
+Put the ONC Suite on Your Machine for Free                                 39
+
+Chapter 3:  Developing High-level RPC Applications                         41
+Development Overview                                                       41
+>From Local to Remote Directory Reading                                    42
+Define the Protocol                                                        45
+Data Types                                                                 45
+Program, Procedure, and Version Numbers                                    45
+High-level ONC RPC Library Calls                                           46
+At the Server                                                              46
+At the Client                                                              48
+Shared XDR Routines                                                        48
+Using the XDR Library                                                      49
+Writing the Client and Server Programs                                     51
+At the Server                                                              51
+At the Client                                                              53
+Compile, Link, and Run                                                     54
+Why High-level Calls and Not Protocol Compiling?                           55
+Some Limitations of the High-level Calls                                   55
+TCP Transport Requires Lower-level Calls                                   56
+
+Chapter 4:  Protocol Compiling and Lower-level RPC Programming             59
+Development Overview                                                       60
+Filename Conventions and Make                                              61
+Using RPCGEN                                                               63
+The Protocol Definition Language                                           65
+Definitions                                                                66
+Symbolic Constants                                                         66
+Enumerations                                                               67
+Structures                                                                 67
+Unions                                                                     68
+Typedefs                                                                   69
+Programs                                                                   69
+Declarations                                                               72
+Special Cases                                                              74
+Booleans                                                                   74
+Strings                                                                    74
+Opaque Data                                                                74
+Voids                                                                      75
+Preprocessor Symbols and Control                                           75
+Lower-level ONC RPC Library Calls                                          76
+At the Client                                                              76
+At the Server                                                              77
+An Example: One Client Talks to One Server                                 79
+Debugging                                                                  86
+Step 1: Debug Without the Network                                          86
+Step 2: Use the Raw Transport                                              91
+Step 3: Debug Over the Network                                             94
+Deploying Servers During Development                                       97
+Real RPC Power Means Using IPC                                             98
+
+Chapter 5:  UNIX Networking and Interprocess Communication                 99
+A Network Protocol Primer                                                  100
+Internet Addressing                                                        100
+Connectionless at the Lowest Level                                         101
+Internet Protocols                                                         101
+Applications Protocols                                                     103
+Connections and Well-known Ports                                           103
+Types of Servers                                                           104
+Transport Selection: UDP or TCP?                                           104
+Adding a Server to the System                                              106
+inetd and Other Lurking Network Daemons                                    107
+Installing a Server Yourself                                               108
+A Digression on Remote Execution Daemons                                   109
+Configuring inetd                                                          109
+An Overview of UNIX Interprocess Communication                             114
+Pipes and FIFOs                                                            115
+Message Queues, Semaphores, and Shared Memory                              115
+Berkeley Sockets and System V TLI                                          116
+Data Representation or Byte Ordering                                       116
+Retrieving Host, Network ,and Address Information                          117
+Getting ONC RPC Information                                                119
+Berkeley Sockets                                                           120
+Yeah, But How Do I Use Sockets?                                            122
+Socket Examples                                                            123
+Advanced Socket Programming Issues                                         136
+Remote Execution, Security, and Authentication                             138
+
+Chapter 6:  Application Development: Networked Parallel Image Processing   141
+Developing Parallel Algorithms for a Multi  -server Network                142
+A Simple Model For Parallel Processing on a Network                        143
+System Requirements and Network Constraints                                144
+Server Access                                                              145
+Server and Network Performance                                             145
+Brute-force Scheduling Using Process Control                               146
+Programming Asynchronous and Concurrent Processing at the Client           146
+Making Use of Timers to Watch Child Processes                              150
+Development Steps                                                          154
+Remote Image Processing (RIP)                                              157
+Specifying Filter Coefficients                                             157
+rip Development: It's as Easy as 1 2 3                                     159
+Step 1: Define the protocol                                                160
+Step 2: Building the client procedure                                      161
+Step 3: Developing the Server Procedure                                    172
+Testing and Running the Program                                            175
+Extending RIP                                                              177
+Fast SunView Frame Buffer Access Needed                                    177
+
+Chapter 7:  Distributing Existing Applications                             179
+A Local Image Manager                                                      179
+The Header File                                                            180
+Modularity                                                                 181
+Functions                                                                  184
+Compile, Link, and Run                                                     188
+Moving a Local Application to the Network                                  188
+Answer Fourteen Questions First                                            189
+The Strategy                                                               191
+
+Chapter 8:  Managing RPC Servers                                           205
+How to Start the Remote Server                                             205
+Shell Scripts For Starting Servers                                         207
+Starting a Remote Server From within Your Client Application               211
+Terminating Your Services                                                  213
+System Error: "%STF-E-OPENIN, Server Too Fat"                              214
+Hit Reset                                                                  215
+Report Server Information with rpcinfo                                     216
+Changes Under TIRPC                                                        220
+Data Sharing: NFS versus Sending it Yourself                               220
+Host-qualified Filenames                                                   221
+
+Chapter 9:  Multiple Clients  and Servers                                  223
+Remote Asynchronous Calls, Multi-server Processing                         223
+ONC RPC Support                                                            224
+The Follow-up RPC                                                          237
+Multi-tasking at the Server                                                249
+Multi-tasking with Child Processes                                         250
+Alternatives to Avoid Run-time Process Creation                            254
+Combining Asynchronous and Multi-tasking at the Server                     254
+Lightweight Processing                                                     256
+Remote Asynchronous Calls with LWP                                         257
+A Minimal Set of LWP Routines                                              257
+Client Multi-server Example                                                259
+Server Multi-tasking Example                                               262
+Caveats                                                                    266
+
+Chapter 10:  RPC Under Windowing Systems                                   267
+The X Window System                                                        268
+X Toolkit Client Application Flow of Control                               268
+Low-level RPC and X Protocol Similarities                                  269
+Strategies for Using RPC Under X                                           270
+Placing and Servicing RPCs in an Event-driven Environment                  270
+RPC and XView                                                              274
+Synchronous RPCs with a Timer                                              274
+Remote Asynchronous Calls, FRPC Polled with a Timer                        275
+The Event Notifier and Associated Complications                            279
+Remote Asynchronous Call Servers Using notify_enable_rpc_svc( )            281
+RPC and Xol/Xt                                                             283
+Watching IPC with XtAppAddInput(3Xt)                                       284
+Remote Asynchronous Calls, Servers Using XtAppAddInput( )                  290
+Comparing Network Windowing Systems and RPC                                295
+A Digression: Performance of Typical versus Network Windowing Systems      296
+Windowing System Evolution Can Hide a Frame Buffer                         296
+X11 Pixmaps versus SunView Pixrects                                        297
+Augment Typical Windowing Systems with RPCs                                304
+
+Chapter 11:  ONC Transport-independent RPC                                 305
+Maintains the ONC RPC Protocol                                             306
+Run-time Transport Independence                                            307
+Network Selection                                                          307
+Uniform Addressing                                                         308
+TIRPC API                                                                  308
+Backward Compatibility                                                     308
+Levels of the Library                                                      309
+An Example                                                                 312
+Availability                                                               313
+
+Chapter 12:  Advanced Programming Issues                                   315
+Authentication and How to Use It                                           315
+ONC RPC Credentials and Verification at the Client                         316
+Adding Authentication to the dim Client                                    321
+Authentication at the Server                                               326
+Adding Access Control to the dim Server                                    327
+Error Reporting Summarized                                                 331
+Fault Tolerance, Connection Errors, and Crash Recovery                     332
+Connection Errors and Recovery                                             333
+Caching Replies at the Server                                              334
+Broken Connections and Testing                                             334
+Crash Recovery                                                             337
+
+The ONC RPC Programming Reference                                          339
+
+Section One:  ONC XDR Library Routines                                     339
+
+Section Two:  ONC Portmap Library Routines                                 339
+
+Section Three:  ONC RPC Library Routines                                   339
+
+Section 1:  ONC XDR Library Routines                                       341
+Overview                                                                   341
+XDR Streams and Their Management                                           343
+Conversion Filters                                                         344
+Synopsis                                                                   347
+xdr_array(  )                                                              347
+xdr_bool(  )                                                               348
+xdr_bytes(  )                                                              348
+xdr_char(  )                                                               348
+xdr_destroy(  )                                                            348
+xdr_double(  )                                                             348
+xdr_enum(  )                                                               349
+xdr_ float(  )                                                             349
+xdr_ free(  )                                                              349
+xdr_ getpos(  )                                                            349
+xdr_inline(  )                                                             349
+xdr_int(  )                                                                349
+xdr_long(  )                                                               350
+xdrmem_create(  )                                                          350
+xdr_opaque(  )                                                             350
+xdr_ pointer(  )                                                           350
+xdrrec_create(  )                                                          350
+xdrrec_endofrecord(  )                                                     351
+xdrrec_eof(  )                                                             351
+xdrrec_readbytes(  )                                                       351
+xdrrec_skiprecord(  )                                                      351
+xdr_reference(  )                                                          351
+xdr_setpos(  )                                                             352
+xdr_short(  )                                                              352
+xdrstdio_create(  )                                                        352
+xdr_string(  )                                                             352
+xdr_u_char(  )                                                             353
+xdr_u_int(  )                                                              353
+xdr_u_long(  )                                                             353
+xdr_union(  )                                                              353
+xdr_u_short(  )                                                            353
+xdr_vector(  )                                                             354
+xdr_void(  )                                                               354
+xdr_wrapstring(  )                                                         354
+
+Section 2:  ONC Portmap Library Routines                                   355
+Overview                                                                   355
+Synopsis                                                                   355
+pmap_ getmaps(  )                                                          355
+pmap_ getport(  )                                                          356
+pmap_rmtcall( )                                                            356
+pmap_set(  )                                                               356
+pmap_unset(  )                                                             357
+xdr_ pmap(  )                                                              357
+xdr_ pmaplist(  )                                                          357
+
+Section 3:  ONC RPC Library Routines                                       359
+Overview                                                                   359
+Functional Summary                                                         359
+Building Client Authentication                                             359
+Making The Call From The Client                                            360
+CLIENT Handle Management                                                   361
+Server Registration With The Portmap                                       361
+SVCXPRT Service Transport Handle Management                                362
+Server Side Error Handling And Reporting                                   362
+Server I/O and Utility                                                     363
+Direct XDR Access                                                          364
+Making Secure RPCs                                                         364
+Synopsis                                                                   365
+authdes_create( )                                                          365
+authdes_getucred( )                                                        365
+auth_destroy( )                                                            366
+authnone_create( )                                                         366
+authunix_create( )                                                         366
+authunix_create_default( )                                                 366
+authunix_create_default( ) calls authunix_create( ) filling in the
+standard authentication parameters for that user.                          366
+callrpc( )                                                                 366
+clnt_broadcast( )                                                          367
+clnt_call( )                                                               367
+clnt_control( )                                                            367
+clnt_create( )                                                             368
+clnt_create_vers( )                                                        369
+clnt_destroy( )                                                            369
+clnt_freeres( )                                                            369
+clnt_geterr( )                                                             369
+clnt_pcreateerror( )                                                       369
+clnt_perrno( )                                                             370
+clnt_perror( )                                                             370
+clntraw_create( )                                                          370
+clnt_spcreateerror( )                                                      370
+clnt_sperrno( )                                                            370
+clnt_sperror( )                                                            371
+clnttcp_create( )                                                          371
+clntudp_bufcreate( )                                                       371
+clntudp_create( )                                                          371
+get_myaddress( )                                                           372
+getnetname( )                                                              372
+getrpcport( )                                                              372
+host2netname( )                                                            372
+key_decryptsession( )                                                      373
+key_encryptsession( )                                                      373
+key_gendes( )                                                              373
+key_setsecret( )                                                           373
+netname2host( )                                                            373
+netname2user( )                                                            374
+registerrpc( )                                                             374
+rpc_createerr                                                              374
+svc_destroy( )                                                             374
+svcfd_create( )                                                            374
+svc_fds                                                                    375
+svc_fdset                                                                  375
+svc_freeargs( )                                                            375
+svc_getargs( )                                                             375
+svc_getcaller( )                                                           375
+svc_getreq( )                                                              376
+svc_getreqset( )                                                           376
+svcerr_auth( )                                                             376
+svcerr_decode( )                                                           376
+svcerr_noproc( )                                                           376
+svcerr_noprog( )                                                           376
+svcerr_progvers( )                                                         377
+svcerr_systemerr( )                                                        377
+svcerr_weakauth( )                                                         377
+svcraw_create( )                                                           377
+svc_register( )                                                            377
+svc_run( )                                                                 378
+svc_sendreply( )                                                           378
+svctcp_create( )                                                           378
+svcudp_create( )                                                           378
+svcudp_bufcreate( )                                                        378
+svc_unregister( )                                                          379
+user2netname( )                                                            379
+xdr_accepted_reply( )                                                      379
+xdr_authunix_parms( )                                                      379
+xdr_callhdr( )                                                             379
+xdr_callmsg( )                                                             380
+xdr_opaque_auth( )                                                         380
+xdr_rejected_reply( )                                                      380
+xdr_replymsg( )                                                            380
+xprt_register( )                                                           380
+xprt_unregister( )                                                         380
+Error Codes                                                                381
+
+Appendix A:  Obtaining RFCs (Internet Standards, Request for Comment)      383
+
+Appendix B:  An RPC Case Study: Networked Ray Tracing                      385
+Introduction to Ray Tracing                                                385
+Accelerating Ray Tracing                                                   387
+Multiple Processor Ray Tracing and Data Distribution                       388
+Networked Ray Tracing Using RPC                                            390
+Dynamic Scheduling and Load Balancing                                      392
+But Why Scan-line Parallelism and Not Frame Parallelism?                   393
+Performance Results                                                        395
+Conclusions                                                                395
+References                                                                 398
+Documentation and Source Code                                              399
+Comments on Augmenting the Client to Run Under X11 with the XView Toolkit  423
+
+Appendix C:  Generalized Server Initialization, Inquiry, and Removal       425
+
+Appendix D:  Parallel Processing In A Nutshell                             429
+Parallelism                                                                430
+Interprocess Control                                                       431
+Interprocess Communication                                                 431
+
+Appendix E:  Buzzwords: A Glossary                                         433
+
+Index                                                                      441
+_________________________________________________________________________________
+
+
+List of Examples
+_______________________________________________________________________________________________________________________________
+
+Example 1-1 rdb.x - RPCL protocol definition                                                                                 5
+Example 1-2 rdb.h - a Portion of header file                                                                                 6
+Example 1-3 rdb_svc_proc.c - remote database service procedures                                                              6
+Example 1-4 rdb.c - the client application for rdb                                                                           8
+Example 3-1 lls.c - directory listing with local procedure calling                                                           42
+Example 3-2 read_dir.c - directory listing procedure                                                                        43
+Example 3-3 rls.h - common include definitions for the RPC directory lister                                                 46
+Example 3-4 rls_xdr.c - XDR conversion routine shared by the RPC remote directory read client and server                    49
+Example 3-5 rls_svc.c - an RPC server for reading directory files                                                           52
+Example 3-6 rls.c - RPC client for reading remote directory files                                                           53
+Example 4-1 makefile - rules for simple RPCGEN application development                                                      62
+Example 4-2 rls.x - remote directory listing protocol                                                                       79
+Example 4-3 rls.h - header file generated by RPCGEN                                                                         80
+Example 4-4 rls_svc_proc.c - remote read directory service                                                                  81
+Example 4-5 rls.c - remote directory listing client                                                                         83
+Example 4-6 makefile - for two forms of local debugging                                                                     89
+Example 4-7 bundle - a simple shell archiving script.                                                                       90
+Example 4-8 rls_svc.c - server stub edited to use Raw transport for local debugging                                         92
+Example 4-9 rls.c - client application using Raw transport for local debugging                                              92
+Example 4-10 slay - a shell script to kill processes by name                                                                97
+Example 5-1 TCP_AF_UNIXserver.c - socket-based server using TCP and Unix domain addressing                                  124
+Example 5-2 TCP_AF_UNIXclient.c socket-based client using TCP and Unix domain addressing                                    126
+Example 5-3 TCP_AF_INETserver.c socket-based server using TCP and Internet addressing                                       128
+Example 5-4 TCP_AF_INETclient.c socket-based client using TCP and Internet addressing                                       130
+Example 5-5 UDP_AF_INETserver.c socket-based server using UDP and Internet addressing                                       133
+Example 5-6 UDP_AF_INETclient.c socket-based client using UDP and Internet addressing                                       134
+Example 5-7 myReadWrite.c - reading and writing a socket requires special care (just a template function, no source)        137
+Example 5-8 remote.c - using rexec() for remote execution                                                                   139
+Example 6-1 stest.c - catching SIGCHLD from child deaths using fork( ), kill(), and signal( )                               147
+Example 6-2 wtest.c - wait( ) watches for child processes that die                                                          148
+Example 6-3 status.c - asynchronous concurrent processing using fork( ) and signal ( )                                      149
+Example 6-4 childTimer.c - interval timer and signals monitor how long the kids are out                                     150
+Example 6-5 day.c - using time-of-day to watch child processing tim                                                         152
+Example 6-6 makefile - a template for RPCGEN RPC development                                                                155
+Example 6-7 rip_script - Sample input script for rip                                                                        159
+Example 6-8 rip.x - protocol for client/server remote image processing exchanges                                            160
+Example 6-9 rip_shared.h - definitions and macros shared between user client and server RIP code                            162
+Example 6-10 rip.c - client procedures for RIP                                                                              163
+Example 6-11 rip_svc_proc.c - server procedures for RIP                                                                     172
+Example 7-1 im.h - header file for the local image manager                                                                  180
+Example 7-2 im.c - main procedure for the local image manager                                                               181
+Example 7-3 im_proc.c - archive access functions for the local image manager                                                184
+Example 7-4 dim.x - RPCL protocol definition for the distributed image manager                                              193
+Example 7-5 dim.c - client main for the distributed image manager                                                           195
+Example 7-6 dim_svc_proc.c - the server procedures for the distributed image manager                                        199
+Example 8-1 sstart.csh - C shell script to start remote servers                                                                 207
+Example 8-2 sstart.sh - a Bourne shell script to start remote server process (better)                                       208
+Example 8-3 .ls - directs ls servers using sstart.sh                                                                        210
+Example 8-4 A skeleton for starting servers from the client (no source)                                                     211
+Example 8-5 A skeleton for server self-termination after lack of use (no source)                                            213
+Example 8-6 die_1() code fragment for server termination through an RPC (no source)                                         214
+Example 8-7 A skeleton for setting server process priority (no source)                                                      215
+Example 8-8 restart_1( ), restarting the server with an RPC (outline only, see the dim application)                         215
+Example 9-1 one-way.x - combined one-way and synchronous RPC protocol for remote directory listing                          228
+Example 9-2 one-way_svc_proc.c - server procedures including a one-way, request-only RPC service                            229
+Example 9-3 one-way.c - client places one-way RPC requests                                                                  231
+Example 9-4 broadcast.c - utility to ask the network if a service is available                                              235
+Example 9-5 svc_run.c - svc_run() service request loop                                                                      238
+Example 9-6 doit_1() service procedure makes an FRPC (template only, see Chapter 9 examples)                                239
+Example 9-7 asyncRls.h - header file included by the asynchronous clients and servers                                       241
+Example 9-8 asyncRls.c - the client side of an asynchronous server routine                                                  242
+Example 9-9 asyncRls_svc.c server - responds asynchronously using FRPCs                                                     245
+Example 9-10 HighLevelServer.c - server multi-tasking through process creation - DOES NOT WORK!                             251
+Example 9-11 multi-Rls_svc.c - multi-tasking service that works                                                             252
+Example 9-12 multiAsyncRls_svc.c - asynchronous, multi-tasking service                                                      254
+Example 9-13 rteleLWP.c - lightweight processing for asynchronous remote calls from a client                                260
+Example 9-14 svc_runLWP.c - lightweight processing svc_run() server loop                                                    263
+Example 9-15 rteleLWP_svc_proc.c - lightweight processing for asynchronous remote calls from a client                       264
+Example 10-1 syncCallback.c - XView client with synchronous RPCs launched from callback function                            271
+Example 10-2 makefile - for Xt and Xv applications                                                                          273
+Example 10-3 itimer.c - using an interval timer in XView to place synchronous RPCs                                          274
+Example 10-4 asyncCallback.c - XView interval timer looks for asynchronous FRPC requests                                    276
+Example 10-5 notifyServer.c - using notify_enable_rpc_svc() in the XView Notifier                                           281
+Example 10-6 dispatch.c - dispatcher registered for XView and Xt/Xol RPC server applications                                282
+Example 10-7 hello.c - a simple Xt/Xol example                                                                              283
+Example 10-8 Xt_sockets_AF_INET_client.c - Xt socket-based client, Internet addressing, and TCP transport                   286
+Example 10-9 Loop_TCP_AF_INETserver.c - TCP_AF_INETserver.c modified for repeated use                                       289
+Example 10-10 udpDispatchServer.c - UDP transport RPC server activated by the Xt event dispatcher, using XtAppAddInput( )   291
+Example 10-11 tcpDispatchServer.c - TCP transport with XtAppAddInput is more complex                                        293
+Example 10-12 tcpRls.c - synchronous remote directory listing client using TCP transport                                    295
+Example 10-13 xwload.c - X client loads a Sun rasterfile(5) format image into a window                                      297
+Example 10-14 wload.c - loads a Sun rasterfile(5) format image into a SunView window                                        300
+Example 10-15 raster.c - Sun rasterfile format utilities                                                                    301
+Example 10-16 raster.h - Sun rasterfile format support                                                                      303
+Example 12-1 dim.c - adding authentication to the client                                                                    322
+Example 12-2 makefile - automating authentication changes to server dispatch stub                                           329
+Example 12-3 auth.h - macros included into the server dispatch routine for authentication                                   330
+Example 12-4 dim_svc_proc.c - access control added to server delete procedure                                               331
+Example 12-5 repairDB() now restores the database (see auth/dim_svc_proc.c)                                                 338
+Example A-1 portable.c - reading and writing XDR data through simple filters                                                380
+Example A-2 macro.c - using fast XDR macros                                                                                 381
+Example B-1 rtrace.man - manual page for the network ray tracer rtrace                                                      400
+Example B-2 bdata.i - input file for the network ray tracer rtrace                                                          401
+Example B-3 rtrace.x - the protocol definition for the network ray tracer rtrace                                            401
+Example B-4 rtrace_shared.h - other shared definitions for the network ray tracer client and server procedures              403
+Example B-5 rtrace.c - the client side of the network ray tracer                                                            404
+Example B-6 rtrace_svc_proc.c - server procedures for the network ray tracer rtrace                                         415
+Example B-7 makefile - for the rtrace network ray tracer                                                                    423
+Example C-1 patchFile - making RPCSRC 4.0 rpcinfo.c do other things                                                         426
+_______________________________________________________________________________________________________________________________
+
+
+List of Figures
+_________________________________________________________________________________________________________________
+Figure P-1  Book organization and reading strategy                                                           xxii
+Figure 1-1  Local and remote procedure call communication                                                    3
+Figure 1-2  ONC RPC client /server setup                                                                     12
+Figure 1-3  RPC communication                                                                                13
+Figure 1-4  RPC systems within the OSI reference model                                                       14
+Figure 2-1  The Network Computing Architecture and System                                                    23
+Figure 2-2  The Open Network Computing architecture                                                          25
+Figure 3-1  Developing a network application with high-level RPC                                             42
+Figure 3-2  High-level RPC                                                                                   44
+Figure 4-1  Developing a network application with RPC Protocol Compiler                                      60
+Figure 4-2  Application development with RPCGEN                                                              62
+Figure 4-3  Reducing an RPC application for local debugging                                                  87
+Figure 5-1  The TCP/IP Internet Protocol suite layers                                                        102
+Figure 5-2  Servers can be one of six different types                                                        106
+Figure 5-3  Connection-oriented (left) and connectionless (right) IPC protocols                              121
+Figure 6-1  Modeling the distributed computing environment for parallelizing algorithms                      144
+Figure 6-2  RIP application development layout                                                               154
+Figure 6-3  A model for Remote Image Processing                                                              158
+Figure 9-1  Synchronous RPC                                                                                  224
+Figure 9-2  Three asynchronous alternatives to avoid client blocking                                         225
+Figure 9-3  Asynchronously collecting results within the client avoids blocking at the client                239
+Figure 9-4  Using a second client process (a local collection daemon) FRPC to avoid blocking at the client   248
+Figure 9-5  A multi-tasking server                                                                           249
+Figure 9-6  Server multi-tasking via multiple-processes                                                      250
+Figure 10-1  Distributed X Window applications using widget sets and toolkits                                269
+Figure 10-2  Remote asynchronous calls monitored with an interval timer in XView                             276
+Figure 10-3  The Notifier as placed between the XView server and client application                          279
+Figure 10-4  Asynchronous X client and server using XtAppAddInput( ) to listen for an FRPC                   285
+Figure 10-5  An RPC server using the Xt dispatch loop to replace svc_run( )                                  290
+Figure 11-1  Layers of the TIRPC interface                                                                   306
+Figure 12-1  ONC RPC error reporting framework                                                               332
+Figure B-1  The ray tracing, image synthesis paradigm (adapted from [Sam89])                                 386
+Figure B-2  Overview of the network parallel ray tracing application                                         389
+Figure B-3  Benchmark scene generated by the ray tracer                                                      390
+Figure B-4  Multiple ray tracing servers using process control                                               391
+Figure B-5  Parallel network ray tracing time for 840x640x8 Images as a function of number of servers        396
+Figure B-6  Parallel network ray tracing time for 840x640x8 images, as a function of number of servers.      397
+_________________________________________________________________________________________________________________
+
+
+Table of Tables
+_______________________________________________________________________________________
+Table 2-1  Apollo/HP Distributed Computing Acronyms                                 22
+Table 2-2  Sun/AT&T Distributed Computing Acronyms                                  23
+Table 2-3  Distributed Computing Environment Features                               34
+Table 2-4  The ONC Development Road Map                                             37
+Table 2-5  DCE Development for NCS Release 2.0                                      38
+Table 3-1  ONC RPC Program Numbers                                                  46
+Table 3-2  Primitive ONC XDR Filters for C Built-in Data Types                      50
+Table 3-3  ONC XDR Filters for Handling Complex C Data Types                        51
+Table 4-1  RPCGEN Command-line Options                                              64
+Table 4-2  RPCGEN.NEW Command-line Options                                          65
+Table 4-3  Preprocessor Symbols Built-in to RPCGEN                                  75
+Table 8-1   Rpcinfo Options                                                         216
+Table 11-1  Net Type Values and Transport Selection                                 307
+Table 11-2  The New Preferred Calls                                                 308
+Table 12-1  Flavors of Authentication, (CLIENT *clnt)->cl_auth->ah_cred.oa_flavor   317
+Table 12-2  Functions for Error Reporting at the Client after an RPC                320
+Table 12-3  Possible Authentication Errors, rpc_err.re_why                          321
+Table 12-4  Functions for Error Reporting at the Server                             326
+Table B-1  Parallel Ray Tracing: Frames or Scan-lines?                              393
+_______________________________________________________________________________________

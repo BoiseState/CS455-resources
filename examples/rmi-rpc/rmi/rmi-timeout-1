@@ -1,0 +1,14 @@
+
+    RMISocketFactory.setSocketFactory(new RMISocketFactory() {
+            public Socket createSocket(String host, int port) throws IOException {
+                Socket socket = new Socket(host, port);
+                socket.setSoTimeout(timeoutMillis);
+                socket.setSoLinger(false, 0);
+                return socket;
+            }
+            public ServerSocket createServerSocket(int port) throws IOException {
+                return new ServerSocket(port);
+            }
+    });
+
+

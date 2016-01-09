@@ -1,0 +1,5 @@
+
+See the example PasswordConsole.java for hiding passwords as they are typed.
+
+See the example PasswordTest.java for masking password with asterisks as it is
+typed.

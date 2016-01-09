@@ -1,0 +1,3 @@
+
+This example demonstrates that the default implementation of the RPC server is
+single-threaded.

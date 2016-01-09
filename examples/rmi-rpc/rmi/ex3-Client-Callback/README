@@ -1,0 +1,15 @@
+
+
+To build: 
+
+make
+
+To run:
+
+Use the script runserver to run the server.
+
+Use the script runclient to run the client.
+
+Use the script test-multiple-clients.sh to test multi-threadedness of RMI
+implementation
+
