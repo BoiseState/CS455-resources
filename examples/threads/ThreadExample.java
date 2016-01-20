@@ -1,13 +1,19 @@
-// An example of threads in Java
-//
-// ch2/threadsExample.java
 
+/**
+ * Basic example of creating and running threads.
+ * @author amit
+ */
+class Element extends Thread {
 	
-class Grape extends Thread {
-    Grape(String s) {super(s);} //constructor
+	public Element(String s) {
+		super(s);
+	}
 
+    /* (non-Javadoc)
+     * @see java.lang.Thread#run()
+     */
     public void run() {
-        for (int i=0; i<50000; i++) {
+        for (int i=0; i<10; i++) {
             System.out.println("This is the " + this.getName() + " thread.");
             /*this.yield();*/
         }
@@ -17,9 +23,12 @@ class Grape extends Thread {
 
 public class ThreadExample {
     public static void main (String args[]) {
-        new Grape("merlot").start();
-        new Grape("pinot").start();
-        new Grape("cabernet").start();
+        new Element("water").start();
+        new Element("fire").start();
+        new Element("earth").start();
+        new Element("air").start();
+        new Element("void").start();
+
     }
 }
         

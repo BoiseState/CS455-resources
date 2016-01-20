@@ -1,7 +1,12 @@
 
-
-public class ThreadGroupExample {
-	public static void main( String args[] ) {
+/**
+ * Shows how to create and use a thread group
+ * @author amit
+ */
+public class ThreadGroupExample
+{
+	public static void main(String args[])
+	{
 		ThreadGroup myTaskGroup = new ThreadGroup("My Task Group");
 
 		Thread thread1 = new Thread(myTaskGroup, new MyThread(), "one");
@@ -12,27 +17,30 @@ public class ThreadGroupExample {
 		thread2.start();
 		thread3.start();
 
-		System.out.println("group has "+ myTaskGroup.activeCount()+ " threads");
+		System.out.println("group has " + myTaskGroup.activeCount() + " threads");
 
 		Thread[] tasks = new Thread[myTaskGroup.activeCount()];
 		myTaskGroup.enumerate(tasks);
-		for (int i=0; i<tasks.length; i++)
+		for (int i = 0; i < tasks.length; i++)
 			System.out.println(tasks[i].toString());
 
 		System.out.println(myTaskGroup.toString());
 
-		myTaskGroup.stop(); //stop all threads in the group
-		// java vm should now quit
-	}
-}	
-
-class MyThread implements Runnable {
-	public void run() 
-	{
-		while (true) {
-			try {Thread.sleep(10000);}
-			catch (InterruptedException e) { System.err.println(e);}
-		}
+		myTaskGroup.stop(); // stop all threads in the group
+		// JVM should now quit
 	}
 }
 
+class MyThread implements Runnable
+{
+	public void run()
+	{
+		while (true) {
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				System.err.println(e);
+			}
+		}
+	}
+}
