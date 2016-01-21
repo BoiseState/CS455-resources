@@ -1,51 +1,46 @@
 
-public class Consumer implements Runnable 
+public class Consumer implements Runnable
 {
-	private Thread consumerThread;
-	private SharedQueue Q;
-	private int id;
-	private int sleep_time;
-	private boolean stopFlag = false;
+    private Thread consumerThread;
+    private SharedQueue Q;
+    private int id;
+    private int sleep_time;
+    private boolean stopFlag = false;
 
-	public Consumer(int id, SharedQueue Q, int time)
-	{
-		this.Q = Q;
-		this.id = id;
-		this.sleep_time = time;
-	}
+    public Consumer(int id, SharedQueue Q, int time)
+    {
+	this.Q = Q;
+	this.id = id;
+	this.sleep_time = time;
+    }
 
-	public void run()
-	{
-		try {
-			while (!stopFlag)
-			{
-				String message = Q.getMessage();
-				System.out
-						.println("Consumer " + id + " got message: " + message);
-				Thread.sleep(sleep_time);
-			}
-		} catch (InterruptedException e)
-		{
-			System.err.println(e);
-		}
+    public void run()
+    {
+	try {
+	    while (!stopFlag) {
+		String message = Q.getMessage();
+		System.out.println("Consumer " + id + " got message: " + message);
+		Thread.sleep(sleep_time);
+	    }
+	} catch (InterruptedException e) {
+	    System.err.println(e);
 	}
+    }
 
-	public void start()
-	{
-		if (consumerThread == null)
-		{
-			consumerThread = new Thread(this);
-			consumerThread.start();
-		}
+    public void start()
+    {
+	if (consumerThread == null) {
+	    consumerThread = new Thread(this);
+	    consumerThread.start();
 	}
+    }
 
-	public void stop()
-	{
-		if (consumerThread != null)
-		{
-			stopFlag = true;
-			consumerThread = null;
-		}
+    public void stop()
+    {
+	if (consumerThread != null) {
+	    stopFlag = true;
+	    consumerThread = null;
 	}
+    }
 
 }
