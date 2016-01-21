@@ -1,9 +1,9 @@
 
 class PingPong extends Thread {
-	String word; // what word to print
-	int delay;	 // how long to pause
+	private String word; // what word to print
+	private int delay;	 //how long to pause, in milliseconds
 
-	PingPong(String whatToSay, int delayTime) {
+	public PingPong(String whatToSay, int delayTime) {
 		word = whatToSay;
 		delay = delayTime;
 	}
@@ -25,8 +25,8 @@ class PingPong extends Thread {
 			System.exit(1);
 		}
 		int delay = Integer.parseInt(args[0]);
-		new PingPong("ping", delay).start();  //in millisecs
-		new PingPong("PONG", delay).start(); //in millisecs
+		new PingPong("ping", delay).start();  
+		new PingPong("PONG", delay).start();
 	}
 }
 	

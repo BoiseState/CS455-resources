@@ -1,15 +1,20 @@
 
 /**
-	An example of synchronization in Java. Creates two threads that play
-	ping-pong. The threads synchronize using semaphore objects.
+	Creates two threads that play ping-pong in a synchronized manner using wait/notify methods.
+	@author amit
 */
 
 public class SynchronizedPingPong 
 {
 	public static void main(String[] args) 
 	{
-		Ping ping = new Ping("ping", 10);
-		Pong pong = new Pong("pong", 10);
+		if (args.length != 1) {
+			System.err.println("Usage: java SynchronizedPingPong <delay>");
+			System.exit(1);
+		}
+		int delay = Integer.parseInt(args[0]);
+		Ping ping = new Ping("ping", delay);
+		Pong pong = new Pong("PONG", delay);
 		ping.setPong(pong);
 		pong.setPing(ping);
 		
@@ -18,14 +23,13 @@ public class SynchronizedPingPong
 	}
 }
 
-
 class Ping implements Runnable 
 {
-	String word; // what word to print
-	int delay;	 // how long to pause (in milliseconds)
-	Pong pong;
+	private String word; //what word to print
+	private int delay;	 //how long to pause (in milliseconds)
+	private Pong pong;
 
-	Ping(String whatToSay, int delayTime) {
+	public Ping(String whatToSay, int delayTime) {
 		word = whatToSay;
 		delay = delayTime;
 	}
@@ -41,7 +45,8 @@ class Ping implements Runnable
 				synchronized(this) { wait(); };
 			}
 		} catch (InterruptedException e) {
-			return;
+			System.err.println(e);
+			return; //end this thread
 		}
 	}
 }
@@ -50,12 +55,11 @@ class Ping implements Runnable
 
 class Pong implements Runnable 
 {
-	String word; // what word to print
-	int delay;	 // how long to pause
-	Ping ping;
+	private String word; //what word to print
+	private int delay;	 //how long to pause, in milliseconds
+	private Ping ping;
 
-
-	Pong(String whatToSay, int delayTime) {
+	public Pong(String whatToSay, int delayTime) {
 		word = whatToSay;
 		delay = delayTime;
 	}
@@ -71,6 +75,7 @@ class Pong implements Runnable
 				synchronized(ping) {ping.notify();}
 			}
 		} catch (InterruptedException e) {
+			System.err.println(e);
 			return; 	//end this thread
 		}
 	}

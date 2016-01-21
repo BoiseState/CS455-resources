@@ -23,7 +23,7 @@ public class Producer implements Runnable
 				Q.putMessage(msg);
 				System.out.println("Producer " + id + " put message: " + msg);
 				// try commenting out the sleep
-				producerThread.sleep(sleep_time);
+				Thread.sleep(sleep_time);
 			}
 		} catch (InterruptedException e) {
 			System.err.println(e);
