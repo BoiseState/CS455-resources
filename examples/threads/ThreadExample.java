@@ -13,7 +13,7 @@ class Element extends Thread {
      * @see java.lang.Thread#run()
      */
     public void run() {
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<100; i++) {
             System.out.println("This is the " + this.getName() + " thread.");
             /*this.yield();*/
         }
