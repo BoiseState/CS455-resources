@@ -10,7 +10,7 @@ public class LoadTable
     public static void main(String[] args)
     {
 	try {
-	    FileInputStream fileIn = new FileInputStream("hash.serial");
+	    FileInputStream fileIn = new FileInputStream("hash.ser");
 	    ObjectInputStream in = new ObjectInputStream(fileIn);
 	    Object obj = in.readObject();
 	    in.close();
