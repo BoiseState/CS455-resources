@@ -26,10 +26,10 @@ JFLAGS=
 	javac $(JFLAGS) $<
 
 
-all: Account.class Consumer.class InterruptTest.class MaxThreads.class Mutex.class\
-	 PC.class PingPong.class Producer.class RunnableExample.class Semaphore.class\
+all: Account.class Consumer.class InterruptTest.class MaxThreads.class\
+	 PC.class PingPong.class Producer.class RunnableExample.class\
 	 SharedQueue.class SynchronizedAccount.class SynchronizedPingPong.class TestAccount.class\
-	 ThreadExample.class ThreadGroupExample.class
+	 ThreadExample.class ThreadGroupExample.class ProcessExample.class MaxPrcoesses.class
 		
 clean:
 	/bin/rm -f *.class

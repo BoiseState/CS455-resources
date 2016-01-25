@@ -1,8 +1,12 @@
 
-all:
-	cd C; make 
-	cd Java; make 
+
+all: 
+	cd tcp; make
+	cd udp; make
+	cd tinyhttpd/; make
 
 clean:
-	cd C; make clean
-	cd Java; make clean
+	cd tcp; make clean
+	cd udp; make clean
+	cd tinyhttpd/; make clean
+
