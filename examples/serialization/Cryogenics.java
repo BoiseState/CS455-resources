@@ -5,15 +5,30 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * Demo how to freeze dry and revive objscts.
+ * Experiments with serialization.
+ * 
+ * Add the serial version UID to the MioAlma class (version 1)
+ * 
+ * Run and freeze a MioAlma object (version 1).
+ * 
+ * Refactor MioAlma class to add a gender field. 
+ * 	Using this new class, revive an MioAlma version 1 object.
+ * 	Note that the gender field will be set to null.
+ * 
+ * Run and freeze a MioAlma object (version 2)
+ * 	Refactor MioAlma back to version 1.
+ * 	Revive a MioAlma version 1 object from a freeze-dried MioAlma version 2 object!
  * 
  * @author amit
  */
 public class Cryogenics
 {
+    /**
+     * Serialize a Mio object.
+     */
     private static void freezeDry()
     {
-	Mio obj = new Mio("Marco Polo", 123456789);
+	MioAlma obj = new MioAlma("Marco Polo", 123456789);
 	System.out.println("Serializing object: " + obj);
 	try {
 	    FileOutputStream fileOut = new FileOutputStream("mio.ser");
@@ -25,6 +40,9 @@ public class Cryogenics
 	}
     }
 
+    /**
+     * Deserialize a Mio object
+     */
     private static void revive()
     {	
 	try {
@@ -34,7 +52,7 @@ public class Cryogenics
 	    Object obj = in.readObject();
 	    in.close();
 	    
-	    Mio mine = (Mio) obj;
+	    MioAlma mine = (MioAlma) obj;
 	    System.out.println("Deserialized object: " + mine);
 	    
 	} catch (IOException e) {

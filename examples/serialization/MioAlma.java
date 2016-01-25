@@ -5,21 +5,28 @@ import java.util.Date;
  * @author amit
  *
  */
-public class Mio implements Serializable
+public class MioAlma implements Serializable
 {
+    /**
+     * Generated serial UID for all versions of MioAlma objects
+     */
+    private static final long serialVersionUID = -7208668478357756970L;
+    
     private String name;
     private long uniqueId;
     private Date birthDate;
+    private transient String interests;
 
     /**
      * @param name
      * @param uniqueId
      */
-    public Mio(String name, long uniqueId)
+    public MioAlma(String name, long uniqueId)
     {
 	this.name = name;
 	this.uniqueId = uniqueId;
 	this.birthDate = new Date(); //today
+	this.interests = "daydreaming";
     }
 
     /**
@@ -61,8 +68,8 @@ public class Mio implements Serializable
     @Override
     public String toString()
     {
-	return "Mio [" + (name != null ? "name=" + name + ", " : "") + "uniqueId=" + uniqueId + ", "
-	        + (birthDate != null ? "birthDate=" + birthDate : "") + "]";
+	return "MioAlma [name=" + name + ", uniqueId=" + uniqueId + ", birthDate=" + birthDate + ", interests="
+	        + interests + "]";
     }
 
 }
