@@ -7,7 +7,7 @@ import java.io.IOException;
  */
 public class MaxPrcoesses
 {
-    private static final int NUM_PROCESS = 5000;
+    private static final int NUM_PROCESS = 50000;
 
     public static void main(String[] args) throws IOException, InterruptedException
     {

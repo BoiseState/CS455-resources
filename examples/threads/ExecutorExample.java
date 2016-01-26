@@ -3,7 +3,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * A simple example of using an Exceutor to manage a thread pool.
+ * A simple example of using an Executor to manage a thread pool.
  * @author amit
  */
 public class ExecutorExample

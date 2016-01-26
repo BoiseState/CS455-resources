@@ -7,7 +7,6 @@
  */
 public class TraceAncestry
 {
-
     /**
      * @param args
      */
