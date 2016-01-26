@@ -7,7 +7,7 @@ public class SocketOptions
 	public static void main (String args[])
 	{
 		try {
-			Socket s = new Socket("localhost", 5500);
+			Socket s = new Socket("localhost", 5005);
 			System.out.println("Socket s"); 
 			System.out.println("SO_TIMEOUT = "+s.getSoTimeout());
 			System.out.println("Receive Buffer Size = "+s.getReceiveBufferSize());

@@ -26,7 +26,8 @@ JFLAGS=
 	javac $(JFLAGS) $<
 
 
-all: UdpClient1.class UdpServer1.class
+all: DateAtHost.class
+
 
 clean:
 	/bin/rm -f *.class

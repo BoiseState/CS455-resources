@@ -13,10 +13,10 @@ public class ServerSocketOptions
 			ServerSocket s = new ServerSocket(5005, BACKLOG);
 
 			System.out.println("ServerSocket"); 
-			System.out.println("SO_TIMEOUT = "+s.getSoTimeout());
-			System.out.println("Receive Buffer Size = "+s.getReceiveBufferSize());
-			s.setSoTimeout(5000); // 5 seconds 
-			System.out.println("New SO_TIMEOUT = "+s.getSoTimeout());
+			System.out.println("SO_TIMEOUT = " + s.getSoTimeout());
+			System.out.println("Receive Buffer Size = " + s.getReceiveBufferSize());
+			s.setSoTimeout(10000); //10 seconds 
+			System.out.println("New SO_TIMEOUT = " + s.getSoTimeout());
 
 			serverClients(s);
 			

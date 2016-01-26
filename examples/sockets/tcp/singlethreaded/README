@@ -1,0 +1,9 @@
+Running the server:
+
+	java TimeClient 
+
+Running the client (on same or another machine):
+
+	java TimeClient <hostname> <port>
+
+Use localhost for hostname and 5005 for port.
