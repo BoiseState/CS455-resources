@@ -1,2 +1,0 @@
-
-java -Djava.security.manager -Djava.security.policy=mysecurity.policy Pulse port
