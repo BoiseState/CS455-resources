@@ -1,3 +1,4 @@
+package tinyhttpd;
 
 import java.net.*;
 import java.io.*;
