@@ -39,7 +39,6 @@ public class DateAtHost extends java.util.Date
 	if (args.length == 0) {
 	    throw new IOException("\n Usage: java DateAtHost <hostname>");
 	}
-
 	System.out.println(new DateAtHost(args[0]));
     }
 }

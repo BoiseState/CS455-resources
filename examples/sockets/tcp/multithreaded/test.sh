@@ -1,13 +1,14 @@
 #!/bin/bash
 
-java TimeClient  localhost 5005 &
-java TimeClient  localhost 5005 &
-java TimeClient  localhost 5005 &
-java TimeClient  localhost 5005 &
-java TimeClient  localhost 5005 &
-java TimeClient  localhost 5005 &
-java TimeClient  localhost 5005 &
-java TimeClient  localhost 5005 &
+cd ../..
+java tcp.multithreaded.TimeClient  localhost 5005 &
+java tcp.multithreaded.TimeClient  localhost 5005 &
+java tcp.multithreaded.TimeClient  localhost 5005 &
+java tcp.multithreaded.TimeClient  localhost 5005 &
+java tcp.multithreaded.TimeClient  localhost 5005 &
+java tcp.multithreaded.TimeClient  localhost 5005 &
+java tcp.multithreaded.TimeClient  localhost 5005 &
+java tcp.multithreaded.TimeClient  localhost 5005 &
 
 wait
 

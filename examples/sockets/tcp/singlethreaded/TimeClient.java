@@ -21,7 +21,6 @@ public class TimeClient
 	try {
 	    Socket s = new Socket(host, port);
 	    InputStream in = s.getInputStream();
-	    OutputStream out = s.getOutputStream();
 	    ObjectInputStream oin = new ObjectInputStream(in);
 	    Date date = (Date) oin.readObject();
 	    System.out.println("Time on host " + host + " is " + date);
