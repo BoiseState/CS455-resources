@@ -3,7 +3,7 @@ package tcp.socketoptions;
 import java.io.*;
 import java.net.*;
 
-public class SocketOptions
+public class ClientSocketOptions
 {
 	public static void main (String args[])
 	{
