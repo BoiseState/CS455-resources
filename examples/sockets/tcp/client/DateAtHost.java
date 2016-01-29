@@ -15,9 +15,8 @@ import java.net.Socket;
  */
 public class DateAtHost extends java.util.Date
 {
-    static int timePort = 37;
-    static final long offset = 2208988800L; // Seconds from century to
-                                            // Jan 1, 1970 00:00 GMT
+    private static int timePort = 37;
+    private static final long offset = 2208988800L; //Seconds from century to Jan 1, 1970 00:00 GMT
 
     public DateAtHost(String host, int port) throws IOException
     {
@@ -37,7 +36,7 @@ public class DateAtHost extends java.util.Date
     public static void main(String[] args) throws Exception
     {
 	if (args.length == 0) {
-	    throw new IOException("\n Usage: java DateAtHost <hostname>");
+	    throw new IOException("Usage: java DateAtHost <hostname>");
 	}
 	System.out.println(new DateAtHost(args[0]));
     }

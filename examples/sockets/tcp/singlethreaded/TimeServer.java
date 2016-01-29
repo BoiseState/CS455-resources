@@ -8,7 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * A single-threaded time server. 
+ * A single-threaded time server that sends Date objects to clients. 
  * You may need to open port 5005 in the firewall on the host machine.
  * 
  * @author amit
@@ -36,6 +36,9 @@ public class TimeServer
 	}
     }
 
+    /**
+     * The method that handles the clients, one at a time.
+     */
     public void serviceClients()
     {
 	Socket sock;
@@ -46,13 +49,14 @@ public class TimeServer
 		in = sock.getInputStream();
 		out = sock.getOutputStream();
 		// Note that client gets a temporary/transient port on it's side
-		// to talk
-		// to the server on its well known port
-		System.out.println(
-		        "Received connect from " + sock.getInetAddress().getHostAddress() + ": " + sock.getPort());
+		// to talk to the server on its well known port
+		System.out.println("Received connect from " + sock.getInetAddress().getHostAddress()
+			           + ": " + sock.getPort());
+		
 		ObjectOutputStream oout = new ObjectOutputStream(out);
 		oout.writeObject(new java.util.Date());
 		oout.flush();
+		
 		/* Thread.sleep(4000); //4 secs */
 		sock.close();
 		/* } catch (InterruptedException e) { */

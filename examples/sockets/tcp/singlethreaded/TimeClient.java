@@ -7,6 +7,9 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Date;
 
+/**
+ * Connect to a time server and get time from it as a Date object.
+ */
 public class TimeClient
 {
     public static void main(String args[])
@@ -22,6 +25,7 @@ public class TimeClient
 	    Socket s = new Socket(host, port);
 	    InputStream in = s.getInputStream();
 	    ObjectInputStream oin = new ObjectInputStream(in);
+	    
 	    Date date = (Date) oin.readObject();
 	    System.out.println("Time on host " + host + " is " + date);
 	} catch (IOException e1) {

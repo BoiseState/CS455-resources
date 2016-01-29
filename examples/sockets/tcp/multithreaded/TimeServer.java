@@ -16,8 +16,12 @@ import java.net.SocketException;
 public class TimeServer
 {
     private int port;
-    ServerSocket ss;
+    private ServerSocket ss;
 
+    /**
+     * Creates a server socket that listens on the specified port number. 
+     * @param port The port number for the server.
+     */
     public TimeServer(int port)
     {
 	try {
@@ -27,14 +31,18 @@ public class TimeServer
 	}
     }
 
+    /**
+     * The main server method that accepts connections and starts off a new thread
+     * to handle each accepted connection.
+     */
     public void runServer()
     {
 	Socket client;
 	try {
 	    while (true) {
 		client = ss.accept();
-		System.out.println("Received connect from " + client.getInetAddress().getHostName() + " [ "
-		        + client.getInetAddress().getHostAddress() + " ] ");
+		System.out.println("Received connect from " + client.getInetAddress().getHostName() 
+			+ " [ " + client.getInetAddress().getHostAddress() + " ] ");
 		new ServerConnection(client).start();
 	    }
 	} catch (IOException e) {
@@ -53,9 +61,12 @@ public class TimeServer
     }
 }
 
+/**
+ * Handles one connection in a separate thread.
+ */
 class ServerConnection extends Thread
 {
-    Socket client;
+    private Socket client;
 
     ServerConnection(Socket client) throws SocketException
     {
@@ -67,11 +78,13 @@ class ServerConnection extends Thread
     public void run()
     {
 	try {
-	    InputStream in = client.getInputStream();
 	    OutputStream out = client.getOutputStream();
+	    InputStream in = client.getInputStream();
 	    ObjectOutputStream oout = new ObjectOutputStream(out);
+	    
 	    oout.writeObject(new java.util.Date());
 	    oout.flush();
+
 	    Thread.sleep(10000);
 	    client.close();
 	} catch (InterruptedException e) {
