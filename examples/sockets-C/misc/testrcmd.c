@@ -18,6 +18,9 @@ int main(int argc, char **argv)
     }
 
     rem = rcmd(&host, sp->s_port, "amit", "amit", "/bin/date > /home/amit/log1", &rfd2);
+	if (rem == -1) perror("rcmd failed!");
     rem = rcmd(&host, sp->s_port, "amit", "amit", "/bin/date > /home/amit/log2", &rfd2);
+	if (rem == -1) perror("rcmd failed!");
+
 	exit(0);
 }
