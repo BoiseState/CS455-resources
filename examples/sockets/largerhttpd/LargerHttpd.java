@@ -19,8 +19,8 @@ public class LargerHttpd
     private Selector clientSelector;
     private ClientQueue readyClients = new ClientQueue();
 
-    public void run(int port, int threads) throws IOException
-    {
+
+    public void run(int port, int threads) throws IOException {
 	clientSelector = Selector.open();
 	ServerSocketChannel ssc = ServerSocketChannel.open();
 	ssc.configureBlocking(false);
@@ -30,8 +30,7 @@ public class LargerHttpd
 
 	for (int i = 0; i < threads; i++)
 	    new Thread() {
-		public void run()
-		{
+		public void run() {
 		    while (true)
 			try {
 			    handleClient();
@@ -61,8 +60,8 @@ public class LargerHttpd
 	    }
     }
 
-    void acceptClient(ServerSocketChannel ssc) throws IOException
-    {
+
+    void acceptClient(ServerSocketChannel ssc) throws IOException {
 	SocketChannel clientSocket = ssc.accept();
 	clientSocket.configureBlocking(false);
 	SelectionKey key = clientSocket.register(clientSelector, SelectionKey.OP_READ);
@@ -70,8 +69,8 @@ public class LargerHttpd
 	key.attach(client);
     }
 
-    void handleClient() throws IOException
-    {
+
+    void handleClient() throws IOException {
 	SelectionKey key = readyClients.next();
 	HttpdConnection client = (HttpdConnection) key.attachment();
 	if (key.isReadable())
@@ -80,8 +79,8 @@ public class LargerHttpd
 	    client.write(key);
     }
 
-    public static void main(String args[]) throws IOException
-    {
+
+    public static void main(String args[]) throws IOException {
 	if (args.length == 0) {
 	    System.err.println("Usage: java LargerHttpd <port#> <max #threads>");
 	    System.exit(1);

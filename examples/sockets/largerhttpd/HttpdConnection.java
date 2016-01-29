@@ -26,13 +26,13 @@ public class HttpdConnection
     private FileChannel file;
     private int filePosition;
 
-    public HttpdConnection(SocketChannel clientSocket)
-    {
+
+    public HttpdConnection(SocketChannel clientSocket) {
 	this.clientSocket = clientSocket;
     }
 
-    public void processRequest(SelectionKey key)
-    {
+
+    public void processRequest(SelectionKey key) {
 	buff.flip();
 	request = charset.decode(buff).toString();
 	System.out.println("Request: " + request);
@@ -57,16 +57,16 @@ public class HttpdConnection
 	key.interestOps(SelectionKey.OP_WRITE);
     }
 
-    public void read(SelectionKey key) throws IOException
-    {
+
+    public void read(SelectionKey key) throws IOException {
 	if (request == null && (clientSocket.read(buff) == -1 || buff.get(buff.position() - 1) == '\n'))
 	    processRequest(key);
 	else
 	    key.interestOps(SelectionKey.OP_READ);
     }
 
-    public void write(SelectionKey key) throws IOException
-    {
+
+    public void write(SelectionKey key) throws IOException {
 	if (response != null) {
 	    clientSocket.write(buff);
 	    if (buff.remaining() == 0) response = null;
