@@ -12,6 +12,9 @@ import java.nio.charset.Charset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * A more scalable web server.
+ */
 public class HttpdConnection
 {
     private static Charset charset = Charset.forName("8859_1");
