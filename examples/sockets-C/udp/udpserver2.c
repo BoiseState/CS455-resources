@@ -24,8 +24,6 @@ int main(int argc, char **argv)
 }
 
 
-
-
 void dg_echo(int sockfd, struct sockaddr *pcliaddr, socklen_t clilen)
 {
 	socklen_t	len;

@@ -5,8 +5,7 @@
 #endif
 
 /* include sock_ntop */
-char *
-sock_ntop(const struct sockaddr *sa, socklen_t salen)
+char * sock_ntop(const struct sockaddr *sa, socklen_t salen)
 {
     char		portstr[7];
     static char str[128];		/* Unix domain is largest */
@@ -73,8 +72,7 @@ sock_ntop(const struct sockaddr *sa, socklen_t salen)
     return (NULL);
 }
 
-char *
-Sock_ntop(const struct sockaddr *sa, socklen_t salen)
+char * Sock_ntop(const struct sockaddr *sa, socklen_t salen)
 {
 	char	*ptr;
 
