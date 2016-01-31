@@ -1,20 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>            /* exit()                               */
-#include <string.h>            /* memset(), memcpy()                   */
-#include <sys/utsname.h>       /* uname()                              */
-#include <sys/types.h>             
-#include <sys/socket.h>        /* socket(), bind(), listen(), accept() */
-#include <netinet/in.h>        /* protocol stuff and related macros    */
-#include <arpa/inet.h>         /* address conversion stuff             */
-#include <netdb.h>             /* hostname related functions           */
-#include <unistd.h>            /* POSIX constants.                     */
-
-void err_quit(const char *fmt, ...);
-void err_msg(const char *fmt, ...);
-void err_ret(const char *fmt, ...);
-void err_sys(const char *fmt, ...);
-
-
+#include "myheader.h"
 
 const char MESSAGE[] = "Hello World\n";
 const int BACK_LOG = 5;
@@ -70,13 +54,13 @@ int main(int argc, char **argv)
 	
 	
 	if (bind(serverSocket, res->ai_addr, res->ai_addrlen) < 0) {
-			err_quit("Bind error:");
+		err_quit("Bind error:");
     } else {
 		fprintf(stderr, "%s: server bound to port %s\n", argv[0], port);    
 	}
 
 	if  (listen(serverSocket, BACK_LOG) < 0)
-			err_quit("Listen error:");
+		err_quit("Listen error:");
 
 
     while (1) {

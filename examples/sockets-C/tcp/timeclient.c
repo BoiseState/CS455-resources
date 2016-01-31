@@ -2,13 +2,13 @@
 
 int main(int argc, char **argv)
 {
-	int					sockfd, n;
-	char				recvline[MAXLINE + 1];
+	int	sockfd, n;
+	char recvline[MAXLINE + 1];
 	struct addrinfo hints, *res;
 
 
 	if (argc != 2)
-		err_quit("Usage: timeclient <hostname>");
+		err_quit("Usage: timeclient <host-ip-address>");
 
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 	if (connect(sockfd, res->ai_addr, res->ai_addrlen) < 0)
 		err_sys("connect error");
 
-	while ( (n = read(sockfd, recvline, MAXLINE)) > 0) {
+	while ((n = read(sockfd, recvline, MAXLINE)) > 0) {
 		recvline[n] = 0;	/* null terminate */
 		if (fputs(recvline, stdout) == EOF)
 			err_sys("fputs error");

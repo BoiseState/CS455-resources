@@ -3,9 +3,9 @@
 
 int main(int argc, char **argv)
 {
-	int					listenfd, connfd;
-	char				buff[MAXLINE];
-	time_t				ticks;
+	int	listenfd, connfd;
+	char buff[MAXLINE];
+	time_t ticks;
 	struct addrinfo hints, *res;
 
 	memset(&hints, 0, sizeof hints);

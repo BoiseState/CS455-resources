@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	char *remotePort = NULL;
 
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s <Serverhost> <serverPort>\n", argv[0]);
+        fprintf(stderr, "Usage: %s <server-ip-address> <port>\n", argv[0]);
         exit(1);
     }
     remoteHost = argv[1];  
@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 	/* 
 	   Note that we loop over read since with TCP, we may get a 50 byte
 	   message from the server as a single message or 5 10 byte messages 
-       or 50 1 byte messages depending upon the buffering the network 
+       or 50 1 byte messages depending upon the buffering in the network 
 	   protocol stack in the kernel.
 	*/
 	while ((status = read(clientSocket, buffer, sizeof(buffer)-1)) > 0) {
