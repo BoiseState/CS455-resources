@@ -17,23 +17,35 @@ import java.util.regex.Pattern;
 
 /**
  * 
- * A simple web server that accepts basic HTTP commands.
- * For example, try:
- * 	java tinyhttpd.TinyHttpd  5005
+ * A simple web server that accepts basic HTTP commands. For example, try:
+ * 
+ * 	java tinyhttpd.TinyHttpd 5005
+ * 
+ * Or with security manager enabled:
+ * 
+ * 	java -Djava.security.manager -Djava.security.policy=mysecurity.policy TinyHttpd 5005 
+ * 
  * Then point a web browser to localhost:5005
- *      firefox localhost:5005
+ * 
+ * 	firefox localhost:5005
+ * 
  * Or specify a path, such as
+ * 
  * 	firefox localhost:5005/sample.html
  * 
  * Also try running the provided client as:
- * 	java tinyhttpd.Client  localhost 5005
+ * 
+ * 	java tinyhttpd.Client localhost 5005
+ * 
  * Or try a path in the server's root folder
- * 	java tinyhttpd.Client  localhost sample.html
+ * 
+ * 	java tinyhttpd.Client localhost sample.html
  *
  */
 public class TinyHttpd
 {
     private static final int EXIT_FAILURE = 1;
+
     public static void main(String argv[]) throws IOException
     {
 	if (argv.length == 0) {
@@ -80,6 +92,8 @@ class TinyHttpdConnection implements Runnable
 		    out.flush();
 		} catch (FileNotFoundException e) {
 		    pout.println("404 Object Not Found");
+		} catch (SecurityException e) {
+		    pout.println("403 Forbidden");
 		}
 	    } else
 		pout.println("400 Bad Request");
