@@ -12,9 +12,9 @@ import java.net.Socket;
  * 	java tinyhttpd.Client  cs.boisestate.edu 80
  * Then run the server in the same example. Suppose the server is using port 5005.
  * Then run the client as:
- * 	java tinyhttpd.Client  localhost 5005
+ * 	java tinyhttpd.Client localhost 5005
  * Or try a path in the server's root folder
- * 	java tinyhttpd.Client  localhost sample.html
+ * 	java tinyhttpd.Client localhost sample.html
  */
 public class Client
 {

@@ -24,7 +24,7 @@ public class Server
 
 class ServerConnection extends Thread
 {
-    Socket client;
+    private Socket client;
 
     ServerConnection(Socket client) throws SocketException
     {
@@ -43,15 +43,16 @@ class ServerConnection extends Thread
 		out.writeObject(processRequest(in.readObject()));
 		out.flush();
 	    }
-	} catch (EOFException e3) { // Normal EOF
+	} catch (EOFException e) { //Normal EOF
 	    try {
 		client.close();
-	    } catch (IOException e) {
+	    } catch (IOException e1) {
+		System.err.println(e1);
 	    }
 	} catch (IOException e) {
-	    System.out.println("I/O error " + e); // I/O error
-	} catch (ClassNotFoundException e2) {
-	    System.out.println(e2); // Unknown type of request object
+	    System.err.println("I/O error " + e); //I/O error
+	} catch (ClassNotFoundException e) {
+	    System.err.println(e); //Unknown type of request object
 	}
     }
 
