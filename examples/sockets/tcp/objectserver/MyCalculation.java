@@ -2,8 +2,8 @@ package tcp.objectserver;
 
 public class MyCalculation extends WorkRequest
 {
-    int n;
-    int[] values;
+    private int n;
+    private int[] values;
 
     public MyCalculation(int n)
     {
