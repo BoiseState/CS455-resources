@@ -5,7 +5,7 @@ public class PrintNetworkInterfaces {
 	public static void main(String args[]) 
 	throws SocketException
 	{
-		NetworkInterface net1 = NetworkInterface.getByName("p6p1");
+		NetworkInterface net1 = NetworkInterface.getByName("enp7s0");
 		System.out.println(net1);
 		System.out.println("Support multicast="+net1.supportsMulticast());
 

@@ -18,7 +18,7 @@ public class PrintMulticastParameters
 		System.out.println();
 
 		mcast.setLoopbackMode(true);
-		NetworkInterface netif = NetworkInterface.getByName("p6p1");
+		NetworkInterface netif = NetworkInterface.getByName("enp7s0");
 		mcast.setNetworkInterface(netif);
 
 		System.out.println();
