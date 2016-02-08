@@ -10,7 +10,6 @@ service rmi-date-server
 	wait            = yes
 	user            = root
 	server          = /usr/bin/java
-	server_args     = -Djava.security.policy=/home/amit/Documents/classes/cs555/lab/java-service/mysecurity.policy -Djava.rmi.server.hostname=127.0.0.1 -classpath /home/amit/Documents/classes/cs555/lab/java-service RMIDateServer
+	server_args     = -Djava.security.policy=/home/amit/Documents/work/courses/github/CS455-resources/examples/java-service/mysecurity.policy -Djava.rmi.server.hostname=127.0.0.1 -classpath /home/amit/Documents/work/courses/github/CS455-resources/examples/java-service  RMIDateServer
 	log_on_success	= PID HOST USERID
-
 }

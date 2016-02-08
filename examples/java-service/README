@@ -9,7 +9,7 @@ at the end of /etc/services file
 
 Make sure xinetd is installed on your system. If not, install it using:
 
-yum install xinetd
+dnf install xinetd
 
 
 Copy the file rmi-date-server to /etc/xinetd.d/
