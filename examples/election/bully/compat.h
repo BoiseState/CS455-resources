@@ -50,11 +50,6 @@
 
 #ifdef MINI_FORK
 /*
- * I have to ifdef this stuff out because GCC is to stupid to realize that
- * I don't use this in the client code.
- */
-
-/*
  * MiniFork creates a new process, or a new thread in the current program.
  *          I call it MiniFork, because it does not call exec.
  */
