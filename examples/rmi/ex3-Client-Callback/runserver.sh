@@ -3,7 +3,7 @@
 echo "Killing existing rmiregistry"
 killall -9 rmiregistry >& /dev/null
 
-echo "Starting new rmiregistry from `pwd`yy"
+echo "Starting new rmiregistry from `pwd`"
 export CLASSPATH=`pwd`:$CLASSPATH
 
 rmiregistry &
