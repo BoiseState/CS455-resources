@@ -1,6 +1,0 @@
-#!/bin/csh -fX
-set pgm=`echo $1 | cut -c1-24`
-set DeathTo=`ps g | egrep $pgm | egrep -v egrep | egrep -v $0 | awk '{print $1}'`
-#set DeathTo=`ps aux | egrep $USER | egrep $1 | egrep -v egrep | egrep -v $0 | awk '{print $2}'`
-#echo $DeathTo
-kill $DeathTo &

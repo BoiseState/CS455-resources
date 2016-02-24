@@ -1,4 +1,0 @@
-Change the definitions of the server and database in dim.x to reflect your system:
-%#define SERVERHOST  "cortex"
-%#define SERVERPATH  "/home/cortex/u0/bloomer/src/rpc/release/dim/remote"
-%#define SERVERDB    "/home/cortex/projects/vision/archive.dim"

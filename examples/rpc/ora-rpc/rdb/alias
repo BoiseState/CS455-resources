@@ -1,1 +1,0 @@
-alias rtele 'echo name	location	extension;rsh -n \!\!:1 egrep -i \!\!:2 /usr/local/lib/personnel.dat'
