@@ -31,3 +31,11 @@ userlookup/userlookup_clnt.c
 userlookup/userlookup_server
 userlookup/userlookup_svc.c
 userlookup/userlookup_xdr.c
+square/client
+square/client_test
+square/server
+square/square.h
+square/square_clnt.c
+square/square_svc.c
+square/square_xdr.c
+
