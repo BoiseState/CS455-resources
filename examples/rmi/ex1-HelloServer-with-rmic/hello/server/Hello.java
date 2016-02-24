@@ -1,3 +1,4 @@
+package hello.server;
 
 
 public interface Hello extends java.rmi.Remote {
