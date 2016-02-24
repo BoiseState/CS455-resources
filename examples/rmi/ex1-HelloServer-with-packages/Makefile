@@ -28,14 +28,9 @@ JFLAGS=
 # class files (with date no later than the source .java files).
 # We also must have satisfied the rule named doc.
 
-all: compile rmi
+all: compile 
 
 compile: hello/server/Hello.class hello/server/HelloServer.class hello/client/HelloClient.class
-
-rmi: compile
-	rmic hello.server.HelloServer
-	cp hello/server/HelloServer_Stub.class hello/client
-
 
 # Run javadoc on all java source files in this directory.
 # This rule depends upon the rule named html, which makes the
