@@ -3,7 +3,7 @@ If you start the server and see the following error:
 
 $ ./server 
 Cannot register service: RPC: Authentication error; why = Client credential too weak
-unable to register (SQUARE_PROG, SQUARE_VERS, udp).[amit@kohinoor square]: 
+unable to register (SQUARE_PROG, SQUARE_VERS, udp).
 $
 
 then add the following line to /etc/sysconfig/rpcbind
@@ -12,8 +12,7 @@ RPCBIND_ARGS=-i
 
 and then restart the rpcbind service
 
-/sbin/service rpcbind restart
-
+/sbin/systctl restart rpcbind 
 
 
 The client_test.c program makes n calls to the RPC for timing purposes.
