@@ -9,8 +9,8 @@ export CLASSPATH=`pwd`:$CLASSPATH
 rmiregistry &
 
 echo "Starting server clientcallback.server.MyServer"
-#java  -Djava.security.policy=mysecurity.policy  callback.server.MyServer
-java  callback.server.MyServer
+java  -Djava.security.policy=mysecurity.policy  callback.server.MyServer
+#java  callback.server.MyServer
 
 # Use this for running across the network
 # java -Djava.rmi.server.codebase='http://onyx.boisestate.edu/~amit/rmi/ex3/' -Djava.security.policy=mysecurity.policy  MyServer
