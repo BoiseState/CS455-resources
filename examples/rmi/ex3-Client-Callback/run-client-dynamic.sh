@@ -6,6 +6,6 @@ esac
 serverHost=$1
 
 java -Djava.rmi.server.codebase="http://cs.boisestate.edu/~amit/teaching/455/rmi/ex3-Client-Callback/"\
--Djava.security.policy=mysecurity.policy MyClient $serverHost
+-Djava.security.policy=mysecurity.policy callback.client.MyClient $serverHost
 
 
