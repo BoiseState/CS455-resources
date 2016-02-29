@@ -1,7 +1,0 @@
-
-The rmi example is setup to run on onyx.boisestate.edu. The server side code can be found
-in http://onyx.boisestate.edu/~amit/rmi/ex6-Dynamic-Classloading/. The client side code can be
-found at http://cs.boisestate.edu/~amit/teaching/455/rmi/ex6-Dynamic-Classloading/.
-
-The firewall on onyx needs to allow RMI traffic from cs and vice versa (for call backs).
-
