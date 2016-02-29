@@ -12,7 +12,7 @@ import asynchronous.server.WorkRequest;
 /**
  * Shows a client making multiple asynchronous calls to a server. However the
  * client now needs to keep track of the number of outstanding asynchronous
- * calls so that it doesn't quit too early.
+ * calls so that it doesn't quit too early. This requires synchronization.
  */
 public class MyClient extends java.rmi.server.UnicastRemoteObject implements WorkListener
 {
@@ -33,6 +33,7 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
 	try {
 	    Server server = (Server) Naming.lookup("rmi://" + host + "/AsyncServer");
 
+	    System.out.println(server.getDate());
 	    System.out.println(server.getDate());
 	    System.out.println(server.execute(new MyCalculation(2)));
 	    StringEnumeration se = server.getList();
@@ -56,6 +57,7 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
 	    } catch (InterruptedException e) {
 		System.err.println(e);
 	    }
+	    System.out.println(server.getDate());
 	    System.exit(0);
 
 	} catch (java.io.IOException e) {
