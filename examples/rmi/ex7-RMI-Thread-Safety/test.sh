@@ -4,6 +4,6 @@
 
 for i in 0 1 2 3 4 5 6 7 8 9
 do
-  ./runclient.sh 2>&1
+  ./run-client.sh 2>&1
 done
 

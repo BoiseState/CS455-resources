@@ -1,3 +1,4 @@
+
 /** Implementation of the RMIThreadServer interface for RMI.  
     Change the read() and update() functions from synchronized to
     unsynchronized to watch how you can create race conditions and
@@ -25,48 +26,56 @@ import java.rmi.registry.*;
 
 public class RMIThreadServerImpl extends UnicastRemoteObject implements RMIThreadServer
 {
-	private static final long serialVersionUID = -7574367988592496327L;
-	private volatile int counter = 0;
-	private final int MAXCOUNT = 900000;
+    private static final long serialVersionUID = -7574367988592496327L;
+    private volatile int counter = 0;
+    private final int MAXCOUNT = 900000;
 
-	public RMIThreadServerImpl () throws RemoteException {
-		super();
+
+    public RMIThreadServerImpl() throws RemoteException {
+	super();
+    }
+
+
+    /**
+     * TEST function to practice looking at thread synchronization. This
+     * function increments a counter, then decrements it back to zero. When a
+     * client tries to read the counter, they should always get zero (if threads
+     * are synchronized properly).
+     */
+    public synchronized void  update() {
+	// public void update() {
+	int i;
+	Thread p = Thread.currentThread();
+
+	System.out.println("[server] Entering critical section: " + p.getName());
+	for (i = 0; i < MAXCOUNT; i++)
+	    this.counter++;
+	for (i = 0; i < MAXCOUNT; i++)
+	    this.counter--;
+	System.out.println("[server] Leaving critical section: " + p.getName());
+
+    }
+
+
+    /**
+     * TEST function to practice looking at thread synchronization. This allows
+     * a client to read the value of the "counter" variable.
+     */
+    public synchronized int read() {
+	// public int read() {
+	return this.counter;
+    }
+
+
+    public static void main(String[] args) {
+	try {
+	    int registryPort = 1099;
+	    RMIThreadServerImpl localObject = new RMIThreadServerImpl();
+	    Registry registry = LocateRegistry.getRegistry(registryPort);
+	    registry.rebind("RMIThreadServer", localObject);
+	    System.err.println("DEBUG: RMIThreadServerImpl RMI listener bound\n");
+	} catch (RemoteException e) {
+	    System.err.println("RemoteException: " + e);
 	}
-
-	/** TEST function to practice looking at thread synchronization.  This
-	function increments a counter, then decrements it back to zero.  When
-	a client tries to read the counter, they should always get zero (if
-	threads are synchronized properly). */
-	public synchronized void update() {
-	//public void update() {
-		int i;
-		Thread p = Thread.currentThread();
-
-		System.out.println("[server] Entering critical section: " + p.getName());
-		for (i = 0; i < MAXCOUNT; i++)
-			this.counter++;
-		for (i = 0; i < MAXCOUNT; i++)
-			this.counter--;
-		System.out.println("[server] Leaving critical section: " + p.getName());
-
-	}
-
-	/** TEST function to practice looking at thread synchronization.  This
-	allows a client to read the value of the "counter" variable. */
-	public synchronized int read() {
-	//public int read() {
-		return this.counter;
-	}
-
-	public static void main (String[] args) {
-		try {
-			int registryPort = 1099;
-			RMIThreadServerImpl localObject = new RMIThreadServerImpl( );
-			Registry registry = LocateRegistry.getRegistry(registryPort);
-			registry.rebind("RMIThreadServer", localObject);
-			System.err.println("DEBUG: RMIThreadServerImpl RMI listener bound\n");
-		} catch (RemoteException e) {
-			System.err.println("RemoteException: " + e);
-		}
-	}
+    }
 }
