@@ -28,14 +28,11 @@ JFLAGS=
 # class files (with date no later than the source .java files).
 # We also must have satisfied the rule named doc.
 
-all: compile rmi
+all: compile 
 
 compile: MyCalculation.class MyClient.class Request.class \
          StringEnumeration.class StringEnumerator.class \
          WorkListener.class WorkRequest.class 
-
-rmi: compile
-	rmic MyClient
 
 # Run javadoc on all hava source files in this directory.
 # This rule depends upon the rule named html, which makes the

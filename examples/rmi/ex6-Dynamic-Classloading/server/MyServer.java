@@ -29,7 +29,7 @@ public class MyServer
 
     public static void main(String args[]) {
 		try {
-			System.setSecurityManager(new RMISecurityManager());
+			System.setSecurityManager(new SecurityManager());
 			Server server = new MyServer();
 			Naming.rebind("NiftyServer", server);
 			System.out.println("bound");

@@ -28,13 +28,11 @@ JFLAGS=
 # class files (with date no later than the source .java files).
 # We also must have satisfied the rule named doc.
 
-all: compile rmi
+all: compile 
 
 compile: MyServer.class Request.class Server.class StringEnumeration.class StringEnumerator.class \
          WorkListener.class WorkRequest.class
 
-rmi: compile
-	rmic MyServer
 
 # Run javadoc on all Java source files in this directory.
 # This rule depends upon the rule named html, which makes the

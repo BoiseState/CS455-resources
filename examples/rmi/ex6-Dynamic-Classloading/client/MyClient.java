@@ -54,7 +54,7 @@ public class MyClient
 	}
 }
 
-class mySecurityManager extends RMISecurityManager
+class mySecurityManager extends SecurityManager
 {
 		public void checkConnect(String host, int port, Object context) {}
 		public void checkPermission(Permission perm) {}
