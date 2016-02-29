@@ -5,6 +5,6 @@
 # the path to ex6 is as shown below (and is accessible via the web server)
 # Note that the / at the end of the URL is required.
 
-java -Djava.rmi.server.codebase="http://cs.boisestate.edu/~amit/teaching/555/examples/rmi-rpc/rmi/ex6-Dynamic-Classloading/client/" -Djava.security.policy=mysecurity.policy  MyClient onyx 
+java -Djava.rmi.server.codebase="http://cs.boisestate.edu/~amit/teaching/555/rmi/ex6-Dynamic-Classloading/client/" -Djava.security.policy=mysecurity.policy  MyClient onyx 
 
 

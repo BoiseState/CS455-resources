@@ -1,9 +1,8 @@
 
 The rmi example is setup to run on onyx.boisestate.edu. The code can be found
-in http://onyx.boisestate.edu/~amit/rmi/ex6/
+in http://onyx.boisestate.edu/~amit/rmi/ex6-Dynamic-Classloading/
 
-Use the script runServer to run the server on onyx. Then on your local
-machine, use the script runClient to run the client. Your local machine must
+Use the script run-server.sh to run the server on onyx. Then on your local
+machine, use the script run-client.sh to run the client. Your local machine must
 have a web server running and this directory must be accessible via the web.
 
-Note that the client doesn't need MyServer_Stub class!
