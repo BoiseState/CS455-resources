@@ -31,7 +31,7 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
     public MyClient(String host) throws RemoteException {
 	allDone = new Object();
 	try {
-	    Server server = (Server) Naming.lookup("rmi://" + host + "/NiftyServer");
+	    Server server = (Server) Naming.lookup("rmi://" + host + "/AsyncServer");
 
 	    System.out.println(server.getDate());
 	    System.out.println(server.execute(new MyCalculation(2)));
@@ -62,7 +62,7 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
 	    // I/O Error or bad URL
 	    System.out.println(e);
 	} catch (NotBoundException e) {
-	    // NiftyServer isn't registered
+	    // AsyncServer isn't registered
 	    System.out.println(e);
 	}
     }

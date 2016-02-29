@@ -18,10 +18,7 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 	printClientAddress();
 	// helps to show that the default RMI implementation is multi-threaded
 	System.out.println("MyServer: " + Thread.currentThread() + " going to sleep");
-	try {
-	    Thread.sleep(1000);
-	} catch (InterruptedException e) {
-	}
+	try { Thread.sleep(1000);} catch (InterruptedException e) {System.err.println(e);}
 	System.out.println("MyServer:" + Thread.currentThread() + " waking up from sleep");
 	return new Date();
     }
@@ -59,7 +56,7 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 	try {
 	    Server server = new MyServer();
 	    Registry registry = LocateRegistry.getRegistry(registryPort);
-	    registry.rebind("NiftyServer", server);
+	    registry.rebind("AsyncServer", server);
 	    System.err.println("MyServer: bound");
 	} catch (java.io.IOException e) {
 	    System.err.println("MyServer: problem registering server");
