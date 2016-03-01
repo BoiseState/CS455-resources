@@ -1,5 +1,4 @@
-
-import java.util.*;
+package sslsockets;
 
 public class MyCalculation extends WorkRequest {
 	int n;

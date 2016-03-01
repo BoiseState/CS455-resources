@@ -1,5 +1,5 @@
 
-package server;
+package rmisslex2.server;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;

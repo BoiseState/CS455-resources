@@ -1,4 +1,4 @@
-package RMISSLex1;
+package rmisslex1;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
