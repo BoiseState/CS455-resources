@@ -12,7 +12,7 @@ public class Client {
 		}
 		try {
         	System.setProperty("javax.net.ssl.trustStore", "./resources/Client_Truststore");
-        	System.setProperty("javax.net.ssl.trustStorePassword", "bratbrat");
+        	System.setProperty("javax.net.ssl.trustStorePassword", "test123");
 
 			int port = Integer.parseInt(argv[1]);
     		SSLSocketFactory sslFact = (SSLSocketFactory)SSLSocketFactory.getDefault();

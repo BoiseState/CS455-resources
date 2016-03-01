@@ -23,19 +23,17 @@ Change to subdirectory resources/ to do Steps 1-5.
 
 	keytool -import -alias SecureServer -file Server.cer -keystore Client_Truststore
 
-6.	To verify the contents of the truststore that we created, we issue
-	the following command. The contents of the truststore should
-	contain a trustedCertEntry, which means that a private key is
-	not available and should not be.
+6.	To verify the contents of the truststore that we created, we issue the following
+    command. The contents of the truststore should contain a trustedCertEntry,
+	which means that a private key is not available and should not be.
 
 	keytool -list -v  -keystore Client_Truststore
 
-In our example, we are working with a self-signed certificate instead of
-certificates signed by Certification Authority (CA). If there is a need to
-get the certificate signed by a CA then a Certificate Signing Request(CSR)
-needs to be generated. The generated CSR, then, should to be submitted
-along with other pertinent information to a Certification Authority such
-as VeriSign or USPS, who will then digitally sign the certificate.
+In our example, we are working with a self-signed certificate instead of certificates signed by
+Certification Authority (CA). If there is a need to get the certificate signed by a CA then a
+Certificate Signing Request(CSR) needs to be generated. The generated CSR, then, should to be
+submitted along with other pertinent information to a Certification Authority such as VeriSign
+or USPS, who will then digitally sign the certificate.
 
 Now change back to the top level examples directory.
 

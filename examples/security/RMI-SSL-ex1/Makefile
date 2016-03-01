@@ -46,4 +46,7 @@ html:
 	mkdir html
 
 clean:
-		rm --force  *.class
+	/bin/rm -f  *.class
+
+realclean: clean
+	cd resources/; /bin/rm -f Client_Truststore Server.cer Server_Keystore

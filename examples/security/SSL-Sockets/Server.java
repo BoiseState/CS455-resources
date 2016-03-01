@@ -11,7 +11,7 @@ public class Server {
 			System.exit(1);
 		}
 		System.setProperty("javax.net.ssl.keyStore", "./resources/Server_Keystore");
-		System.setProperty("javax.net.ssl.keyStorePassword", "bratbrat");
+		System.setProperty("javax.net.ssl.keyStorePassword", "test123");
 		SSLServerSocketFactory sslSrvFact =
 				 (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
 		SSLServerSocket ss = (SSLServerSocket) sslSrvFact.createServerSocket(Integer.parseInt(argv[0]));

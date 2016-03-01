@@ -31,3 +31,6 @@ all: Client.class DateRequest.class MyCalculation.class Request.class\
 
 clean:
 	/bin/rm -f *.class
+
+realclean: clean
+	cd resources/; /bin/rm -f Client_Truststore  Server.cer  Server_Keystore
