@@ -1,61 +1,57 @@
+package encryption;
 
-
-import java.io.*;
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.BadPaddingException;
 import java.security.Key;
-import java.security.Security;
 import java.security.NoSuchAlgorithmException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.security.InvalidKeyException;
 
 public class DecryptTest
 {
+    public static void main(String[] args) {
+	try {
+	    File dataFile = new File("data.encrypted");
+	    FileInputStream data = new FileInputStream(dataFile);
+	    FileInputStream fis = new FileInputStream("key");
+	    ObjectInputStream ois = new ObjectInputStream(fis);
 
-    public static void main(String[] args) 
-	{
+	    Key key = (Key) ois.readObject();
+	    ois.close();
 
-        try {
-			File dataFile = new File("data.encrypted");
-			FileInputStream data = new FileInputStream(dataFile);
-			FileInputStream fis = new FileInputStream("key");
-			ObjectInputStream ois = new ObjectInputStream(fis);
+	    /* Cipher cipher = Cipher.getInstance("DES"); */
+	    Cipher cipher = Cipher.getInstance("AES");
 
-            Key key = (Key) ois.readObject();
-			ois.close();
+	    byte[] result = new byte[(int) dataFile.length()];
+	    int n = data.read(result);
+	    System.out.println("read " + n + " bytes");
+	    data.close();
 
-            /*Cipher cipher = Cipher.getInstance("DES");*/
-            Cipher cipher = Cipher.getInstance("AES");
+	    cipher.init(Cipher.DECRYPT_MODE, key);
+	    byte[] original = cipher.doFinal(result);
+	    System.out.println("Decrypted data: " + new String(original));
 
-			byte [] result = new byte[(int)dataFile.length()];
-			int n = data.read(result);
-			System.out.println("read "+n+" bytes");
-			data.close();
-
-            cipher.init(Cipher.DECRYPT_MODE, key);
-            byte[] original = cipher.doFinal(result);
-            System.out.println("Decrypted data: " + new String(original));
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        }
-
+	} catch (ClassNotFoundException e) {
+	    e.printStackTrace();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	} catch (NoSuchAlgorithmException e) {
+	    e.printStackTrace();
+	} catch (NoSuchPaddingException e) {
+	    e.printStackTrace();
+	} catch (InvalidKeyException e) {
+	    e.printStackTrace();
+	} catch (IllegalStateException e) {
+	    e.printStackTrace();
+	} catch (IllegalBlockSizeException e) {
+	    e.printStackTrace();
+	} catch (BadPaddingException e) {
+	    e.printStackTrace();
+	}
     }
-
 }

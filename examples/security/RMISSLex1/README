@@ -35,21 +35,21 @@ Certificate Signing Request(CSR) needs to be generated. The generated CSR, then,
 submitted along with other pertinent information to a Certification Authority such as VeriSign
 or USPS, who will then digitally sign the certificate.
 
-Now change back to the top level examples directory.
+Now change back to the top level security examples directory.
 
 To run the server:
 
-java DateServerImpl &
+java rmisslex1.DateServerImpl &
 
 
 To run the client:
 
-java DateClient localhost 
+java rmisslex2.DateClient localhost 
 
 
 To see all the network transmissions, try
 
 
-java -Djavax.net.debug=all DateClient localhost
+java -Djavax.net.debug=all rmisslex1.DateClient localhost
 
 

@@ -1,3 +1,5 @@
+package passwordinput;
+
 import java.io.*;
 import java.util.Arrays;
 
