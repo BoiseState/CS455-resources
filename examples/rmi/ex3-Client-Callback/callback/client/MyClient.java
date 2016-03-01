@@ -25,6 +25,7 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
 	    Server server = (Server) Naming.lookup("rmi://" + host + "/NiftyServer");
 
 	    System.out.println(server.getDate());
+	    System.out.println(server.getDate());
 	    System.out.println(server.execute(new MyCalculation(2)));
 	    StringEnumeration se = server.getList();
 	    while (se.hasMoreItems())
