@@ -6,14 +6,12 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Caveat Emptor: Research the security of these methods before using them!
  *
- * MD2 The MD2 message digest algorithm as defined in RFC 1319. MD5 The MD5
- * message digest algorithm as defined in RFC 1321.
+ * The MD5 message digest algorithm as defined in RFC 1321.
  *
- * SHA-1 Hash algorithms defined in the FIPS PUB 180-2. SHA-256 SHA-256 is a
- * 256-bit hash function intended to provide 128 SHA-384 bits of security
- * against collision attacks, while SHA-512 is SHA-512 a 512-bit hash function
- * intended to provide 256 bits of security. A 384-bit hash may be obtained by
- * truncating the SHA-512 output.
+ * SHA-1 Hash algorithms defined in the FIPS PUB 180-2. SHA-256 is a
+ * 256-bit hash function intended to provide 128 bits of security
+ * against collision attacks, while SHA-512 is a 512-bit hash function
+ * intended to provide 256 bits of security.
  */
 public class SHA2Test
 {
