@@ -15,7 +15,7 @@ public class Client
 	    System.exit(1);
 	}
 	try {
-	    System.setProperty("javax.net.ssl.trustStore", "./resources/Client_Truststore");
+	    System.setProperty("javax.net.ssl.trustStore", "sslsockets/resources/Client_Truststore");
 	    System.setProperty("javax.net.ssl.trustStorePassword", "test123");
 
 	    int port = Integer.parseInt(argv[1]);
