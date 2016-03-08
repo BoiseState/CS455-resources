@@ -7,12 +7,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
+ * Utility functions to support Groupie class.
  * @author amit
  *
  */
 public class Utility
 {
-
     /**
      * Convert an int to an array of bytes
      * 
