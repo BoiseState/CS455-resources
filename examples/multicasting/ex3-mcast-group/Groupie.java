@@ -120,7 +120,7 @@ public class Groupie
 		}
 	    }
 	} catch (SocketTimeoutException e) {
-	    // no one responded, so start a new group
+	    //no one responded, so start a new group
 	    s.setSoTimeout(default_timeout);
 	    if (debug == 1) {
 		System.err.println("No response for discover group. Starting a new group");
