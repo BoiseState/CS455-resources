@@ -43,13 +43,11 @@ public class Server extends Thread
 		        "Client " + recv.getAddress().toString() + " thinks the time is " + clientDate.longValue());
 	    }
 	} catch (UnknownHostException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    System.err.println(e);
 	} catch (SocketTimeoutException e) {
-
+	    System.err.println(e);
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    System.err.println(e);
 	}
     }
 }
