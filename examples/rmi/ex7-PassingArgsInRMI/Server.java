@@ -36,7 +36,7 @@ public class Server implements Service{
 		System.out.println("Changed to gook!");
 		System.out.println("Now waiting...");
 		try {
-			Thread.sleep(60000);
+			Thread.sleep(6000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} 
