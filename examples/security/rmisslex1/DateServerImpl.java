@@ -41,11 +41,11 @@ public class DateServerImpl implements DateServer
 
     public static void main(String args[]) {
 	System.out.println("Setting System Properties....");
-	System.setProperty("javax.net.ssl.keyStore", "./resources/Server_Keystore");
+	System.setProperty("javax.net.ssl.keyStore", "rmisslex1/resources/Server_Keystore");
 	// Warning: change to match your password! Also the password should be
 	// stored encrypted in a file outside the program.
 	System.setProperty("javax.net.ssl.keyStorePassword", "test123");
-	System.setProperty("java.security.policy", "./resources/mysecurity.policy");
+	System.setProperty("java.security.policy", "rmisslex1/resources/mysecurity.policy");
 	try {
 	    DateServerImpl server = new DateServerImpl();
 	    server.bind("DateServerImpl");

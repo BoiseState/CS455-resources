@@ -9,8 +9,8 @@ public class DateClient
     private String serverName;
 
     public static void main(String[] argv) {
-	System.setProperty("javax.net.ssl.trustStore", "./resources/Client_Truststore");
-	System.setProperty("java.security.policy", "./resources/mysecurity.policy");
+	System.setProperty("javax.net.ssl.trustStore", "rmisslex1/resources/Client_Truststore");
+	System.setProperty("java.security.policy", "rmisslex1/resources/mysecurity.policy");
 	/* System.setSecurityManager(new RMISecurityManager()); */
 
 	if (argv.length != 1) {

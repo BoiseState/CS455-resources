@@ -52,7 +52,7 @@ public class SquareServer implements Square
 		System.setProperty("javax.net.ssl.keyStore","../resources/Server_Keystore");
 		// Warning: change to match your password! Also the password should be
 		// stored encrypted in a file outside the program.
-		System.setProperty("javax.net.ssl.keyStorePassword","bratbrat");
+		System.setProperty("javax.net.ssl.keyStorePassword","test123");
 		System.setProperty("java.security.policy", "../resources/mysecurity.policy");
 		try {
 			SquareServer server = new SquareServer("SquareServer");
