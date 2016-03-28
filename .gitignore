@@ -17,4 +17,8 @@ hs_err_pid*
 # other local files to ignore
 examples/serialization/hash.ser
 examples/serialization/mio.ser
+examples/security/rmisslex1/resources/Client_Truststore
+examples/security/rmisslex1/resources/Server.cer
+examples/security/rmisslex1/resources/Server_Keystore
+
 
