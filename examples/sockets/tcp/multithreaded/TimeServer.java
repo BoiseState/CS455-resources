@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.InetAddress;
 
 /**
  * A multithreaded time server.
@@ -26,6 +27,7 @@ public class TimeServer
     {
 	try {
 	    ss = new ServerSocket(port);
+	    System.out.println("TimeServer up and running on port " + port);
 	} catch (IOException e) {
 	    System.err.println(e);
 	}
