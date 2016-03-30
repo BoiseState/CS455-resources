@@ -7,10 +7,8 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.net.InetAddress;
-import java.net.NetworkInterface;
+
 
 /**
  * A multithreaded time server.
@@ -19,7 +17,6 @@ import java.net.NetworkInterface;
  */
 public class TimeServer
 {
-    private int port;
     private ServerSocket ss;
 
     /**
