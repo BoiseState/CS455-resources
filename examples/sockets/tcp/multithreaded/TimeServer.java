@@ -30,8 +30,7 @@ public class TimeServer
     {
 	try {
 	    ss = new ServerSocket(port);
-	    System.out.println("TimeServer up and running on port " + port + " "
-	            + InetAddress.getLocalHost().getCanonicalHostName());
+	    System.out.println("TimeServer up and running on port " + port + " " + InetAddress.getLocalHost());
 	} catch (IOException e) {
 	    System.err.println(e);
 	}
