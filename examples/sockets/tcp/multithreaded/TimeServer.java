@@ -7,7 +7,10 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 
 /**
  * A multithreaded time server.
@@ -27,11 +30,13 @@ public class TimeServer
     {
 	try {
 	    ss = new ServerSocket(port);
-	    System.out.println("TimeServer up and running on port " + port);
+	    System.out.println("TimeServer up and running on port " + port + " "
+	            + InetAddress.getLocalHost().getCanonicalHostName());
 	} catch (IOException e) {
 	    System.err.println(e);
 	}
     }
+    
 
     /**
      * The main server method that accepts connections and starts off a new thread
