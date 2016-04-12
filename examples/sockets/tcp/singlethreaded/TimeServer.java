@@ -6,6 +6,9 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.InetAddress;
+
+
 
 /**
  * A single-threaded time server that sends Date objects to clients. 
@@ -31,6 +34,7 @@ public class TimeServer
     {
 	try {
 	    s = new ServerSocket(port);
+		System.out.println("TimeServer up and running on port " + port + " " + InetAddress.getLocalHost());
 	} catch (IOException e) {
 	    System.err.println(e);
 	}
