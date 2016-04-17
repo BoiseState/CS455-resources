@@ -23,13 +23,14 @@ public class HelloClient
 	    public String call() throws Exception
 	    {
 		String response = stub.sayHello();
-		System.out.println("response: " + response);
+		System.out.println("From inside the called method: " + response);
 		return response;
 	    }
 	});
 
 	try {
-	    future.get(2, TimeUnit.SECONDS);
+	    String response = future.get(2, TimeUnit.SECONDS);
+	    System.out.println("response: " + response);
 	} catch (InterruptedException | TimeoutException | ExecutionException e) {
 	    System.err.println("RMI call timeout");
 	    executor.shutdown();
