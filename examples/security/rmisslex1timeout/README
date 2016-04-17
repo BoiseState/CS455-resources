@@ -1,6 +1,6 @@
 
 This example shows how to create a custom socket factory that allows a timeout on the RMI call over SSL. 
-The client is also modified to catch the SocketTimedOutException.
+The client is also modified to catch the SocketTimeoutException (nested inside the UnmarshallException).
 
 
 
