@@ -1,5 +1,10 @@
 --------
 This is a modification of ex1 and demonstrates how to setup a timeout for a RMI call.
+
+The example is adapted from this blog:
+
+http://radykurnia.blogspot.com/2013/08/java-rmi-client-timeout.html
+
 --------
 
 To compile client and server:
