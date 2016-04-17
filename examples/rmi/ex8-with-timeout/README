@@ -1,5 +1,5 @@
 --------
-This is a modification of ex1 and demonstrates how setup a timeout for a RMI call.
+This is a modification of ex1 and demonstrates how to setup a timeout for a RMI call.
 --------
 
 To compile client and server:
