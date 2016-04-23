@@ -41,12 +41,13 @@ public class DateClient
 	    Registry reg = LocateRegistry.getRegistry(DateServerImpl.REGISTRY_PORT);
 	    DateServer server = (DateServer) reg.lookup("DateServerImpl");
 	    
-	    System.out.println("RMI connection successful:");
+	    System.out.println("\nDateClient: RMI connection successful.\n");
 	    System.out.println(server); // so we can see the port assigned
+	    System.out.println();
 	    
 	    // invoke method on server object
 	    Date result = server.getDate();
-	    System.out.println("RMI response from the server is: " + result);
+	    System.out.println("DateClient: RMI response from the server is: " + result + "\n");
 	} catch (Exception e) {
 		System.err.println(e.getMessage());
 		System.err.println("Exception occured: " + e);
