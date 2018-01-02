@@ -8,17 +8,16 @@ import java.lang.reflect.Method;
  * @author amit
  *
  */
-public class SelfReflect
-{
-    public static void main(String[] args) {
-	Class<Color> type = Color.class;
+public class SelfReflect {
+	public static void main(String[] args) {
+		Class<Color> type = Color.class;
 
-	Method[] methods = type.getMethods();
-	for (int i = 0; i < methods.length; i++)
-	    System.out.println(methods[i]);
+		Method[] methods = type.getMethods();
+		for (int i = 0; i < methods.length; i++)
+			System.out.println(methods[i]);
 
-	Field[] fields = type.getFields();
-	for (int i = 0; i < fields.length; i++)
-	    System.out.println(fields[i]);
-    }
+		Field[] fields = type.getFields();
+		for (int i = 0; i < fields.length; i++)
+			System.out.println(fields[i]);
+	}
 }
