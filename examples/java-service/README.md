@@ -11,7 +11,6 @@ Make sure xinetd is installed on your system. If not, install it using:
 
 dnf install xinetd
 
-
 Copy the file rmi-date-server to /etc/xinetd.d/
 
 Reload xinetd (as superuser)
