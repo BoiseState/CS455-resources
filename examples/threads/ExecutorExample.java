@@ -29,9 +29,9 @@ public class ExecutorExample {
 			pool.execute(tasks[i]);
 		}
 
-		pool.shutdown(); // will wait until previously scheduled tasks have completed
+		pool.shutdown(); //will wait until previously scheduled tasks have completed
 
-		for (MyCalculation task : tasks) {
+		for (MyCalculation task: tasks) {
 			System.out.println(Arrays.toString(task.getValues()));
 		}
 	}
