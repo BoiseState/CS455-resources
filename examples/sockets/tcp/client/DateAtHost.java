@@ -5,10 +5,23 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * May have to enable time service as follows: Install xinetd service sudo dnf
- * install xinetd Set disable flag to "no" in /etc/xinetd.d/time-stream Reload
- * xinetd service to use new configuration: systemctl reload xinetd When done,
- * disable service by setting disable flag and reloading xinetd.
+ * May have to enable time service as follows: Install xinetd service as follows:
+ *
+ * sudo dnf install xinetd 
+ *
+ * Set disable flag to "no" in /etc/xinetd.d/time-stream. 
+ * Start xinetd service to use new configuration: 
+ *
+ * systemctl start xinetd 
+ * systemctl status xinetd 
+ *
+ * When done, disable service by setting the disable flag to "yes" and reloading xinetd.
+ *
+ * systemctl reload xinetd 
+ *
+ * To setup the service to start automatically at boot up time, use:
+ *
+ * systemctl enable xinetd 
  * 
  * @author amit
  *
