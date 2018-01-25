@@ -1,24 +1,30 @@
 
-public class Account {
-	protected double balance;
+public class Account
+{
+    protected double balance;
 
-	public double getBalance() {
-		return balance;
-	}
 
-	public void deposit(double amount) {
-		balance += amount;
-	}
+    public double getBalance() {
+	return balance;
+    }
 
-	public void withdraw(double amount) {
-		balance -= amount;
-	}
 
-	public Account() {
-		balance = 0;
-	}
+    public void deposit(double amount) {
+	balance += amount;
+    }
 
-	public String toString() {
-		return String.format("balance = %f ", balance);
-	}
+
+    public void withdraw(double amount) {
+	balance -= amount;
+    }
+
+
+    public Account() {
+	balance = 0;
+    }
+
+
+    public String toString() {
+	return String.format("balance = %f ", balance);
+    }
 }
