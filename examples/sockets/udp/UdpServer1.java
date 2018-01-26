@@ -54,7 +54,6 @@ public class UdpServer1
 	current.addShutdownHook(stats);
 
 	server.runServer();
-
     }
 }
 
