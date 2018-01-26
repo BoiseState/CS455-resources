@@ -46,8 +46,8 @@ public class TinyHttpd
 {
     private static final int EXIT_FAILURE = 1;
 
-    public static void main(String argv[]) throws IOException
-    {
+
+    public static void main(String argv[]) throws IOException {
 	if (argv.length == 0) {
 	    System.out.println("Usage: java TinyHttpd <port#>");
 	    System.exit(EXIT_FAILURE);
@@ -64,13 +64,13 @@ class TinyHttpdConnection implements Runnable
     private Socket client;
     private String basename = "tinyhttpd";
 
-    TinyHttpdConnection(Socket client) throws SocketException
-    {
+
+    TinyHttpdConnection(Socket client) throws SocketException {
 	this.client = client;
     }
 
-    public void run()
-    {
+
+    public void run() {
 	try {
 	    BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream(), "8859_1"));
 	    OutputStream out = client.getOutputStream();

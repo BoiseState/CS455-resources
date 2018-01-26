@@ -18,8 +18,7 @@ import java.net.Socket;
  */
 public class Client
 {
-    public static void main(String[] args) throws IOException
-    {
+    public static void main(String[] args) throws IOException {
 	if (args.length < 2) {
 	    throw new IOException("\n Usage: java client <hostname> <port#> [pageurl]");
 	}
