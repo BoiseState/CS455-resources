@@ -16,8 +16,9 @@ public class ServerSocketOptions
 	    System.out.println("ServerSocket");
 	    System.out.println("SO_TIMEOUT = " + s.getSoTimeout());
 	    System.out.println("Receive Buffer Size = " + s.getReceiveBufferSize());
-	    s.setSoTimeout(10000); // 10 seconds
+	    s.setSoTimeout(30000); //timeout after 30 seconds
 	    System.out.println("New SO_TIMEOUT = " + s.getSoTimeout());
+	    System.out.println("SO_REUSEADDR  = " + s.getReuseAddress());
 
 	    serverClients(s);
 
@@ -33,6 +34,7 @@ public class ServerSocketOptions
 	while (!shutdown) {
 	    try {
 		s.accept();
+		System.out.println(s.getLocalPort());
 	    } catch (InterruptedIOException e) {
 		System.err.println("accept timed out");
 		shutdown = true;

@@ -16,6 +16,7 @@ public class ClientSocketOptions
 	    System.out.println("SO_LINGER  = " + s.getSoLinger());
 	    System.out.println("TCP_KEEPALIVE  = " + s.getKeepAlive());
 	    System.out.println("SO_REUSEADDR  = " + s.getReuseAddress());
+	    System.out.println("Using local adress:port" + s.getLocalSocketAddress());
 	} catch (IOException e) {
 	    System.out.println(e);
 	}
