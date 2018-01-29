@@ -3,6 +3,7 @@ package tcp.socketoptions;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class ServerSocketOptions
 {
@@ -33,8 +34,8 @@ public class ServerSocketOptions
 
 	while (!shutdown) {
 	    try {
-		s.accept();
-		System.out.println(s.getLocalPort());
+		Socket conn  = s.accept();
+		System.out.println("Connect from " + conn.getInetAddress());
 	    } catch (InterruptedIOException e) {
 		System.err.println("accept timed out");
 		shutdown = true;
