@@ -13,7 +13,8 @@ import java.net.Socket;
  * Set disable flag to "no" in /etc/xinetd.d/time-stream. Start xinetd service
  * to use new configuration:
  *
- * systemctl start xinetd systemctl status xinetd
+ * systemctl start xinetd 
+ * systemctl status xinetd
  *
  * When done, disable service by setting the disable flag to "yes" and reloading
  * xinetd.

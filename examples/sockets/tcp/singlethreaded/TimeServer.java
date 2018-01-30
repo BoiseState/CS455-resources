@@ -48,8 +48,9 @@ public class TimeServer
 		while (true) {
 			try {
 				sock = s.accept();
-				in = sock.getInputStream();
 				out = sock.getOutputStream();
+				in = sock.getInputStream();
+				
 				// Note that client gets a temporary/transient port on it's side
 				// to talk to the server on its well known port
 				System.out.println(
