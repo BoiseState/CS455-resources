@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 	
 
 	in.arg1 = atol(argv[2]);
-	if ( (outp = squareproc_1(&in, cl)) == NULL)
+	if ((outp = squareproc_1(&in, cl)) == NULL)
 			err_quit("%s", clnt_sperror(cl, argv[1]));
 	printf("result: %ld\n", outp->res1);
 
