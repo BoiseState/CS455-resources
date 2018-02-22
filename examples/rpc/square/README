@@ -12,7 +12,7 @@ RPCBIND_ARGS=-i
 
 and then restart the rpcbind service
 
-/sbin/systctl restart rpcbind 
+/sbin/systemctl restart rpcbind 
 
 
 The client_test.c program makes n calls to the RPC for timing purposes.
