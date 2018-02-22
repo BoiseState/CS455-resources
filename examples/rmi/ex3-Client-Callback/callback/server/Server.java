@@ -30,7 +30,7 @@ public interface Server extends java.rmi.Remote
 
 
     /**
-     * Server executes the work request and call back client when done.
+     * Server executes the work request and calls back client when done.
      * @param work
      * @param listener
      * @throws java.rmi.RemoteException
