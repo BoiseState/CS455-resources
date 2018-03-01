@@ -12,12 +12,14 @@ import java.net.SocketTimeoutException;
 public class Listener
 {
 
+    public static final int MULTICAST_PORT = 6789;
+
+
     /**
      * @param args
      * @throws IOException
      **/
-    public static void main(String[] args) throws IOException 
-    {
+    public static void main(String[] args) throws IOException {
 	int n = 20;
 	String networkInterface;
 	if (args.length != 2) {
@@ -28,7 +30,7 @@ public class Listener
 	networkInterface = args[1];
 
 	InetAddress group = InetAddress.getByName("230.230.230.230");
-	MulticastSocket s = new MulticastSocket(6789);
+	MulticastSocket s = new MulticastSocket(MULTICAST_PORT);
 	s.setSoTimeout(10000); // 10 seconds
 	NetworkInterface net = NetworkInterface.getByName(networkInterface);
 	s.setNetworkInterface(net);

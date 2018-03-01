@@ -17,12 +17,12 @@ public class HelloClient
     private static Hello stub;
 
 
-    private static void makeCallWithTiemout() {
+    private static void makeCallWithTimeout() {
 	ExecutorService executor = Executors.newSingleThreadExecutor();
 	Future<String> future = executor.submit(new Callable<String>() {
 	    public String call() throws Exception {
 		String response = stub.sayHello();
-		System.out.println("From inside the called method: " + response);
+		// System.out.println("From inside the called method: " + response);
 		return response;
 	    }
 	});
@@ -61,6 +61,6 @@ public class HelloClient
 	    e.printStackTrace();
 	}
 
-	makeCallWithTiemout();
+	makeCallWithTimeout();
     }
 }

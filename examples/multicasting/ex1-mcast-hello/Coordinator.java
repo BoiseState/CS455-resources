@@ -13,12 +13,14 @@ import java.net.NetworkInterface;
 public class Coordinator
 {
 
+    public static final int MULTICAST_PORT = 6789;
+
+
     /**
      * @param args
      * @throws IOException
      **/
-    public static void main(String[] args) throws IOException 
-    {
+    public static void main(String[] args) throws IOException {
 	int n = 20;
 	String networkInterface;
 	if (args.length != 2) {
@@ -30,7 +32,7 @@ public class Coordinator
 
 	String msg = "Hello";
 	InetAddress group = InetAddress.getByName("230.230.230.230");
-	MulticastSocket s = new MulticastSocket(6789);
+	MulticastSocket s = new MulticastSocket(MULTICAST_PORT);
 	NetworkInterface net = NetworkInterface.getByName(networkInterface);
 	s.setNetworkInterface(net);
 	s.joinGroup(group);
@@ -39,7 +41,8 @@ public class Coordinator
 	while (count < n) {
 	    StringWriter str = new StringWriter();
 	    str.write(msg + ":" + count);
-	    DatagramPacket hi = new DatagramPacket(str.toString().getBytes(), str.toString().length(), group, 6789);
+	    DatagramPacket hi = new DatagramPacket(str.toString().getBytes(), str.toString().length(), group,
+	            MULTICAST_PORT);
 	    s.send(hi);
 
 	    // get their responses!
@@ -50,7 +53,7 @@ public class Coordinator
 	    System.out.println(
 	            "Coordinator-- " + new String(buf) + "     packet# " + count + " from " + recv.getAddress());
 	    try {
-		Thread.sleep(1000);
+		Thread.sleep(1000);// 1 second
 	    } catch (InterruptedException e) {
 		System.err.println(e);
 	    }
