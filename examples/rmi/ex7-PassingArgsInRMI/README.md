@@ -6,7 +6,7 @@ To run:
 
 Start up the registry on the server.
 
-export CLASSPATH=`pwd`:$CLASSPATH
+export CLASSPATH=$(pwd):$CLASSPATH
 rmiregistry <port>
 
 The default port is 1099. That is used if the registry is being shared by various
