@@ -16,12 +16,11 @@ public class HelloClient
 {
     private static Hello stub;
 
-    private static void makeCallWithTiemout()
-    {
+
+    private static void makeCallWithTiemout() {
 	ExecutorService executor = Executors.newSingleThreadExecutor();
 	Future<String> future = executor.submit(new Callable<String>() {
-	    public String call() throws Exception
-	    {
+	    public String call() throws Exception {
 		String response = stub.sayHello();
 		System.out.println("From inside the called method: " + response);
 		return response;
@@ -38,8 +37,8 @@ public class HelloClient
 	System.out.println("Wait for 10 seconds: the response from the server will still come through!");
     }
 
-    public static void main(String[] args)
-    {
+
+    public static void main(String[] args) {
 	if (args.length < 1) {
 	    System.err.println("Usage: java HelloClient <host> [<registry-port>]");
 	    System.exit(1);

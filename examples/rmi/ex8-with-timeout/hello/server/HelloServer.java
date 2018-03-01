@@ -19,11 +19,11 @@ public class HelloServer extends UnicastRemoteObject implements Hello
 
     public String sayHello() throws RemoteException {
 	try {
-	    Thread.sleep(10000); //sleep for 10 seconds to simulate a slow server
+	    Thread.sleep(10000); // sleep for 10 seconds to simulate a slow server
 	} catch (InterruptedException e) {
 	    // TODO Auto-generated catch block
 	    System.err.println(e);
-	} 
+	}
 	return "Hello World!";
     }
 
