@@ -26,10 +26,11 @@ Setting up SSL:
 
 Change to subdirectory resources/ to do Steps 1-5. Use password test123 (as it is embedded in the code).
 
-1. 	Generate a keystore that has a key pair (public and private key) along with a
-	self-signed certificate
 
-	keytool -genkey -alias SecureServer -keyalg RSA -keystore Server_Keystore
+1. 	Generate a keystore that has a key pair (public and private key) along with a
+	self-signed certificate. (PKCS12 is an industry standard store type)
+
+	keytool -deststoretype pkcs12 -genkey -alias SecureServer -keyalg RSA -keystore Server_Keystore
 
 2. 	Examine the contents of the generated Server Keystore
 

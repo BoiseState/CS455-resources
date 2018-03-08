@@ -34,11 +34,11 @@ purposes) Change to subfolder resources/ for Steps 1-6.
 
 7. Start up the server:
 
-	java Server 5005 &
+	java sslsockets.Server 5005 &
 
 8. Now run the client:
 
-	java Client  localhost 5005
+	java sslsockets.Client  localhost 5005
 
 #Notes
 
@@ -55,6 +55,6 @@ or USPS, who will then digitally sign the certificate.
 
 To see all the network transmissions, try
 
-java -Djavax.net.debug=all Client localhost 5005
+java -Djavax.net.debug=all sslsockets.Client localhost 5005
 
 

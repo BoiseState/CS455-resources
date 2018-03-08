@@ -1,10 +1,12 @@
 
-Change to subdirectory resources/ to do Steps 1-6.
+#How to setup SSL
+
+Change to subdirectory resources/ to do Steps 1-5. Use password test123 (as it is embedded in the code).
 
 1. 	Generate a keystore that has a key pair (public and private key) along with a
-	self-signed certificate
+	self-signed certificate. (PKCS12 is an industry standard store type)
 
-	keytool -genkey -alias SecureServer -keyalg RSA -keystore Server_Keystore
+	keytool -deststoretype pkcs12 -genkey -alias SecureServer -keyalg RSA -keystore Server_Keystore
 
 2. 	Examine the contents of the generated Server Keystore
 
@@ -40,8 +42,7 @@ as VeriSign or USPS, who will then digitally sign the certificate.
 Now change back to the top level examples directory.
 
 
-To run the server:
-------------------
+#To run the server:
 
 cd server; java SquareServer [registryPort] &
 
@@ -51,8 +52,7 @@ and rmi codebase VM arguments.
 java -classpath classDir -Djava.rmi.server.codebase=file:classDir/ -Djava.security.policy=mysecurity.policy SquareServer & 
 
 
-To run the client:
-------------------
+#To run the client:
 
 cd ../client; java SquareClient  localhost <value> <numcalls> [registryPort]
 
