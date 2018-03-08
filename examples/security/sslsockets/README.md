@@ -4,9 +4,9 @@
 Use the password test123 (as it is hardcoded in the Server.java and Client.java files for demo
 purposes) Change to subfolder resources/ for Steps 1-6.
 
-1. Create a keystore.
+1. Create a keystore. (PKCS12 is an industry standard store type)
 
-	keytool -genkey -alias SecureServer -keyalg RSA -keystore Server_Keystore
+	keytool -deststoretype pkcs12 -genkey -alias SecureServer -keyalg RSA -keystore Server_Keystore
 
 2. Check it.
 	
