@@ -2,11 +2,12 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 /**
- * Example with short and long options with required values.
+ * Example with short and long options with one or more required values.
  */
 
 /**
@@ -18,7 +19,7 @@ public class ParseTest
     
     public static void printUsage(Options options) {
 	HelpFormatter formatter = new HelpFormatter();
-	formatter.printHelp( "ls", options );
+	formatter.printHelp( "ParseTest ", options );
     }
     
     
@@ -32,12 +33,16 @@ public class ParseTest
 
 	// create the Options
 	Options options = new Options();
-	options.addOption( "a", "all", false, "do not hide entries starting with ." );
-	options.addOption( "A", "almost-all", false, "do not list implied . and .." );
-	options.addOption( "b", "escape", false, "print octal escapes for nongraphic " + "characters" );
-	options.addOption("B", "ignore-backups", false, "do not list implied entried " + "ending with ~");
-	options.addOption("C", false, "list entries by columns");
-	options.addOption("c", "create", true, " create a new account with the given login name");
+	options.addOption("n", "numport", false, "port number on server");
+	
+	//this option requires one value
+	options.addOption("l", "lookup", true, " lookup an account with the given login name");
+	
+	//one way to create an option that requires multiple values
+	Option modifyOption = new Option("m", "modify", true, "modify exisiting login name");
+	modifyOption.setArgs(2);
+	options.addOption(modifyOption);
+	
 	
 	if (args.length == 0) {
 	    printUsage(options);
@@ -47,11 +52,19 @@ public class ParseTest
 	    // parse the command line arguments
 	    CommandLine line = parser.parse(options, args);
 
-	    // validate that block-size has been set
 	    if (line.hasOption("c")) {
-		// print the value of block-size
 		System.out.println(line.getOptionValue("c"));
 	    }
+	    
+	    if (line.hasOption("m")) {
+		String[] values = line.getOptionValues("m");
+		for (String s: values) {
+		    System.out.println(s);
+		}
+	    }
+	    
+	    // process other options...
+	    
 	} catch (ParseException exp) {
 	    System.out.println("ParseTest: " + exp.getMessage());
 	    printUsage(options);
