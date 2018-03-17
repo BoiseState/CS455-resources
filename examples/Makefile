@@ -9,6 +9,7 @@ all:
 	cd multicasting; make 
 	cd threads; make 
 	cd naming; make
+	cd misc; make
 
 clean:
 	cd sockets; make clean
@@ -20,3 +21,4 @@ clean:
 	cd multicasting; make clean
 	cd threads; make clean
 	cd naming; make clean
+	cd misc; make clean
