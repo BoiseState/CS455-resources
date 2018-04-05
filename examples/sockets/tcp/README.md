@@ -1,4 +1,6 @@
 
-These subfolders are packages, so run the programs from this folder! For example.
+The tcp folder and  subfolders are packages, so run the programs from one level above this folder
 
-java client.DateAtHost localhost
+cd ../
+
+java tcp.client.DateAtHost localhost
