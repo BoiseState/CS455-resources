@@ -1,4 +1,8 @@
-
+/**
+ * Use of lambdas to replace anonymous classes for threads.
+ * @author amit
+ *
+ */
 
 public class ThreadLambdaEx1 {
   public static void main(String[] args) {
