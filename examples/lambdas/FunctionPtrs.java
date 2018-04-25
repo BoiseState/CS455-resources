@@ -1,15 +1,22 @@
+import java.util.Arrays;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 class FunctionClass {
     int[] doubleElements(int[] myArray){
-	for (int i=0; i<myArray.length; i++)
-	    myArray[i] *= 2;
+//	for (int i = 0; i < myArray.length; i++)
+//	    myArray[i] *= 2;
+	Arrays.setAll(myArray, i -> myArray[i] *= 2);
+	IntStream.range(0, myArray.length).forEach(i  -> myArray[i] *= 2);
         return myArray;
     }
 
     int[] zeroElements(int[] myArray){
-	for (int i=0; i<myArray.length; i++)
-	    myArray[i] = 0;
+//	for (int i = 0; i < myArray.length; i++)
+//	    myArray[i] = 0;
+	Arrays.setAll(myArray, i -> 0);
+	IntStream.range(0, myArray.length).forEach(i  -> myArray[i] = 0);
+	
         return myArray;
     }
 }
@@ -18,7 +25,7 @@ class FunctionPointers {
         FunctionClass manyFunctions = new FunctionClass();
         test(manyFunctions::doubleElements);//Notice the missing "()" and arguments
         test(manyFunctions::zeroElements);
-        // for static functions, we can refer as FunctionClass::staticMehtod
+        // for static functions, we can refer as FunctionClass::staticMethod
     }
 
     private static void test(Function<int[], int[]> someFunction){
