@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -57,7 +58,7 @@ public class UserTest
 
 	printList("by Age", users);
 	
-	List<User> underageUsers = users.stream().filter(u -> u.age < 21).collect(Collectors.toList());
+	List<User> underageUsers = new ArrayList<User>();
 	for (User u : users) {
 	    if (u.age < 21) {
 		underageUsers.add(u);

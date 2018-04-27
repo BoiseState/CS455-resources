@@ -18,6 +18,6 @@ public class ThreadLambdaEx1 {
     new Thread(r1).start();
     new Thread(r2).start();
     
-    new Thread(() -> System.out.println("With Lambda as an argument!")).start();;
+    new Thread(() -> System.out.println("With Lambda as an argument!")).start();
   }
 }
