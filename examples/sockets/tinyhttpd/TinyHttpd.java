@@ -43,66 +43,62 @@ import java.util.regex.Pattern;
  * java tinyhttpd.Client localhost sample.html
  *
  */
-public class TinyHttpd
-{
-    private static final int EXIT_FAILURE = 1;
+public class TinyHttpd {
+	private static final int EXIT_FAILURE = 1;
 
-    public static void main(String argv[]) throws IOException
-    {
-	if (argv.length == 0) {
-	    System.out.println("Usage: java TinyHttpd <port#>");
-	    System.exit(EXIT_FAILURE);
+	public static void main(String argv[]) throws IOException {
+		if (argv.length == 0) {
+			System.out.println("Usage: java TinyHttpd <port#>");
+			System.exit(EXIT_FAILURE);
+		}
+
+		@SuppressWarnings("resource")
+		ServerSocket ss = new ServerSocket(Integer.parseInt(argv[0]));
+		while (true)
+			new Thread(new TinyHttpdConnection(ss.accept())).start();
 	}
-
-	@SuppressWarnings("resource")
-	ServerSocket ss = new ServerSocket(Integer.parseInt(argv[0]));
-	while (true)
-	    new Thread(new TinyHttpdConnection(ss.accept())).start();
-    }
 }
 
-class TinyHttpdConnection implements Runnable
-{
-    private Socket client;
-    private String basename = "tinyhttpd";
+class TinyHttpdConnection implements Runnable {
+	private Socket client;
+	private String basename = "tinyhttpd";
 
-    TinyHttpdConnection(Socket client) throws SocketException
-    {
-	this.client = client;
-    }
-
-    public void run()
-    {
-	try {
-	    BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream(), "8859_1"));
-	    OutputStream out = client.getOutputStream();
-	    PrintWriter pout = new PrintWriter(new OutputStreamWriter(out, "8859_1"), true);
-	    String request = in.readLine();
-	    System.out.println("Request: " + request);
-
-	    Matcher get = Pattern.compile("GET /?(\\S*).*").matcher(request);
-	    if (get.matches()) {
-		request = get.group(1);
-		if (request.endsWith("/") || request.equals("")) request = request + "index.html";
-		try {
-		    request = basename + File.separator + request;
-		    System.out.println(request);
-		    FileInputStream fis = new FileInputStream(request);
-		    byte[] data = new byte[64 * 1024];
-		    for (int read; (read = fis.read(data)) > -1;)
-			out.write(data, 0, read);
-		    out.flush();
-		} catch (FileNotFoundException e) {
-		    pout.println("404 Object Not Found");
-		} catch (SecurityException e) {
-		    pout.println("403 Forbidden");
-		}
-	    } else {
-		pout.println("400 Bad Request");
-	    }
-	    client.close();
-	} catch (IOException e) {
-	    System.out.println("I/O error " + e);
+	TinyHttpdConnection(Socket client) throws SocketException {
+		this.client = client;
 	}
-    }
+
+	public void run() {
+		try {
+			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream(), "8859_1"));
+			OutputStream out = client.getOutputStream();
+			PrintWriter pout = new PrintWriter(new OutputStreamWriter(out, "8859_1"), true);
+			String request = in.readLine();
+			System.out.println("Request: " + request);
+
+			Matcher get = Pattern.compile("GET /?(\\S*).*").matcher(request);
+			if (get.matches()) {
+				request = get.group(1);
+				if (request.endsWith("/") || request.equals(""))
+					request = request + "index.html";
+				try {
+					request = basename + File.separator + request;
+					System.out.println(request);
+					FileInputStream fis = new FileInputStream(request);
+					byte[] data = new byte[64 * 1024];
+					for (int read; (read = fis.read(data)) > -1;)
+						out.write(data, 0, read);
+					out.flush();
+				} catch (FileNotFoundException e) {
+					pout.println("404 Object Not Found");
+				} catch (SecurityException e) {
+					pout.println("403 Forbidden");
+				}
+			} else {
+				pout.println("400 Bad Request");
+			}
+			client.close();
+		} catch (IOException e) {
+			System.out.println("I/O error " + e);
+		}
+	}
 }
