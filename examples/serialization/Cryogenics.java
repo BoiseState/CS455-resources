@@ -20,61 +20,58 @@ import java.io.ObjectOutputStream;
  * 
  * @author amit
  */
-public class Cryogenics
-{
-    /**
-     * Serialize a Mio object.
-     */
-    private static void freezeDry() {
-	MioAlma obj = new MioAlma("Marco Polo", 123456789);
-	System.out.println("Serializing object: " + obj);
-	try {
-	    FileOutputStream fileOut = new FileOutputStream("mio.ser");
-	    ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	    out.writeObject(obj);
-	    out.close();
-	} catch (Exception e) {
-	    System.out.println(e);
-	}
-    }
-
-
-    /**
-     * Deserialize a Mio object
-     */
-    private static void revive() {
-	try {
-	    FileInputStream fileIn = new FileInputStream("mio.ser");
-
-	    ObjectInputStream in = new ObjectInputStream(fileIn);
-	    Object obj = in.readObject();
-	    in.close();
-
-	    MioAlma mine = (MioAlma) obj;
-	    System.out.println("Deserialized object: " + mine);
-
-	} catch (IOException e) {
-	    System.err.println(e);
-	} catch (ClassNotFoundException e) {
-	    System.err.println(e);
-	}
-    }
-
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-	if (args.length < 1) {
-	    System.err.println("Usage: Cryogenics <freeze|revive>");
-	    System.exit(1);
+public class Cryogenics {
+	/**
+	 * Serialize a Mio object.
+	 */
+	private static void freezeDry() {
+		MioAlma obj = new MioAlma("Marco Polo", 123456789);
+		System.out.println("Serializing object: " + obj);
+		try {
+			FileOutputStream fileOut = new FileOutputStream("mio.ser");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(obj);
+			out.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
-	if (args[0].equalsIgnoreCase("freeze")) {
-	    freezeDry();
-	} else if (args[0].equalsIgnoreCase("revive")) {
-	    revive();
+	/**
+	 * Deserialize a Mio object
+	 */
+	private static void revive() {
+		try {
+			FileInputStream fileIn = new FileInputStream("mio.ser");
+
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			Object obj = in.readObject();
+			in.close();
+
+			MioAlma mine = (MioAlma) obj;
+			System.out.println("Deserialized object: " + mine);
+
+		} catch (IOException e) {
+			System.err.println(e);
+		} catch (ClassNotFoundException e) {
+			System.err.println(e);
+		}
 	}
-    }
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		if (args.length < 1) {
+			System.err.println("Usage: Cryogenics <freeze|revive>");
+			System.exit(1);
+		}
+
+		if (args[0].equalsIgnoreCase("freeze")) {
+			freezeDry();
+		} else if (args[0].equalsIgnoreCase("revive")) {
+			revive();
+		}
+	}
 
 }
