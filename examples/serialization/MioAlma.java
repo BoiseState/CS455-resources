@@ -6,11 +6,6 @@ import java.util.Date;
  *
  */
 public class MioAlma implements Serializable {
-	/**
-	 * Generated serial UID for all versions of MioAlma objects
-	 */
-	private static final long serialVersionUID = -7208668478357756970L;
-
 	private String name;
 	private long uniqueId;
 	private Date birthDate;
