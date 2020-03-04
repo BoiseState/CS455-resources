@@ -2,7 +2,7 @@ package asynchronous.server;
 
 import java.rmi.RemoteException;
 
-public class StringEnumerator extends java.rmi.server.UnicastRemoteObject implements StringEnumeration
+public class StringEnumerator extends java.rmi.server.UnicastRemoteObject implements StringEnumerationRequest
 {
 
     private static final long serialVersionUID = 2131129531057862312L;

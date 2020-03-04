@@ -31,7 +31,7 @@ run-client-dynamic.sh
 Note: If you do start the rmiregistry and it can find your stub classes in CLASSPATH, it will not
 remember that the loaded stub class can be loaded from your server's code base, specified by
 the java.rmi.server.codebase property when you started up your server application. Therefore,
-the rmiregistry will not convey to clients the true code base associated with the stub class
+rmiregistry will not convey to clients the true code base associated with the stub class
 and, consequently, your clients will not be able to locate and to load the stub class or other
 server-side classes.
 

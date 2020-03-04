@@ -1,3 +1,9 @@
+
+
+
+#Parameter passing in RMI
+This example shows how parameters are passed in RMI
+
 To compile client and server:
 
 make

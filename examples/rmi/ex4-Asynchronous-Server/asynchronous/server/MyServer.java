@@ -10,6 +10,7 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 {
     private static final long serialVersionUID = 3781244179279385998L;
 
+
     public MyServer() throws RemoteException {
     }
 
@@ -18,7 +19,11 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 	printClientAddress();
 	// helps to show that the default RMI implementation is multi-threaded
 	System.out.println("MyServer: " + Thread.currentThread() + " going to sleep");
-	try { Thread.sleep(1000);} catch (InterruptedException e) {System.err.println(e);}
+	try {
+	    Thread.sleep(1000);
+	} catch (InterruptedException e) {
+	    System.err.println(e);
+	}
 	System.out.println("MyServer:" + Thread.currentThread() + " waking up from sleep");
 	return new Date();
     }
@@ -29,7 +34,7 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
     }
 
 
-    public StringEnumeration getList() throws RemoteException {
+    public StringEnumerationRequest getList() throws RemoteException {
 	return new StringEnumerator(new String[] { "Foo", "Bar", "Gee" });
     }
 
@@ -55,9 +60,11 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 	System.setSecurityManager(new SecurityManager());
 	try {
 	    Server server = new MyServer();
+	    
 	    Registry registry = LocateRegistry.getRegistry(registryPort);
 	    registry.rebind("AsyncServer", server);
 	    System.err.println("MyServer: bound");
+	    
 	} catch (java.io.IOException e) {
 	    System.err.println("MyServer: problem registering server");
 	    System.err.println(e);
