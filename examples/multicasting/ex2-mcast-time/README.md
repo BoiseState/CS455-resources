@@ -12,9 +12,8 @@ Their is one multicast address that is used: 230.230.230.230.  The server listen
 and the client listens on 5801.
 
 For testing, the application assumes there is only one NIC - therefore it
-does not work in it's current state from onyx.  However, it does work great on
-node00 - node32.  There are some options to pick an interface, but no time for
-me to implement.
+does not work in it's current state from onyx.  However, it does work fine on
+onynodes. try using onyxnode01 and onyxnode02.
 
 It seems to work great.  I tested with a maximum of 5 nodes, but don't see any
 scaling issues.  I don't exit the multicast groups gracefully.  
