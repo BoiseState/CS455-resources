@@ -8,9 +8,9 @@ esac
 serverHost=$1
 
 sleep 2
-java -Djava.security.policy=mysecurity.policy callback.client.MyClient $serverHost &
-java -Djava.security.policy=mysecurity.policy callback.client.MyClient $serverHost &
-java -Djava.security.policy=mysecurity.policy callback.client.MyClient $serverHost &
-java -Djava.security.policy=mysecurity.policy callback.client.MyClient $serverHost &
-java -Djava.security.policy=mysecurity.policy callback.client.MyClient $serverHost &
+java -Djava.security.policy=mysecurity.policy asynchronous.client.MyClient $serverHost &
+java -Djava.security.policy=mysecurity.policy asynchronous.client.MyClient $serverHost &
+java -Djava.security.policy=mysecurity.policy asynchronous.client.MyClient $serverHost &
+java -Djava.security.policy=mysecurity.policy asynchronous.client.MyClient $serverHost &
+java -Djava.security.policy=mysecurity.policy asynchronous.client.MyClient $serverHost &
 
