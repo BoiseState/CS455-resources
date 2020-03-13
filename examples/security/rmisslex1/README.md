@@ -21,7 +21,8 @@ Change to subdirectory resources/ to do Steps 1-5. Use password test123 (as it i
 	cat Server.cer
 
 5.  Next we import the server certificate into a truststore that can be used by
-    the client.
+    the client. Make sure to set a password on the client side (and use this in
+	the client code as well!)
 
 	keytool -import -alias SecureServer -file Server.cer -keystore Client_Truststore
 

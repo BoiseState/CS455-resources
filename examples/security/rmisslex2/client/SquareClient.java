@@ -35,6 +35,7 @@ public class SquareClient
 
 	try {
 	    System.setProperty("javax.net.ssl.trustStore", "../resources/Client_Truststore");
+	    System.setProperty("javax.net.ssl.trustStorePassword", "test123");
 	    System.setProperty("java.security.policy", "../resources/mysecurity.policy");
 	    /* System.setSecurityManager(new RMISecurityManager()); */
 

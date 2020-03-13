@@ -12,6 +12,7 @@ public class DateClient
 
     public static void main(String[] argv) {
 	System.setProperty("javax.net.ssl.trustStore", "rmisslex1timeout/resources/Client_Truststore");
+	System.setProperty("javax.net.ssl.trustStorePassword", "test123");
 	System.setProperty("java.security.policy", "rmisslex1timeout/resources/mysecurity.policy");
 
 	if (argv.length != 1) {
