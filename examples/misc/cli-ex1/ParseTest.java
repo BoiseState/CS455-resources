@@ -33,13 +33,20 @@ public class ParseTest
 
 	// create the Options
 	Options options = new Options();
-	options.addOption("n", "numport", false, "port number on server");
+	
+	//option with no value after it
+	options.addOption("d", "debug", false, "debug level");
+	
+	//one option with optional value
+	Option portOption = new Option("n", "numport", true, "port number on server");
+	portOption.setOptionalArg(true);
+	options.addOption(portOption);
 	
 	//this option requires one value
-	options.addOption("l", "lookup", true, " lookup an account with the given login name");
+	options.addOption("l", "lookup", true, "lookup an account with the given login name");
 	
 	//one way to create an option that requires multiple values
-	Option modifyOption = new Option("m", "modify", true, "modify exisiting login name");
+	Option modifyOption = new Option("m", "modify", true, "modify existing login name");
 	modifyOption.setArgs(2);
 	options.addOption(modifyOption);
 	
@@ -52,8 +59,15 @@ public class ParseTest
 	    // parse the command line arguments
 	    CommandLine line = parser.parse(options, args);
 
-	    if (line.hasOption("c")) {
-		System.out.println(line.getOptionValue("c"));
+	    if (line.hasOption("n")) {
+		String value = line.getOptionValue("n");
+		if (value != null) {
+		    System.out.println(line.getOptionValue("n"));
+		}
+	    }
+	    
+	    if (line.hasOption("l")) {
+		System.out.println(line.getOptionValue("l"));
 	    }
 	    
 	    if (line.hasOption("m")) {
@@ -62,7 +76,6 @@ public class ParseTest
 		    System.out.println(s);
 		}
 	    }
-	    
 	    // process other options...
 	    
 	} catch (ParseException exp) {
