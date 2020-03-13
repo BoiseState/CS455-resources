@@ -6,6 +6,7 @@ public interface Server extends java.rmi.Remote
 {
     /**
      * Returns the current date on the server.
+     * 
      * @return
      * @throws java.rmi.RemoteException
      */
@@ -14,23 +15,26 @@ public interface Server extends java.rmi.Remote
 
     /**
      * Executes the work request on the server and return the result.
+     * 
      * @param work
-     * @return 
+     * @return
      * @throws java.rmi.RemoteException
      */
     Object execute(WorkRequest work) throws java.rmi.RemoteException;
 
 
     /**
-     * Get a enumeration of strings from the server. 
+     * Get a enumeration of strings from the server.
+     * 
      * @return
      * @throws java.rmi.RemoteException
      */
-    StringEnumeration getList() throws java.rmi.RemoteException;
+    StringEnumerationRequest getList() throws java.rmi.RemoteException;
 
 
     /**
      * Server executes the work request and call back client when done.
+     * 
      * @param work
      * @param listener
      * @throws java.rmi.RemoteException

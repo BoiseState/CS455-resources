@@ -32,12 +32,12 @@ all: compile
 
 compile: compile-server compile-client
 
-compile-server: callback/server/MyServer.class callback/server/Request.class callback/server/Server.class callback/server/StringEnumeration.class callback/server/StringEnumerator.class callback/server/WorkListener.class callback/server/WorkRequest.class
+compile-server: callback/server/MyServer.class callback/server/Request.class callback/server/Server.class callback/server/StringEnumerationRequest.class callback/server/StringEnumerator.class callback/server/WorkListener.class callback/server/WorkRequest.class
 
 
 rmi: compile
 	rmic MyServer
-	cd callback/server/; cp Server.class MyServer_Stub.class Request.class WorkRequest.class StringEnumerator.class StringEnumeration.class ../client
+	cd callback/server/; cp Server.class MyServer_Stub.class Request.class WorkRequest.class StringEnumerator.class StringEnumerationRequest.class ../client
 
 compile-client: callback/client/MyCalculation.class callback/client/MyClient.class 
 	cd callback/client/; cp MyCalculation.class ../server

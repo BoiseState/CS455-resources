@@ -3,15 +3,15 @@
 */
 #define VERSION_NUMBER 1
 
-struct foo {
+struct node {
 	int x;
-	foo *next;
+	node *next;
 };
 
 
 program LL_PROG {
    version LL_VERSION {
-     int SUM(foo) = 1;
+     int SUM(node) = 1;
    } = VERSION_NUMBER;
 } = 555553555;
 

@@ -18,7 +18,9 @@ public class HelloClient
 
 
     private static void makeCallWithTimeout() {
+	
 	ExecutorService executor = Executors.newSingleThreadExecutor();
+	
 	Future<String> future = executor.submit(new Callable<String>() {
 	    public String call() throws Exception {
 		String response = stub.sayHello();
@@ -27,14 +29,14 @@ public class HelloClient
 	    }
 	});
 
+	String response = null;
 	try {
-	    String response = future.get(2, TimeUnit.SECONDS);
+	    response = future.get(2, TimeUnit.SECONDS);
 	    System.out.println("response: " + response);
 	} catch (InterruptedException | TimeoutException | ExecutionException e) {
 	    System.err.println("RMI call timeout");
 	    executor.shutdown();
 	}
-	System.out.println("Wait for 10 seconds: the response from the server will still come through!");
     }
 
 

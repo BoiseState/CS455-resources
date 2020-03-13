@@ -12,10 +12,12 @@ public class SquareClient
 	    System.err.println("Usage: java SquareClient <host> <value> <count> [<registry-port>]");
 	    System.exit(1);
 	}
+	
 	String host = null;
 	int value;
 	int count;
 	int registryPort = 1099;
+	
 	if (args.length == 3) {
 	    host = args[0];
 	    value = Integer.parseInt(args[1]);
@@ -37,6 +39,7 @@ public class SquareClient
 		if (i % 1000 == 0) System.out.printf("Call# %d result = %d\r ", i, result);
 	    }
 	    System.out.println(result);
+	    
 	} catch (Exception e) {
 	    System.err.println("Client exception: " + e.toString());
 	    e.printStackTrace();

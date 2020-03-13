@@ -12,7 +12,7 @@
 
 /* remote procedure that sums the ints in the linked list */ 
 
-int * sum_1_svc(foo *argp, struct svc_req *rqstp)
+int * sum_1_svc(node *argp, struct svc_req *rqstp)
 {
 	static int  result;
 

@@ -5,7 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import asynchronous.server.Server;
-import asynchronous.server.StringEnumeration;
+import asynchronous.server.StringEnumerationRequest;
 import asynchronous.server.WorkListener;
 import asynchronous.server.WorkRequest;
 
@@ -36,7 +36,7 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
 	    System.out.println(server.getDate());
 	    System.out.println(server.getDate());
 	    System.out.println(server.execute(new MyCalculation(2)));
-	    StringEnumeration se = server.getList();
+	    StringEnumerationRequest se = server.getList();
 	    while (se.hasMoreItems())
 		System.out.println(se.nextItem());
 

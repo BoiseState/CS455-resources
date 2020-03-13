@@ -36,10 +36,14 @@ public class HelloServer extends UnicastRemoteObject implements Hello
 	try {
 	    // Create and install a security manager
 	    System.setSecurityManager(new SecurityManager());
-	    Registry registry = LocateRegistry.getRegistry(registryPort);
+	    
+	    
 	    HelloServer obj = new HelloServer("//HelloServer");
+	    
+	    Registry registry = LocateRegistry.getRegistry(registryPort);
 	    registry.rebind("HelloServer", obj);
 	    System.out.println("HelloServer bound in registry");
+	    
 	} catch (Exception e) {
 	    System.out.println("HelloServer err: " + e.getMessage());
 	    e.printStackTrace();

@@ -5,9 +5,9 @@ xdr filter that encodes/decodes linked lists (uses xdr_pointer)
 
 The linked list is based on record defined as follows (in ll.x):
 
-struct foo {
+struct node {
 	int x;
-	foo *next;
+	node *next;
 };
 
 Each record holds an int and a pointer to the next node.

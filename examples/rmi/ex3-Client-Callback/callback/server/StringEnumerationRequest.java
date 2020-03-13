@@ -1,11 +1,12 @@
-package asynchronous.server;
+package callback.server;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface StringEnumeration extends Remote
+public interface StringEnumerationRequest extends java.rmi.Remote
 {
     public boolean hasMoreItems() throws RemoteException;
+
 
     public String nextItem() throws RemoteException;
 }

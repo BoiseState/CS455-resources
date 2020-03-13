@@ -37,12 +37,12 @@ public class RMIThreadServerImpl extends UnicastRemoteObject implements RMIThrea
 
 
     /**
-     * TEST function to practice looking at thread synchronization. This
-     * function increments a counter, then decrements it back to zero. When a
-     * client tries to read the counter, they should always get zero (if threads
-     * are synchronized properly).
+     * TEST function to practice looking at thread synchronization. This function
+     * increments a counter, then decrements it back to zero. When a client tries to
+     * read the counter, they should always get zero (if threads are synchronized
+     * properly).
      */
-    public synchronized void  update() {
+    public synchronized void update() {
 	// public void update() {
 	int i;
 	Thread p = Thread.currentThread();
@@ -58,8 +58,8 @@ public class RMIThreadServerImpl extends UnicastRemoteObject implements RMIThrea
 
 
     /**
-     * TEST function to practice looking at thread synchronization. This allows
-     * a client to read the value of the "counter" variable.
+     * TEST function to practice looking at thread synchronization. This allows a
+     * client to read the value of the "counter" variable.
      */
     public synchronized int read() {
 	// public int read() {

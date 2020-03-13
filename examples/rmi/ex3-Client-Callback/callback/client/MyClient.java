@@ -4,7 +4,7 @@ import java.rmi.*;
 import java.security.*;
 
 import callback.server.Server;
-import callback.server.StringEnumeration;
+import callback.server.StringEnumerationRequest;
 import callback.server.WorkListener;
 import callback.server.WorkRequest;
 
@@ -12,7 +12,6 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
 {
 
     private static final long serialVersionUID = -6314695118464643327L;
-
 
     public static void main(String[] args) throws RemoteException {
 	System.setSecurityManager(new SecurityManager());
@@ -22,22 +21,23 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
 
     public MyClient(String host) throws RemoteException {
 	try {
-	    Server server = (Server) Naming.lookup("rmi://" + host + "/NiftyServer");
+	    Server server = (Server) Naming.lookup("rmi://" + host + "/NiftyObjectServer");
 
 	    System.out.println(server.getDate());
 	    System.out.println(server.getDate());
 	    System.out.println(server.execute(new MyCalculation(2)));
-	    StringEnumeration se = server.getList();
+	    
+	    StringEnumerationRequest se = server.getList();
 	    while (se.hasMoreItems())
 		System.out.println(se.nextItem());
+	    
 	    server.asyncExecute(new MyCalculation(100), this);
 	    server.asyncExecute(new MyCalculation(100), this);
 
 	    /*
-	     * Note that since client is also a RMI server (for callbacks from
-	     * the server), it doesn't terminate. That is why we use System.exit
-	     * to force termination of the client. This use isn't correct--find
-	     * a way to fix it.
+	     * Note that since client is also a RMI server (for callbacks from the server),
+	     * it doesn't terminate. That is why we use System.exit to force termination of
+	     * the client. This use isn't correct--find a way to fix it.
 	     */
 	    System.exit(0);
 
