@@ -1,5 +1,5 @@
 
-#How to setup SSL
+#How to setup SSL (do this once)
 
 Change to subdirectory resources/ to do Steps 1-5. Use password test123 (as it is embedded in the server and client code).
 
@@ -42,13 +42,17 @@ or USPS, who will then digitally sign the certificate.
 
 
 #To run the server:
-
 Change back to the top level examples/security directory to run the example.  
 
 cd ..
 
-Note that the server code starts the registry automatically in this example if it isn't already
-running.
+Start the RMI registry using one of your assigned ports (and set the CLASSPATH so it can find the
+classes)
+
+export CLASSPATH=$(pwd):$CLASSPATH
+rmiregistry <registryPort>
+
+The start the server using the same registryPort as an argument:
 
 java rmisslex2.server.SquareServer <registryPort> &
 
@@ -59,7 +63,6 @@ java rmisslex2.client.SquareClient  localhost <value> <numcalls> <registryPort>
 
 
 To see all the network transmissions, try
-
 
 java -Djavax.net.debug=all rmisslex2.client.SquareClient localhost
 

@@ -26,7 +26,11 @@ public class SquareServer implements Square
 	    RMIServerSocketFactory rmiServerSocketFactory = new SslRMIServerSocketFactory();
 	    Square server = (Square) UnicastRemoteObject.exportObject(this, 0, rmiClientSocketFactory,
 	            rmiServerSocketFactory);
-	    Registry registry = LocateRegistry.createRegistry(registryPort);
+	    Registry registry = LocateRegistry.getRegistry(registryPort);
+	    //This will create the registry if it isn't already running
+	    //Registry registry = LocateRegistry.createRegistry(registryPort);
+
+
 	    registry.rebind(name, server);
 	    System.out.println(name + " bound in registry");
 	} catch (Exception e) {
@@ -48,8 +52,6 @@ public class SquareServer implements Square
 	}
 	registryPort = Integer.parseInt(args[0]);
 	 
-	//System.setSecurityManager(new SecurityManager());
-
 	System.out.println("Setting System Properties....");
 	System.setProperty("javax.net.ssl.keyStore", "rmisslex2/resources/Server_Keystore");
 	// Warning: change to match your password! Also the password should be
