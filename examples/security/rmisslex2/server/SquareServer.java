@@ -42,16 +42,20 @@ public class SquareServer implements Square
 
 
     public static void main(String args[]) {
-	if (args.length > 0) {
-	    registryPort = Integer.parseInt(args[0]);
+	if (args.length == 0) {
+	    System.err.println("Usage: java rmisslex2.server.SquaerServer <registryPort>");
+	    System.exit(1);
 	}
+	registryPort = Integer.parseInt(args[0]);
+	 
+	//System.setSecurityManager(new SecurityManager());
 
 	System.out.println("Setting System Properties....");
-	System.setProperty("javax.net.ssl.keyStore", "../resources/Server_Keystore");
+	System.setProperty("javax.net.ssl.keyStore", "rmisslex2/resources/Server_Keystore");
 	// Warning: change to match your password! Also the password should be
 	// stored encrypted in a file outside the program.
 	System.setProperty("javax.net.ssl.keyStorePassword", "test123");
-	System.setProperty("java.security.policy", "../resources/mysecurity.policy");
+	System.setProperty("java.security.policy", "rmisslex2/resources/mysecurity.policy");
 	try {
 	    SquareServer server = new SquareServer("SquareServer");
 	    server.bind("SquareServer", registryPort);

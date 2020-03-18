@@ -1,7 +1,7 @@
 
 #How to setup SSL
 
-Change to subdirectory resources/ to do Steps 1-5. Use password test123 (as it is embedded in the code).
+Change to subdirectory resources/ to do Steps 1-5. Use password test123 (as it is embedded in the server and client code).
 
 1. 	Generate a keystore that has a key pair (public and private key) along with a
 	self-signed certificate. (PKCS12 is an industry standard store type)
@@ -33,38 +33,35 @@ Change to subdirectory resources/ to do Steps 1-5. Use password test123 (as it i
 
 	keytool -list -v  -keystore Client_Truststore
 
-In our example, we are working with a self-signed certificate instead of
-certificates signed by Certification Authority (CA). If there is a need to
-get the certificate signed by a CA then a Certificate Signing Request(CSR)
-needs to be generated. The generated CSR, then, should to be submitted
-along with other pertinent information to a Certification Authority such
-as VeriSign or USPS, who will then digitally sign the certificate.
+In our example, we are working with a self-signed certificate instead of certificates signed by
+Certification Authority (CA). If there is a need to get the certificate signed by a CA then a
+Certificate Signing Request(CSR) needs to be generated. The generated CSR, then, should to be
+submitted along with other pertinent information to a Certification Authority such as VeriSign
+or USPS, who will then digitally sign the certificate.
 
-Now change back to the top level examples directory.
 
 
 #To run the server:
 
-cd server; java SquareServer [registryPort] &
+Change back to the top level examples/security directory to run the example.  
 
-If you compiled the server in a package, then provide appropriate classpath
-and rmi codebase VM arguments.
+cd ..
 
-java -classpath classDir -Djava.rmi.server.codebase=file:classDir/ -Djava.security.policy=mysecurity.policy SquareServer & 
+Note that the server code starts the registry automatically in this example if it isn't already
+running.
+
+java rmisslex2.server.SquareServer <registryPort> &
 
 
 #To run the client:
 
-cd ../client; java SquareClient  localhost <value> <numcalls> [registryPort]
+java rmisslex2.client.SquareClient  localhost <value> <numcalls> <registryPort>
 
 
 To see all the network transmissions, try
 
 
-java -Djavax.net.debug=all SquareClient localhost
-
-
-
+java -Djavax.net.debug=all rmisslex2.client.SquareClient localhost
 
 
 

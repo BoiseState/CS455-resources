@@ -1,6 +1,7 @@
 
 package rmisslex2.client;
 
+import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -14,30 +15,24 @@ public class SquareClient
 
 
     public static void main(String[] args) {
-	if (args.length < 3) {
-	    System.err.println("Usage: java SquareClient <host> <value> <count> [<registry-port>]");
+	if (args.length < 4) {
+	    System.err.println("Usage: java SquareClient <host> <value> <count> <registryPort>");
 	    System.exit(1);
 	}
 	String host = null;
 	int value;
 	int count;
-	int registryPort = 1099;
-	if (args.length == 3) {
-	    host = args[0];
-	    value = Integer.parseInt(args[1]);
-	    count = Integer.parseInt(args[2]);
-	} else {
-	    host = args[0];
-	    value = Integer.parseInt(args[1]);
-	    count = Integer.parseInt(args[2]);
-	    registryPort = Integer.parseInt(args[3]);
-	}
+	int registryPort = 1099; //default value, but we will use our own port
+
+	host = args[0];
+	value = Integer.parseInt(args[1]);
+	count = Integer.parseInt(args[2]);
+	registryPort = Integer.parseInt(args[3]);
 
 	try {
-	    System.setProperty("javax.net.ssl.trustStore", "../resources/Client_Truststore");
+	    System.setProperty("javax.net.ssl.trustStore", "rmisslex2/resources/Client_Truststore");
 	    System.setProperty("javax.net.ssl.trustStorePassword", "test123");
-	    System.setProperty("java.security.policy", "../resources/mysecurity.policy");
-	    /* System.setSecurityManager(new RMISecurityManager()); */
+	    System.setProperty("java.security.policy", "rmisslex2/resources/mysecurity.policy");
 
 	    Registry registry = LocateRegistry.getRegistry(host, registryPort);
 	    Square stub = (Square) registry.lookup("SquareServer");
