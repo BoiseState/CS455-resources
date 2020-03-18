@@ -64,4 +64,8 @@ sockets-C/udp/udpserver1
 sockets-C/udp/udpserver2
 sockets-C/out-of-band/out_of_band/oobrecv
 sockets-C/out-of-band/out_of_band/oobsend
+#
+security/rmisslex2/resources/Client_Truststore
+security/rmisslex2/resources/Server.cer
+security/rmisslex2/resources/Server_Keystore
 
