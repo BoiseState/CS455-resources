@@ -7,7 +7,8 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 /**
- * Example with short and long options with one or more required values.
+ * Example with short and long options with one or more required values. Make sure to
+ * include the commons-cli jar file in the classpath.
  */
 
 /**
@@ -64,22 +65,33 @@ public class ParseTest
 	    // parse the command line arguments
 	    CommandLine line = parser.parse(options, args);
 
+	    if (line.hasOption("d")) {
+		System.out.println("Option -d [--debug] chosen");
+	    }
+	    
 	    if (line.hasOption("n")) {
 		String value = line.getOptionValue("n");
+		System.out.print("Option -n  [--numport] chosen");
 		if (value != null) {
-		    System.out.println(line.getOptionValue("n"));
+		    System.out.println(" with optional port# " + line.getOptionValue("n"));
+		} else {
+		    System.out.println(" without an optional port number");
 		}
 	    }
 	    
 	    if (line.hasOption("l")) {
-		System.out.println(line.getOptionValue("l"));
+		System.out.print("Option -l ");
+		System.out.print("with parameter " + line.getOptionValue("l") + " chosen");
 	    }
 	    
 	    if (line.hasOption("m")) {
+		System.out.print("Option -m with parameters ");
+
 		String[] values = line.getOptionValues("m");
 		for (String s: values) {
-		    System.out.println(s);
+		    System.out.print(s + " ");
 		}
+		System.out.println(" chosen");
 	    }
 	    // process other options...
 	    
