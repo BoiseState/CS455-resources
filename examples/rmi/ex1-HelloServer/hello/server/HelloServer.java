@@ -22,9 +22,12 @@ public class HelloServer extends UnicastRemoteObject implements Hello
     }
 
     public static void main(String args[]) {
-	if (args.length > 0) {
-	    registryPort = Integer.parseInt(args[0]);
+	if (args.length == 0) {
+	    System.err.println("Usage: java -Djava.security.policy=mysecurity.policy " +
+	                        "hello.server.HelloServer <registryPort>");
+	    System.exit(1);
 	}
+        registryPort = Integer.parseInt(args[0]);
 	try {
 	    // Create and install a security manager
 	    System.setSecurityManager(new SecurityManager());

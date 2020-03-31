@@ -9,18 +9,14 @@ public class HelloClient
 {
     public static void main(String[] args) {
 	
-	if (args.length < 1) {
-	    System.err.println("Usage: java HelloClient <host> [<registry-port>]");
+	if (args.length < 2) {
+	    System.err.println("Usage: java HelloClient <host> <registry-port>");
 	    System.exit(1);
 	}
-	String host = null;
-	int registryPort = 1099;
-	if (args.length == 1) {
-	    host = args[0];
-	} else {
-	    host = args[0];
-	    registryPort = Integer.parseInt(args[1]);
-	}
+        String host = null;
+        int registryPort;
+        host = args[0];
+        registryPort = Integer.parseInt(args[1]);
 
 	try {
 	    
