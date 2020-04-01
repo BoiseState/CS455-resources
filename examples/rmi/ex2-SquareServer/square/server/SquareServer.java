@@ -23,9 +23,12 @@ public class SquareServer extends UnicastRemoteObject implements Square
 
 
     public static void main(String args[]) {
-	if (args.length > 0) {
-	    registryPort = Integer.parseInt(args[0]);
+	if (args.length == 0) {
+	    System.err.println("Usage: java -Djava.security.policy=mysecurity.policy " +
+	                        "square.server.SquareServer <registryPort> &\n");
+	    System.exit(1);
 	}
+	registryPort = Integer.parseInt(args[0]);
 
 	try {
 	    // Create and install a security manager

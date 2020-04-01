@@ -14,6 +14,9 @@ Use the script run-client to run the client.
 
 Use the script test-multiple-clients.sh to test multi-threadedness of RMI implementation
 
+Note that these scripts assume that the rmiregistry runs on the default 1099 port. If you are using
+a custom port, then modify the server and client scripts.
+
 
 Dynamic classloading
 --------------------

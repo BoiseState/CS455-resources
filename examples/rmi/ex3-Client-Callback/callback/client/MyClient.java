@@ -1,6 +1,8 @@
 package callback.client;
 
 import java.rmi.*;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.security.*;
 
 import callback.server.Server;
@@ -15,14 +17,17 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
 
     public static void main(String[] args) throws RemoteException {
 	System.setSecurityManager(new SecurityManager());
-	new MyClient(args[0]);
+	String hostName = args[0];
+	int registryPort = Integer.parseInt(args[1]);
+	new MyClient(hostName, registryPort);
     }
 
 
-    public MyClient(String host) throws RemoteException {
+    public MyClient(String host, int registryPort) throws RemoteException {
 	try {
-	    Server server = (Server) Naming.lookup("rmi://" + host + "/NiftyObjectServer");
-
+ 	    Registry registry = LocateRegistry.getRegistry(host, registryPort);
+	    Server server = (Server) registry.lookup("NiftyObjectServer");
+		
 	    System.out.println(server.getDate());
 	    System.out.println(server.getDate());
 	    System.out.println(server.execute(new MyCalculation(2)));
@@ -45,7 +50,7 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
 	    // I/O Error or bad URL
 	    System.out.println(e);
 	} catch (NotBoundException e) {
-	    // NiftyServer isn't registered
+	    // NiftyObjectServer isn't registered
 	    System.out.println(e);
 	}
     }

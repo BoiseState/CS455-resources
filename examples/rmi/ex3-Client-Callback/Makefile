@@ -36,7 +36,6 @@ compile-server: callback/server/MyServer.class callback/server/Request.class cal
 
 
 rmi: compile
-	rmic MyServer
 	cd callback/server/; cp Server.class MyServer_Stub.class Request.class WorkRequest.class StringEnumerator.class StringEnumerationRequest.class ../client
 
 compile-client: callback/client/MyCalculation.class callback/client/MyClient.class 

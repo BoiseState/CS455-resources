@@ -9,25 +9,18 @@ public class SquareClient
 {
     public static void main(String[] args) {
 	if (args.length < 3) {
-	    System.err.println("Usage: java SquareClient <host> <value> <count> [<registry-port>]");
+	    System.err.println("Usage: java SquareClient <hostname> <value> <count> [<registry-port>]");
 	    System.exit(1);
 	}
 	
 	String host = null;
 	int value;
 	int count;
-	int registryPort = 1099;
-	
-	if (args.length == 3) {
-	    host = args[0];
-	    value = Integer.parseInt(args[1]);
-	    count = Integer.parseInt(args[2]);
-	} else {
-	    host = args[0];
-	    value = Integer.parseInt(args[1]);
-	    count = Integer.parseInt(args[2]);
-	    registryPort = Integer.parseInt(args[3]);
-	}
+	int registryPort;
+	host = args[0];
+        value = Integer.parseInt(args[1]);
+        count = Integer.parseInt(args[2]);
+        registryPort = Integer.parseInt(args[3]);
 
 	try {
 	    Registry registry = LocateRegistry.getRegistry(host, registryPort);

@@ -28,5 +28,8 @@ fg & kill runserver.sh
 fg & kill rmiregistry 5130
 
 
+NOTE: This example assumes that the rmiregistry is running on port 1099. If that isn't the case,
+change the code in the server and client.
+
 Paul Kreiner
 Amit Jain

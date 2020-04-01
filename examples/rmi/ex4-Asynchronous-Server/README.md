@@ -18,3 +18,6 @@ Run several copies together using the test-multiple-clients.sh script to
 see the affect of asynchronous thread exceution.
 
 test-multiple-clients.sh
+
+NOTE: This example assumes that the registry is running on port 1099. If that is not the case,
+change the following code similar to the change in ../ex3-Client-Callback

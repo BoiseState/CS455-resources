@@ -23,7 +23,8 @@ export CLASSPATH=$(pwd):$CLASSPATH
 rmiregistry <port>
 
 The default port is 1099. That is used if the registry is being shared by various
-servers. Otherwise start up a private copy of the registry using your own assigned port.
+servers. Otherwise start up a private copy of the registry using your own assigned port and
+modify the server and client appropriately.
 
 
 Then start the server with the appropriate security policy:

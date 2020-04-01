@@ -22,9 +22,8 @@ java -Djava.security.policy=mysecurity.policy hello.server.HelloServer <registry
 
 Wait for ready message from the server before running the client. To run the client, use:
 
-java hello.client.HelloClient hostname <registryPort>
+java hello.client.HelloClient <hostname> <registryPort>
 
 The registryPort is only needed if registry is running on a port other than 1099.
 
- 
 
