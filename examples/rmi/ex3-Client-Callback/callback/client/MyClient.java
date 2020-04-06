@@ -9,6 +9,7 @@ import callback.server.Server;
 import callback.server.StringEnumerationRequest;
 import callback.server.WorkListener;
 import callback.server.WorkRequest;
+import sun.font.CreatedFontTracker;
 
 public class MyClient extends java.rmi.server.UnicastRemoteObject implements WorkListener
 {
@@ -26,7 +27,7 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
     public MyClient(String host, int registryPort) throws RemoteException {
 	try {
  	    Registry registry = LocateRegistry.getRegistry(host, registryPort);
-	    Server server = (Server) registry.lookup("NiftyObjectServer");
+ 	    Server server = (Server) registry.lookup("NiftyObjectServer");
 		
 	    System.out.println(server.getDate());
 	    System.out.println(server.getDate());

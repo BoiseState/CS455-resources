@@ -32,7 +32,7 @@ public class ParseTest
 	options.addOption("d", "debug", false, "debug level");
 
 	// one option with optional value
-	Option portOption = new Option("n", "numport", true, "port number on server");
+	Option portOption = new Option("n", "numport", true, "optional port number on server");
 	portOption.setOptionalArg(true);
 	options.addOption(portOption);
 
