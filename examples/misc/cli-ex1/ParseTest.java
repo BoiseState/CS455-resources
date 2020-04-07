@@ -81,7 +81,7 @@ public class ParseTest
 	    
 	    if (line.hasOption("l")) {
 		System.out.print("Option -l ");
-		System.out.print("with parameter " + line.getOptionValue("l") + " chosen");
+		System.out.println("with parameter " + line.getOptionValue("l") + " chosen");
 	    }
 	    
 	    if (line.hasOption("m")) {
