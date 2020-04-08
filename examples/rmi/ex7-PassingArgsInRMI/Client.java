@@ -11,13 +11,13 @@ public class Client
 {
     private final static String CLIENT_STUB_INTERFACE = "Service";
     private final static String HOST = "localhost";
-    static Doodle doodie = new Doodle();
-
+    private static Doodle doodie = new Doodle();
 
     public Client() {
-	// for some reason Eclipse argued when I simply put this line in the main,
-	// so moved it to constructor.
-	new Thread(new PrintingThread(this)).start();
+    }
+    
+    private void startThread() {
+        new Thread(new PrintingThread()).start();
     }
 
 
@@ -28,37 +28,28 @@ public class Client
 	    Registry registry = LocateRegistry.getRegistry(HOST);
 	    Service serve = (Service) registry.lookup(name);
 	    Client temp = new Client();
-	    System.out.println("Sending request to server");
+	    temp.startThread();
+	    System.out.println("Client: sending request to server");
 	    doodie = serve.execute(doodie);
-	    System.out.println("Received response from server");
+	    System.out.println("Client: received response from server");
 	} catch (Exception e) {
-	    System.err.println("Sadface");
+	    System.err.println("Client: sadface :(");
 	    e.printStackTrace();
 	}
     }
 
     private class PrintingThread implements Runnable
     {
-	Client doodleman;
-
-
-	public PrintingThread(Client doodleman) {
-	    this.doodleman = doodleman; // this ensures that our doodie is always current.
-	}
-
-
 	@Override
 	public void run() {
 	    while (true) {
-		System.out.println(doodleman.doodie);
+		System.out.println(Client.doodie);
 		try {
-		    Thread.sleep(5000); // sleep for 5 seconds
+		    Thread.sleep(1000); // sleep for 1 second
 		} catch (InterruptedException e) {
 		    e.printStackTrace();
 		}
 	    }
-
 	}
-
     }
 }
