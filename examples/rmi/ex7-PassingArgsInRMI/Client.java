@@ -5,6 +5,7 @@ import java.rmi.registry.Registry;
  * The entire point of this program is to show how parameters are passed in RMI.
  * 
  * @author atulepbe
+ * @author amit
  *
  */
 public class Client
