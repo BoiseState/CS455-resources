@@ -31,7 +31,7 @@ public class Client
 	    Client temp = new Client();
 	    temp.startThread();
 	    System.out.println("Client: sending request to server");
-	    doodie = serve.execute(doodie);
+	    serve.execute(doodie);
 	    System.out.println("Client: received response from server");
 	} catch (Exception e) {
 	    System.err.println("Client: sadface :(");
