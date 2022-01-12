@@ -16,19 +16,19 @@ public class ExecutorExample {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		if (args.length != 1) {
-			System.err.println("Usage: java ExecutorExample <n>");
+		if (args.length != 2) {
+			System.err.println("Usage: java ExecutorExample <n> <#tasks>");
 			System.exit(EXIT_FAILURE);
 		}
 
 		int n = Integer.parseInt(args[0]);
-		MyCalculation[] tasks = new MyCalculation[n];
+		int numTasks = Integer.parseInt(args[1]);
+		MyCalculation[] tasks = new MyCalculation[numTasks];
 
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < numTasks; i++) {
 			tasks[i] = new MyCalculation(n);
 			pool.execute(tasks[i]);
 		}
-
 		pool.shutdown(); //will wait until previously scheduled tasks have completed
 
 		for (MyCalculation task: tasks) {

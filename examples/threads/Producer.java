@@ -7,42 +7,41 @@ public class Producer implements Runnable
     private int sleep_time;
     private boolean stopFlag = false;
 
-
     public Producer(int id, SharedQueue Q, int time) {
-	this.Q = Q;
-	this.id = id;
-	this.sleep_time = time;
+        this.Q = Q;
+        this.id = id;
+        this.sleep_time = time;
     }
 
 
     public void run() {
-	try {
-	    while (!stopFlag) {
-		String msg = new java.util.Date().toString();
-		Q.putMessage(msg);
-		System.out.println("Producer " + id + " put message: " + msg);
-		// try commenting out the sleep
-		Thread.sleep(sleep_time);
-	    }
-	} catch (InterruptedException e) {
-	    System.err.println(e);
-	}
+        try {
+            while (!stopFlag) {
+                String msg = new java.util.Date().toString();
+                Q.putMessage(msg);
+                System.out.println("Producer " + id + " put message: " + msg);
+                // try commenting out the sleep
+                Thread.sleep(sleep_time);
+            }
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }
     }
 
 
     public void start() {
-	if (producerThread == null) {
-	    producerThread = new Thread(this);
-	    producerThread.start();
-	}
+        if (producerThread == null) {
+            producerThread = new Thread(this);
+            producerThread.start();
+        }
     }
 
 
     public void stop() {
-	if (producerThread != null) {
-	    stopFlag = true;
-	    producerThread = null;
-	}
+        if (producerThread != null) {
+            stopFlag = true;
+            producerThread = null;
+        }
     }
 
 }

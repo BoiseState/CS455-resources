@@ -7,40 +7,39 @@ public class Consumer implements Runnable
     private int sleep_time;
     private boolean stopFlag = false;
 
-
     public Consumer(int id, SharedQueue Q, int time) {
-	this.Q = Q;
-	this.id = id;
-	this.sleep_time = time;
+        this.Q = Q;
+        this.id = id;
+        this.sleep_time = time;
     }
 
 
     public void run() {
-	try {
-	    while (!stopFlag) {
-		String message = Q.getMessage();
-		System.out.println("Consumer " + id + " got message: " + message);
-		Thread.sleep(sleep_time);
-	    }
-	} catch (InterruptedException e) {
-	    System.err.println(e);
-	}
+        try {
+            while (!stopFlag) {
+                String message = Q.getMessage();
+                System.out.println("Consumer " + id + " got message: " + message);
+                Thread.sleep(sleep_time);
+            }
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }
     }
 
 
     public void start() {
-	if (consumerThread == null) {
-	    consumerThread = new Thread(this);
-	    consumerThread.start();
-	}
+        if (consumerThread == null) {
+            consumerThread = new Thread(this);
+            consumerThread.start();
+        }
     }
 
 
     public void stop() {
-	if (consumerThread != null) {
-	    stopFlag = true;
-	    consumerThread = null;
-	}
+        if (consumerThread != null) {
+            stopFlag = true;
+            consumerThread = null;
+        }
     }
 
 }

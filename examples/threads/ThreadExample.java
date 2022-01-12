@@ -8,7 +8,7 @@ class Element extends Thread
 {
 
     public Element(String s) {
-	super(s);
+        super(s);
     }
 
 
@@ -18,20 +18,20 @@ class Element extends Thread
      * @see java.lang.Thread#run()
      */
     public void run() {
-	for (int i = 0; i < 100; i++) {
-	    System.out.println("This is the " + this.getName() + " thread.");
-	    /* this.yield(); */
-	}
+        for (int i = 0; i < 100; i++) {
+            System.out.println("This is the " + this.getName() + " thread.");
+            /* this.yield(); */
+        }
     }
 }
 
 public class ThreadExample
 {
     public static void main(String args[]) {
-	new Element("water").start();
-	new Element("fire").start();
-	new Element("earth").start();
-	new Element("air").start();
-	new Element("void").start();
+        new Element("water").start();
+        new Element("fire").start();
+        new Element("earth").start();
+        new Element("air").start();
+        new Element("void").start();
     }
 }

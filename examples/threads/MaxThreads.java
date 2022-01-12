@@ -11,7 +11,7 @@ public class MaxThreads
 
     public static void main(String args[]) throws InterruptedException {
 	for (int i = 0; i < MAX; i++) {
-	    Integer I = new Integer(i);
+	    Integer I = i;
 	    new nuts(I.toString()).start();
 	}
     }
