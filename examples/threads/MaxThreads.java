@@ -8,29 +8,28 @@ public class MaxThreads
 {
     final static int MAX = 50000;
 
-
     public static void main(String args[]) throws InterruptedException {
-	for (int i = 0; i < MAX; i++) {
-	    Integer I = i;
-	    new nuts(I.toString()).start();
-	}
+        for (int i = 0; i < MAX; i++) {
+            Integer I = i;
+            new nuts(I.toString()).start();
+        }
     }
 }
 
 class nuts extends Thread
 {
     public nuts(String s) {
-	super(s);
+        super(s);
     }
 
 
     public void run() {
-	System.out.println("Thread number " + this.getName());
-	/* System.out.flush(); */
-	try {
-	    Thread.sleep(20000); // in millisecs
-	} catch (InterruptedException e) {
-	    System.err.println(e);
-	}
+        System.out.println("Thread number " + this.getName());
+        /* System.out.flush(); */
+        try {
+            Thread.sleep(20000); // in millisecs
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }
     }
 }
