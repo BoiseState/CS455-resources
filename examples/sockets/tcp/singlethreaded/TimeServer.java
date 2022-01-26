@@ -10,7 +10,8 @@ import java.net.InetAddress;
 
 /**
  * A single-threaded time server that sends Date objects to clients. You may
- * need to open port 5005 in the firewall on the host machine.
+ * need to open port 5005 in the firewall on the host machine (unless you are
+ * locally).
  * 
  * @author amit
  */
@@ -32,7 +33,7 @@ public class TimeServer
 	public TimeServer() {
 		try {
 			s = new ServerSocket(port);
-			System.out.println("TimeServer up and running on port " + port + " " + InetAddress.getLocalHost());
+			System.out.println("TimeServer: up and running on port " + port + " " + InetAddress.getLocalHost());
 		} catch (IOException e) {
 			System.err.println(e);
 		}
@@ -54,7 +55,7 @@ public class TimeServer
 				// Note that client gets a temporary/transient port on it's side
 				// to talk to the server on its well known port
 				System.out.println(
-				        "Received connect from " + sock.getInetAddress().getHostAddress() + ": " + sock.getPort());
+				        "TimeServer: Received connect from " + sock.getInetAddress().getHostAddress() + ": " + sock.getPort());
 
 				ObjectOutputStream oout = new ObjectOutputStream(out);
 				oout.writeObject(new java.util.Date());

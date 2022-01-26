@@ -54,6 +54,7 @@ rpc/userlookup/client
 rpc/userlookup/userlookup_server
 sockets/out_of_band/oobrecv
 sockets/out_of_band/oobsend
+sockets/.settings
 #
 security/password-input/test_password
 sockets-C/misc/byteorder

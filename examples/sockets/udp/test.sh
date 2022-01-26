@@ -1,6 +1,6 @@
 #!/bin/bash
 
-server=kohinoor
+server=localhost
 cd ..
 
 java udp.UdpClient1 $server 5005 &

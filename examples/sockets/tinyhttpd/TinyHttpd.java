@@ -54,6 +54,7 @@ public class TinyHttpd {
 
 		@SuppressWarnings("resource")
 		ServerSocket ss = new ServerSocket(Integer.parseInt(argv[0]));
+		System.out.println("TinyHttpd: server ready");
 		while (true)
 			new Thread(new TinyHttpdConnection(ss.accept())).start();
 	}
@@ -73,7 +74,7 @@ class TinyHttpdConnection implements Runnable {
 			OutputStream out = client.getOutputStream();
 			PrintWriter pout = new PrintWriter(new OutputStreamWriter(out, "8859_1"), true);
 			String request = in.readLine();
-			System.out.println("Request: " + request);
+			System.out.println("TinyHttpd Received Request: " + request);
 
 			Matcher get = Pattern.compile("GET /?(\\S*).*").matcher(request);
 			if (get.matches()) {
@@ -81,6 +82,10 @@ class TinyHttpdConnection implements Runnable {
 				if (request.endsWith("/") || request.equals(""))
 					request = request + "index.html";
 				try {
+					pout.println("HTTP/1.1 200 OK");
+					pout.println("TinyHttpd Server");
+					pout.println("Content-Type: text/html");
+					pout.println();
 					request = basename + File.separator + request;
 					System.out.println(request);
 					FileInputStream fis = new FileInputStream(request);

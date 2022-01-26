@@ -1,6 +1,3 @@
 
-The tcp folder and  subfolders are packages, so run the programs from one level above this folder
+For more information, see the individual README.md files in each package subfolder.
 
-cd ../
-
-java tcp.client.DateAtHost localhost

@@ -3,12 +3,13 @@ Go up two levels in the folder hierachy.
 
 cd ../..
 
-Running the server (uses hard-code 5005 for port):
+Running the server:
 
-	java tcp.singlethreaded.TimeServer 
+	java tcp.objectserver.Server <port>
 
 Running the client (on same or another machine):
 
-	java tcp.singlethreaded.TimeClient <hostname> <port>
+	java tcp.objectserver.Client <hostname> <port>
 
 Use localhost for hostname and 5005 for port.
+

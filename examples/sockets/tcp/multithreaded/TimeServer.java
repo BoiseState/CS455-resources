@@ -26,7 +26,7 @@ public class TimeServer {
 	public TimeServer(int port) {
 		try {
 			ss = new ServerSocket(port);
-			System.out.println("TimeServer up and running on port " + port + " " + InetAddress.getLocalHost());
+			System.out.println("TimeServer: up and running on port " + port + " " + InetAddress.getLocalHost());
 		} catch (IOException e) {
 			System.err.println(e);
 		}
@@ -41,7 +41,7 @@ public class TimeServer {
 		try {
 			while (true) {
 				client = ss.accept();
-				System.out.println("Received connect from " + client.getInetAddress().getHostName() + " [ "
+				System.out.println("TimeServer: Received connect from " + client.getInetAddress().getHostName() + " [ "
 						+ client.getInetAddress().getHostAddress() + " ] ");
 				new ServerConnection(client).start();
 			}

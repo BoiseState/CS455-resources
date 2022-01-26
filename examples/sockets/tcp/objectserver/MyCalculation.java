@@ -2,7 +2,6 @@ package tcp.objectserver;
 
 public class MyCalculation extends WorkRequest
 {
-
     private static final long serialVersionUID = -782657330809139571L;
     private int n;
     private int[] values;
