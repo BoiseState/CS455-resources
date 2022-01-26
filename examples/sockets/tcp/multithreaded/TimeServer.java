@@ -81,7 +81,7 @@ class ServerConnection extends Thread {
 			oout.writeObject(new java.util.Date());
 			oout.flush();
 
-			Thread.sleep(10); //10ms
+			Thread.sleep(4000); //delay
 			client.close();
 		} catch (InterruptedException e) {
 			System.out.println(e);

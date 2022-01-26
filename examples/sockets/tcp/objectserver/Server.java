@@ -36,7 +36,7 @@ class ServerConnection extends Thread
         try {
             ObjectOutputStream out = new ObjectOutputStream(client.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(client.getInputStream());
-            System.out.println("Received connect from " + client.getInetAddress().getHostAddress());
+            System.out.println("Server: Received connect from " + client.getInetAddress().getHostAddress());
 
             while (true) {
                 out.writeObject(processRequest(in.readObject()));

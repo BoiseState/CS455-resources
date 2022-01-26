@@ -28,6 +28,7 @@ public class TimeClient
 
 			Date date = (Date) oin.readObject();
 			System.out.println("Time on host " + host + " is " + date);
+			s.close();
 		} catch (IOException e1) {
 			System.out.println(e1);
 		} catch (ClassNotFoundException e2) {
