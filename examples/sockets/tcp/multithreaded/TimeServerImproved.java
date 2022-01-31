@@ -16,7 +16,7 @@ import java.net.InetAddress;
  * 
  * @author amit
  */
-public class TimeServerInner
+public class TimeServerImproved
 {
     private ServerSocket ss;
     private final int MAX_THREADS = 4;
@@ -29,7 +29,7 @@ public class TimeServerInner
      * @param port
      *            The port number for the server.
      */
-    public TimeServerInner(int port) {
+    public TimeServerImproved(int port) {
         try {
             ss = new ServerSocket(port);
             System.out.println("TimeServer: up and running on port " + port + " " + InetAddress.getLocalHost());
@@ -128,7 +128,7 @@ public class TimeServerInner
             System.err.println("Usage: java TimeServer <port>");
             System.exit(1);
         }
-        TimeServerInner server = new TimeServerInner(Integer.parseInt(args[0]));
+        TimeServerImproved server = new TimeServerImproved(Integer.parseInt(args[0]));
         server.runServer();
     }
 }
