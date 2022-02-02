@@ -23,8 +23,7 @@ import java.util.regex.Pattern;
  * 
  * Or with security manager enabled:
  * 
- * java -Djava.security.manager -Djava.security.policy=mysecurity.policy
- * TinyHttpd 5005
+ * java -Djava.security.manager -Djava.security.policy=mysecurity.policy TinyHttpd 5005
  * 
  * Then point a web browser to localhost:5005
  * 
