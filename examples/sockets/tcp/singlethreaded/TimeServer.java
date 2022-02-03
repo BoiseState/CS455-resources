@@ -1,7 +1,6 @@
 package tcp.singlethreaded;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
@@ -18,7 +17,6 @@ import java.net.InetAddress;
 
 public class TimeServer
 {
-    private InputStream in;
     private OutputStream out;
     private int port = 5005;
     private ServerSocket s;
@@ -49,7 +47,6 @@ public class TimeServer
             try {
                 sock = s.accept();
                 out = sock.getOutputStream();
-                in = sock.getInputStream();
 
                 // Note that client gets a temporary/transient port on it's side
                 // to talk to the server on its well known port

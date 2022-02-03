@@ -6,6 +6,7 @@
  */
 public class ThreadGroupExample
 {
+    @SuppressWarnings({ "deprecation" })
     public static void main(String args[]) {
         ThreadGroup myTaskGroup = new ThreadGroup("My Task Group");
 

@@ -92,6 +92,7 @@ class TinyHttpdConnection implements Runnable {
 					for (int read; (read = fis.read(data)) > -1;)
 						out.write(data, 0, read);
 					out.flush();
+					fis.close();
 				} catch (FileNotFoundException e) {
 					pout.println("404 Object Not Found");
 				} catch (SecurityException e) {

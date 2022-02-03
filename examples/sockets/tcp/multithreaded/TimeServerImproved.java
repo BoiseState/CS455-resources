@@ -1,7 +1,6 @@
 package tcp.multithreaded;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
@@ -102,7 +101,6 @@ public class TimeServerImproved
         public void run() {
             try {
                 OutputStream out = client.getOutputStream();
-                InputStream in = client.getInputStream();
                 ObjectOutputStream oout = new ObjectOutputStream(out);
 
                 oout.writeObject(new java.util.Date());
