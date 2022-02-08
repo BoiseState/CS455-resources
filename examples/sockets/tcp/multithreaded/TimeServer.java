@@ -40,7 +40,8 @@ public class TimeServer {
 		try {
 			while (true) {
 				client = ss.accept();
-				System.out.println("TimeServer: Received connect from " + client.getInetAddress().getHostName() + " [ "
+				System.out.println("TimeServer: Received connect from " 
+				        + client.getInetAddress().getHostName() + " [ "
 						+ client.getInetAddress().getHostAddress() + " ] ");
 				new ServerConnection(client).start();
 			}
@@ -48,6 +49,37 @@ public class TimeServer {
 			System.err.println(e);
 		}
 	}
+	
+	/**
+	 * Handles one connection in a separate thread.
+	 */
+	class ServerConnection extends Thread {
+	    private Socket client;
+
+	    ServerConnection(Socket client) throws SocketException {
+	        this.client = client;
+	        setPriority(NORM_PRIORITY - 1);
+	        System.out.println("Created thread " + this.getName());
+	    }
+
+	    public void run() {
+	        try {
+	            OutputStream out = client.getOutputStream();
+	            ObjectOutputStream oout = new ObjectOutputStream(out);
+
+	            oout.writeObject(new java.util.Date());
+	            oout.flush();
+
+	            Thread.sleep(4000); //delay
+	            client.close();
+	        } catch (InterruptedException e) {
+	            System.out.println(e);
+	        } catch (IOException e) {
+	            System.out.println("I/O error " + e);
+	        }
+	    }
+	}
+
 
 	public static void main(String args[]) {
 		if (args.length < 1) {
@@ -59,32 +91,3 @@ public class TimeServer {
 	}
 }
 
-/**
- * Handles one connection in a separate thread.
- */
-class ServerConnection extends Thread {
-	private Socket client;
-
-	ServerConnection(Socket client) throws SocketException {
-		this.client = client;
-		setPriority(NORM_PRIORITY - 1);
-		System.out.println("Created thread " + this.getName());
-	}
-
-	public void run() {
-		try {
-			OutputStream out = client.getOutputStream();
-			ObjectOutputStream oout = new ObjectOutputStream(out);
-
-			oout.writeObject(new java.util.Date());
-			oout.flush();
-
-			Thread.sleep(4000); //delay
-			client.close();
-		} catch (InterruptedException e) {
-			System.out.println(e);
-		} catch (IOException e) {
-			System.out.println("I/O error " + e);
-		}
-	}
-}

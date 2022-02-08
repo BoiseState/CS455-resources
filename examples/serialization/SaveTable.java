@@ -8,8 +8,8 @@ public class SaveTable {
 		Hashtable<String, Object> h = new Hashtable<String, Object>();
 		// Hashtable implements the serializable interface so it can be freeze-dried
 		h.put("string", "Cyrano De Bergerac");
-		h.put("int", new Integer("1619"));
-		h.put("double", new Double(Math.PI));
+		h.put("int", 1619);
+		h.put("double", Math.PI);
 		h.put("color", new Color(255, 0, 0));
 
 		try {
