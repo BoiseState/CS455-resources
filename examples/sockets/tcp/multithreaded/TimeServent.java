@@ -10,6 +10,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.net.InetAddress;
 
 /**
@@ -47,13 +49,7 @@ public class TimeServent
 
     public void runServent() {
         server.start(); // server goes off to its own thread
-        // give time for the operator to start the other servent
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } // give time for other server to start up
-        client.runClient();
+        client.startTimer();
     }
 
     /**
@@ -141,6 +137,8 @@ public class TimeServent
     {
         private String host;
         private int port;
+        private Timer timer = new Timer("client timer");
+        private int delay = 4000;
 
         /**
          * @param host
@@ -149,32 +147,37 @@ public class TimeServent
         public Client(String host, int port) {
             this.host = host;
             this.port = port;
+                  
         }
-
-
+        
+        
+        /**
+         * setup timer task for a client
+         */
+        public void startTimer() {
+            TimerTask task = new TimerTask() {
+                public void run() {
+                    runClient();
+                }
+            };
+            timer.schedule(task, 0, delay); 
+        }
+        
+        
         /**
          * 
          */
         public void runClient() {
             try {
-                while (true) {
                     Socket s = new Socket(host, port);
                     InputStream in = s.getInputStream();
                     ObjectInput oin = new ObjectInputStream(in);
 
                     Date date = (Date) oin.readObject();
                     System.out.println("Servent" + name + ": Time on other host " + host + " is " + date);
-                    s.close();
-
-                    // put in a delay to make it easier to observe what is happening
-                    try {
-                        Thread.sleep(4000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                    s.close();            
             } catch (IOException e1) {
-                System.out.println(e1);
+                System.out.println("Client failed. Will try again.");
             } catch (ClassNotFoundException e2) {
                 System.out.println(e2);
             }
