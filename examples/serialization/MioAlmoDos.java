@@ -14,7 +14,7 @@ public class MioAlmoDos implements Serializable {
 	private String name;
 	private long uniqueId;
 	private Date birthDate;
-	private String gender;
+	private String email;
 	private transient String interests;
 
 	/**
@@ -31,26 +31,26 @@ public class MioAlmoDos implements Serializable {
 	/**
 	 * @param name
 	 * @param uniqueId
-	 * @param gender
+	 * @param email
 	 */
-	public MioAlmoDos(String name, long uniqueId, String gender) {
+	public MioAlmoDos(String name, long uniqueId, String email) {
 		this(name, uniqueId);
-		this.gender = gender;
+		this.email = email;
 	}
 
 	/**
-	 * @return the gender
+	 * @return the email
 	 */
-	public String getGender() {
-		return gender;
+	public String getEmail() {
+		return email;
 	}
 
 	/**
-	 * @param gender
-	 *            the gender to set
+	 * @param email
+	 *            the email to set
 	 */
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class MioAlmoDos implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "MioAlma [name=" + name + ", uniqueId=" + uniqueId + ", birthDate=" + birthDate + ", gender=" + gender
+		return "MioAlma [name=" + name + ", uniqueId=" + uniqueId + ", birthDate=" + birthDate + ", email=" + email
 				+ ", interests=" + interests + "]";
 	}
 

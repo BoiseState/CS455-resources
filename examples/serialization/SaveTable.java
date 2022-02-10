@@ -7,7 +7,7 @@ public class SaveTable {
 	public static void main(String[] args) {
 		Hashtable<String, Object> h = new Hashtable<String, Object>();
 		// Hashtable implements the serializable interface so it can be freeze-dried
-		h.put("string", "Cyrano De Bergerac");
+		h.put("string", "Marco Polo");
 		h.put("int", 1619);
 		h.put("double", Math.PI);
 		h.put("color", new Color(255, 0, 0));
