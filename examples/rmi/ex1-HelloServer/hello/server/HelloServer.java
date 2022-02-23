@@ -12,36 +12,38 @@ public class HelloServer extends UnicastRemoteObject implements Hello
     private static int registryPort = 1099;
 
     public HelloServer(String s) throws RemoteException {
-	super();
-	name = s;
-	System.out.println(s + " server created");
+        super();
+        name = s;
+        System.out.println(s + " server created");
     }
+
 
     public String sayHello() throws RemoteException {
-	return "Hello World!";
+        return "Hello World!";
     }
 
+
     public static void main(String args[]) {
-	if (args.length == 0) {
-	    System.err.println("Usage: java -Djava.security.policy=mysecurity.policy " +
-	                        "hello.server.HelloServer <registryPort>");
-	    System.exit(1);
-	}
+        if (args.length == 0) {
+            System.err.println("Usage: java -Djava.security.policy=mysecurity.policy "
+                    + "hello.server.HelloServer <registryPort>");
+            System.exit(1);
+        }
         registryPort = Integer.parseInt(args[0]);
-	try {
-	    // Create and install a security manager
-	    System.setSecurityManager(new SecurityManager());
-	    
-	    Registry registry = LocateRegistry.getRegistry(registryPort);
-	    
-	    HelloServer obj = new HelloServer("//HelloServer");
-	    registry.rebind("HelloServer", obj);
-	    
-	    System.out.println("HelloServer bound in registry");
-	} catch (Exception e) {
-	    
-	    System.out.println("HelloServer err: " + e.getMessage());
-	    e.printStackTrace();
-	}
+        try {
+            // Create and install a security manager
+            System.setSecurityManager(new SecurityManager());
+
+            Registry registry = LocateRegistry.getRegistry(registryPort);
+
+            HelloServer obj = new HelloServer("//HelloServer");
+            registry.rebind("HelloServer", obj);
+
+            System.out.println("HelloServer bound in registry");
+        } catch (Exception e) {
+
+            System.out.println("HelloServer err: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

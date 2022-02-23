@@ -1,5 +1,6 @@
 CC=gcc
-CFLAGS=-Wall -g
+CFLAGS=-Wall -g  -I/usr/include/tirpc 
+LIBS=-ltirpc
 PROGS =	client server client_test
 CLEANFILES= *.o core a.out
 

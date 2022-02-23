@@ -9,7 +9,6 @@ import callback.server.Server;
 import callback.server.StringEnumerationRequest;
 import callback.server.WorkListener;
 import callback.server.WorkRequest;
-import sun.font.CreatedFontTracker;
 
 public class MyClient extends java.rmi.server.UnicastRemoteObject implements WorkListener
 {

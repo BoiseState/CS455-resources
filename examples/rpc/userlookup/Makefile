@@ -1,5 +1,10 @@
+
+CC= gcc
+CFLAGS= -Wall -I/usr/include/tirpc
+LFLAGS= -ltirpc
+
 .c.o:
-	gcc -c -Wall -g $<
+	$(CC) -c $(CFLAGS) $<
 
 all: client userlookup_server
 
@@ -8,11 +13,11 @@ COBJ = userlookup_clnt.o userlookup_xdr.o userlookup_client.o
 SOBJ = userlookup_svc.o userlookup_xdr.o userlookup_services.o
 
 client: $(COBJ)
-	gcc -o client $(COBJ)
+	$(CC) -o client $(COBJ) $(LFLAGS)
 
 
 userlookup_server: $(SOBJ)
-	gcc -o userlookup_server $(SOBJ)
+	$(CC) -o userlookup_server $(SOBJ) $(LFLAGS)
 
 
 userlookup.h: userlookup.x

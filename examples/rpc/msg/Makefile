@@ -2,11 +2,10 @@
 # @(#)Makefile	2.1 88/08/11 4.0 RPCSRC
 #
 CC=gcc
-CFLAGS=-Wall -g
+CFLAGS=-Wall -g -I/usr/include/tirpc
 BIN = printmsg server remote_printmsg
 GEN = msg_clnt.c msg_svc.c msg.h
-#LIB = -lrpclib
-LIB = 
+LIB = -ltirpc
 #RPCCOM = rpcgen -T
 RPCCOM = rpcgen -C -a
 

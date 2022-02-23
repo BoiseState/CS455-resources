@@ -1,16 +1,17 @@
 
 CC=gcc
-CFLAGS=-Wall -g 
+CFLAGS=-Wall -g  -I/usr/include/tirpc
+LIBS=-ltirpc
 
 all: client linkedlist_server
 
 
 client: llclient.o ll_clnt.o ll_xdr.o
-	gcc -o client llclient.o ll_clnt.o ll_xdr.o
+	$(CC) -o client llclient.o ll_clnt.o ll_xdr.o $(LIBS)
 
 
 linkedlist_server: llservice.o ll_svc.o ll_xdr.o
-	gcc -o linkedlist_server llservice.o ll_svc.o ll_xdr.o
+	$(CC) -o linkedlist_server llservice.o ll_svc.o ll_xdr.o $(LIBS)
 
 ll.h: ll.x
 	rpcgen -C ll.x

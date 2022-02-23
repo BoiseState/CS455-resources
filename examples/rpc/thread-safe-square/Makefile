@@ -1,6 +1,7 @@
 
 PROGS =	client server
-CFLAGS = -Wall -DDEBUG
+CFLAGS = -Wall -DDEBUG -I/usr/include/tirpc
+LIBS_RPC= -ltirpc
 CC=gcc
 
 all:	${PROGS}

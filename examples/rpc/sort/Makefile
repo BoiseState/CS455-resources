@@ -2,11 +2,10 @@
 # @(#)Makefile	2.1 88/08/11 4.0 RPCSRC
 #
 CC=gcc
-CFLAGS=-Wall -g
+CFLAGS=-Wall -g -I/usr/include/tirpc
 BIN =  remote_sort sort_server
 GEN = sort_clnt.c sort_svc.c sort_xdr.c sort.h
-#LIB = -lrpclib
-LIB = 
+LIB = -ltirpc
 RPCCOM = rpcgen
 
 all: $(BIN)
