@@ -18,8 +18,6 @@
  */
 
 import java.lang.Thread;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.registry.*;
@@ -30,9 +28,8 @@ public class RMIThreadServerImpl extends UnicastRemoteObject implements RMIThrea
     private volatile int counter = 0;
     private final int MAXCOUNT = 900000;
 
-
     public RMIThreadServerImpl() throws RemoteException {
-	super();
+        super();
     }
 
 
@@ -43,16 +40,15 @@ public class RMIThreadServerImpl extends UnicastRemoteObject implements RMIThrea
      * properly).
      */
     public synchronized void update() {
-	// public void update() {
-	int i;
-	Thread p = Thread.currentThread();
+        int i;
+        Thread p = Thread.currentThread();
 
-	System.out.println("[server] Entering critical section: " + p.getName());
-	for (i = 0; i < MAXCOUNT; i++)
-	    this.counter++;
-	for (i = 0; i < MAXCOUNT; i++)
-	    this.counter--;
-	System.out.println("[server] Leaving critical section: " + p.getName());
+        System.out.println("[server] Entering critical section: " + p.getName());
+        for (i = 0; i < MAXCOUNT; i++)
+            this.counter++;
+        for (i = 0; i < MAXCOUNT; i++)
+            this.counter--;
+        System.out.println("[server] Leaving critical section: " + p.getName());
 
     }
 
@@ -62,20 +58,19 @@ public class RMIThreadServerImpl extends UnicastRemoteObject implements RMIThrea
      * client to read the value of the "counter" variable.
      */
     public synchronized int read() {
-	// public int read() {
-	return this.counter;
+        return this.counter;
     }
 
 
     public static void main(String[] args) {
-	try {
-	    int registryPort = 1099;
-	    RMIThreadServerImpl localObject = new RMIThreadServerImpl();
-	    Registry registry = LocateRegistry.getRegistry(registryPort);
-	    registry.rebind("RMIThreadServer", localObject);
-	    System.err.println("DEBUG: RMIThreadServerImpl RMI listener bound\n");
-	} catch (RemoteException e) {
-	    System.err.println("RemoteException: " + e);
-	}
+        try {
+            int registryPort = 1099;
+            RMIThreadServerImpl localObject = new RMIThreadServerImpl();
+            Registry registry = LocateRegistry.getRegistry(registryPort);
+            registry.rebind("RMIThreadServer", localObject);
+            System.err.println("DEBUG: RMIThreadServerImpl RMI listener bound\n");
+        } catch (RemoteException e) {
+            System.err.println("RemoteException: " + e);
+        }
     }
 }

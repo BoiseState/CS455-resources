@@ -76,4 +76,6 @@ security/rmisslex2/resources/Server_Keystore
 #
 serialization/.classpath
 serialization/.settings
+#
+rmi/ex10-HelloServer-fixedport/.settings/
 

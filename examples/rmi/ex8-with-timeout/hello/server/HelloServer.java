@@ -10,43 +10,39 @@ public class HelloServer extends UnicastRemoteObject implements Hello
     private String name;
     private static int registryPort = 1099;
 
-
     public HelloServer(String s) throws RemoteException {
-	super();
-	name = s;
+        super();
+        name = s;
     }
 
 
     public String sayHello() throws RemoteException {
-	try {
-	    Thread.sleep(10000); // sleep for 10 seconds to simulate a slow server
-	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
-	    System.err.println(e);
-	}
-	return "Hello World!";
+        try {
+            Thread.sleep(10000); // sleep for 10 seconds to simulate a slow server
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }
+        return "Hello World!";
     }
 
 
     public static void main(String args[]) {
-	if (args.length > 0) {
-	    registryPort = Integer.parseInt(args[0]);
-	}
+        if (args.length > 0) {
+            registryPort = Integer.parseInt(args[0]);
+        }
 
-	try {
-	    // Create and install a security manager
-	    System.setSecurityManager(new SecurityManager());
-	    
-	    
-	    HelloServer obj = new HelloServer("//HelloServer");
-	    
-	    Registry registry = LocateRegistry.getRegistry(registryPort);
-	    registry.rebind("HelloServer", obj);
-	    System.out.println("HelloServer bound in registry");
-	    
-	} catch (Exception e) {
-	    System.out.println("HelloServer err: " + e.getMessage());
-	    e.printStackTrace();
-	}
+        try {
+            System.setSecurityManager(new SecurityManager());
+
+            HelloServer obj = new HelloServer("//HelloServer");
+
+            Registry registry = LocateRegistry.getRegistry(registryPort);
+            registry.rebind("HelloServer", obj);
+            System.out.println("HelloServer bound in registry");
+
+        } catch (RemoteException e) {
+            System.out.println("HelloServer err: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

@@ -16,53 +16,52 @@ public class HelloClient
 {
     private static Hello stub;
 
-
     private static void makeCallWithTimeout() {
-	
-	ExecutorService executor = Executors.newSingleThreadExecutor();
-	
-	Future<String> future = executor.submit(new Callable<String>() {
-	    public String call() throws Exception {
-		String response = stub.sayHello();
-		// System.out.println("From inside the called method: " + response);
-		return response;
-	    }
-	});
 
-	String response = null;
-	try {
-	    response = future.get(2, TimeUnit.SECONDS);
-	    System.out.println("response: " + response);
-	} catch (InterruptedException | TimeoutException | ExecutionException e) {
-	    System.err.println("RMI call timeout");
-	    executor.shutdown();
-	}
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        Future<String> future = executor.submit(new Callable<String>() {
+            public String call() throws Exception {
+                String response = stub.sayHello();
+                // System.out.println("From inside the called method: " + response);
+                return response;
+            }
+        });
+
+        String response = null;
+        try {
+            response = future.get(2, TimeUnit.SECONDS);
+            System.out.println("response: " + response);
+        } catch (InterruptedException | TimeoutException | ExecutionException e) {
+            System.err.println("RMI call timeout");
+            executor.shutdown();
+        }
     }
 
 
     public static void main(String[] args) {
-	if (args.length < 1) {
-	    System.err.println("Usage: java HelloClient <host> [<registry-port>]");
-	    System.exit(1);
-	}
+        if (args.length < 1) {
+            System.err.println("Usage: java HelloClient <host> [<registry-port>]");
+            System.exit(1);
+        }
 
-	String host = null;
-	int registryPort = 1099;
-	if (args.length == 1) {
-	    host = args[0];
-	} else {
-	    host = args[0];
-	    registryPort = Integer.parseInt(args[1]);
-	}
+        String host = null;
+        int registryPort = 1099;
+        if (args.length == 1) {
+            host = args[0];
+        } else {
+            host = args[0];
+            registryPort = Integer.parseInt(args[1]);
+        }
 
-	try {
-	    Registry registry = LocateRegistry.getRegistry(host, registryPort);
-	    stub = (Hello) registry.lookup("HelloServer");
-	} catch (Exception e) {
-	    System.err.println("Client exception: " + e.toString());
-	    e.printStackTrace();
-	}
+        try {
+            Registry registry = LocateRegistry.getRegistry(host, registryPort);
+            stub = (Hello) registry.lookup("HelloServer");
+        } catch (Exception e) {
+            System.err.println("Client exception: " + e.toString());
+            e.printStackTrace();
+        }
 
-	makeCallWithTimeout();
+        makeCallWithTimeout();
     }
 }
