@@ -70,9 +70,17 @@ sockets-C/udp/udpserver2
 sockets-C/out-of-band/out_of_band/oobrecv
 sockets-C/out-of-band/out_of_band/oobsend
 #
+security/rmisslex1/resources/Client_Truststore
+security/rmisslex1/resources/Server.cer
+security/rmisslex1/resources/Server_Keystore
 security/rmisslex2/resources/Client_Truststore
 security/rmisslex2/resources/Server.cer
 security/rmisslex2/resources/Server_Keystore
+security/sslsocket/resources/Client_Truststore
+security/sslsocket/resources/Server.cer
+security/sslsocket/resources/Server_Keystore
+security/.settings/
+
 #
 serialization/.classpath
 serialization/.settings
