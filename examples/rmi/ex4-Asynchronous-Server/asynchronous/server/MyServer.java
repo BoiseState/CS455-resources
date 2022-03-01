@@ -89,10 +89,11 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
     private class MySecurityManager extends SecurityManager {
         public void checkAccept(String host, int port) {}
         public void checkConnect(String host, int port) {
-            if (!host.endsWith("boisestate.edu")) {
-                throw new SecurityException("MyServer: connection not allowed");
+            if (!host.endsWith("localhost")) {
+                throw new SecurityException("Only accepting connections from localhost!");
             }
         }
+            
     }
 
     public static void main(String args[]) {

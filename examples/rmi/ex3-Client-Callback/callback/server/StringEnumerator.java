@@ -9,18 +9,17 @@ public class StringEnumerator extends java.rmi.server.UnicastRemoteObject implem
     String[] list;
     int index = 0;
 
-
     public StringEnumerator(String[] list) throws RemoteException {
-	this.list = list;
+        this.list = list;
     }
 
 
     public boolean hasMoreItems() {
-	return index < list.length;
+        return index < list.length;
     }
 
 
     public String nextItem() {
-	return list[index++];
+        return list[index++];
     }
 }
