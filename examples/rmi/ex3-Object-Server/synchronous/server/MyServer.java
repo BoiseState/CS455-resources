@@ -51,7 +51,7 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 		int registryPort = Integer.parseInt(args[0]);
 		System.setProperty("java.security.policy", "mysecurity.policy");
 		//int poolSize = Runtime.getRuntime().availableProcessors() * 2;
-		//System.setProperty("sun.rmi.transport.tcp.maxConnectionThreads", "" + poolSize);
+		//System.setProperty("sun.rmi.transport.tcp.maxConnectionThreads", "" + "" + poolSize);
 		try {
 
 			System.setSecurityManager(new SecurityManager());

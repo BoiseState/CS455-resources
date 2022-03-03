@@ -34,7 +34,7 @@ public class MyClient
             Server server = (Server) registry.lookup("NiftyObjectServer");
 
             System.out.println(server.getDate());
-            System.out.println(server.getDate());
+            //System.out.println(server.getDate());
             System.out.println(server.execute(new MyCalculation(2)));
 
             StringEnumerationRequest se = server.getList();
@@ -43,17 +43,12 @@ public class MyClient
 
         } catch (RemoteException e) {
             // I/O Error or bad URL
+            System.out.println("Client: remote call failed");
             System.out.println(e);
         } catch (NotBoundException e) {
             // NiftyObjectServer isn't registered
             System.out.println(e);
         }
-    }
-
-
-    public void workCompleted(WorkRequest request, Object result) throws RemoteException {
-        System.out.println("Async work result = " + result);
-        System.out.flush();
     }
     
 }
