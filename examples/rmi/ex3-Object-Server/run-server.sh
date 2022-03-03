@@ -16,7 +16,7 @@ export CLASSPATH=$(pwd):$CLASSPATH
 rmiregistry &
 
 echo
-echo "Starting server clientcallback.server.MyServer"
-java  -Djava.security.policy=mysecurity.policy  asynchronous.server.MyServer $registryPort
+echo "Starting server synchronous.server.MyServer"
+java  -Djava.security.policy=mysecurity.policy  synchronous.server.MyServer $registryPort
 echo
 

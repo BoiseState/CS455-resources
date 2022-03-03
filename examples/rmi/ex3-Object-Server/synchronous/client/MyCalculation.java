@@ -1,6 +1,6 @@
-package callback.client;
+package synchronous.client;
 
-import callback.server.WorkRequest;
+import synchronous.server.WorkRequest;
 
 /**
  * A class representing a work request.

@@ -1,14 +1,15 @@
 package asynchronous.client;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 import asynchronous.server.Server;
 import asynchronous.server.StringEnumerationRequest;
 import asynchronous.server.WorkListener;
 import asynchronous.server.WorkRequest;
+import asynchronous.client.MyClient;
 
 /**
  * Shows a client making multiple asynchronous calls to a server. However the
@@ -23,15 +24,24 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
     private boolean requestsSent = false;
 
     public static void main(String[] args) throws RemoteException {
+        if (args.length != 2) {
+            System.err.println("Usage: java MyClient <server host> <registry port>");
+            System.exit(1);
+        }
         System.setSecurityManager(new SecurityManager());
-        new MyClient(args[0]);
+        String hostName = args[0];
+        int registryPort = Integer.parseInt(args[1]);
+        new MyClient(hostName, registryPort);
     }
 
 
-    public MyClient(String host) throws RemoteException {
+    public MyClient(String host, int registryPort) throws RemoteException {
         allDone = new Object();
         try {
-            Server server = (Server) Naming.lookup("rmi://" + host + "/AsyncServer");
+            Registry registry = LocateRegistry.getRegistry(host, registryPort);
+            Server server = (Server) registry.lookup("AsyncServer");
+            //We can also use the following style
+            //Server server = (Server) Naming.lookup("rmi:" + registryPort + "//" + host + "/AsyncServer");
 
             System.out.println(server.getDate());
             System.out.println(server.getDate());
@@ -64,8 +74,6 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
             System.out.println(e);
         } catch (NotBoundException e) {
             System.out.println(e);
-        } catch (MalformedURLException e1) {
-            e1.printStackTrace();
         }
     }
 

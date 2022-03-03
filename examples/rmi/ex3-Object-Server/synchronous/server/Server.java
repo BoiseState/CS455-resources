@@ -1,4 +1,4 @@
-package callback.server;
+package synchronous.server;
 
 import java.util.Date;
 
@@ -30,14 +30,4 @@ public interface Server extends java.rmi.Remote
      * @throws java.rmi.RemoteException
      */
     StringEnumerationRequest getList() throws java.rmi.RemoteException;
-
-
-    /**
-     * Server executes the work request and calls back client when done.
-     * 
-     * @param work
-     * @param listener
-     * @throws java.rmi.RemoteException
-     */
-    void asyncExecute(WorkRequest work, WorkListener listener) throws java.rmi.RemoteException;
 }

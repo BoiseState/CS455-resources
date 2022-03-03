@@ -32,17 +32,17 @@ all: compile
 
 compile: compile-server compile-client
 
-compile-server: callback/server/MyServer.class callback/server/Request.class callback/server/Server.class callback/server/StringEnumerationRequest.class callback/server/StringEnumerator.class callback/server/WorkListener.class callback/server/WorkRequest.class
+compile-server: synchronous/server/MyServer.class synchronous/server/Request.class synchronous/server/Server.class synchronous/server/StringEnumerationRequest.class synchronous/server/StringEnumerator.class synchronous/server/WorkListener.class synchronous/server/WorkRequest.class
 
 
 rmi: compile
-	cd callback/server/; cp Server.class MyServer_Stub.class Request.class WorkRequest.class StringEnumerator.class StringEnumerationRequest.class ../client
+	cd synchronous/server/; cp Server.class MyServer_Stub.class Request.class WorkRequest.class StringEnumerator.class StringEnumerationRequest.class ../client
 
-compile-client: callback/client/MyCalculation.class callback/client/MyClient.class 
-	cd callback/client/; cp MyCalculation.class ../server
+compile-client: synchronous/client/MyCalculation.class synchronous/client/MyClient.class 
+	cd synchronous/client/; cp MyCalculation.class ../server
 
 
 clean:
-		rm --force  callback/server/*.class callback/client/*.class
+		rm --force  synchronous/server/*.class synchronous/client/*.class
 
 

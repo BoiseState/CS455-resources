@@ -98,6 +98,11 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 
     public static void main(String args[]) {
         int registryPort = 1099;
+        if (args.length != 1) {
+            System.err.println("Usage: java java MyServer <registry port>");
+            System.exit(1);
+        }
+        registryPort = Integer.parseInt(args[0]);
         System.setProperty("java.security.policy", "mysecurity.policy");
         
         try {

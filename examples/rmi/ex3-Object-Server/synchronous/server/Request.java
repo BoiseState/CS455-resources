@@ -1,4 +1,4 @@
-package callback.server;
+package synchronous.server;
 
 // Could hold stuff common to all requests like authentication, time stamps, etc.
 public class Request implements java.io.Serializable

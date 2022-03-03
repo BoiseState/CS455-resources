@@ -1,4 +1,4 @@
-package callback.server;
+package synchronous.server;
 
 public class WorkRequest extends Request
 {

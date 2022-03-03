@@ -1,4 +1,4 @@
-package callback.server;
+package synchronous.server;
 
 import java.rmi.RemoteException;
 

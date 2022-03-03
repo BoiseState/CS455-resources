@@ -53,7 +53,7 @@ public class SquareServer implements Square
         System.out.println("Setting System Properties....");
         System.setProperty("javax.net.ssl.keyStore", "rmisslex2/resources/Server_Keystore");
         // Warning: change to match your password! Also the password should be
-        // stored encrypted in a file outside the program.
+        // stored encrypted in a file outside the program or provided on the fly.
         System.setProperty("javax.net.ssl.keyStorePassword", "test123");
         System.setProperty("java.security.policy", "rmisslex2/resources/mysecurity.policy");
         try {

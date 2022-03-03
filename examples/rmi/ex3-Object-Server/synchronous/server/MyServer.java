@@ -1,4 +1,4 @@
-package callback.server;
+package synchronous.server;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -7,6 +7,7 @@ import java.rmi.server.ServerNotActiveException;
 import java.util.Date;
 
 public class MyServer extends java.rmi.server.UnicastRemoteObject implements Server {
+    
 	private static final long serialVersionUID = -7592865213304639584L;
 
 	public MyServer() throws RemoteException {
@@ -33,15 +34,6 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 		return new StringEnumerator(new String[] { "Goo", "Goo", "Gaa", "Gaa" });
 	}
 
-	public void asyncExecute(WorkRequest request, WorkListener listener) throws RemoteException {
-
-		Object result = request.execute();
-		System.out.println("async req");
-
-		listener.workCompleted(request, result);
-		System.out.println("async complete");
-	}
-
 	private void printClientAddress() {
 		try {
 			System.out.println(getClientHost());
@@ -51,8 +43,15 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 	}
 
 	public static void main(String args[]) {
-		int registryPort = 1099;
+		
+		if (args.length != 1) {
+		    System.err.println("Usage: java synchronous.server.MyServer <registry port>");
+		    System.exit(1);
+		}
+		int registryPort = Integer.parseInt(args[0]);
 		System.setProperty("java.security.policy", "mysecurity.policy");
+		//int poolSize = Runtime.getRuntime().availableProcessors() * 2;
+		//System.setProperty("sun.rmi.transport.tcp.maxConnectionThreads", "" + poolSize);
 		try {
 
 			System.setSecurityManager(new SecurityManager());
@@ -62,7 +61,7 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 			registry.rebind("NiftyObjectServer", server);
 			System.out.println("NiftyObjectServer bound");
 
-		} catch (java.io.IOException e) {
+		} catch (RemoteException e) {
 			System.err.println("MyServer: Problem registering server");
 			System.err.println(e);
 		}
