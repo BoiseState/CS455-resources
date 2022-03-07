@@ -25,7 +25,7 @@ public class Cryogenics {
 	 * Serialize a Mio object.
 	 */
 	private static void freezeDry() {
-		MioAlma obj = new MioAlma("Marco Polo", 123456789);
+		MioAlma obj = new MioAlma("Marco Polo", 123456789L);
 		System.out.println("Serializing object: " + obj);
 		try {
 			FileOutputStream fileOut = new FileOutputStream("mio.ser");
