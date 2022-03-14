@@ -17,13 +17,13 @@ import org.apache.commons.cli.ParseException;
  */
 public class ParseTest
 {
-    
+
     public static void printUsage(Options options) {
 	HelpFormatter formatter = new HelpFormatter();
-	formatter.printHelp( "ParseTest ", options );
+	formatter.printHelp("ParseTest ", options);
     }
-    
-    
+
+
     public static Options setupOptions() {
 	// create the Options
 	Options options = new Options();
@@ -40,13 +40,14 @@ public class ParseTest
 	options.addOption("l", "lookup", true, "lookup an account with the given login name");
 
 	// one way to create an option that requires multiple values
-	Option modifyOption = new Option("m", "modify", true, "modify existing login name");
+	Option modifyOption = new Option("m", "modify", true, "modify existing login name: provide <login> <newlogin>");
 	modifyOption.setArgs(2);
 	options.addOption(modifyOption);
-	
+
 	return options;
     }
-    
+
+
     /**
      * @param args
      */
@@ -56,11 +57,11 @@ public class ParseTest
 	CommandLineParser parser = new DefaultParser();
 
 	Options options = setupOptions();
-	
+
 	if (args.length == 0) {
 	    printUsage(options);
 	}
-	
+
 	try {
 	    // parse the command line arguments
 	    CommandLine line = parser.parse(options, args);
@@ -68,7 +69,7 @@ public class ParseTest
 	    if (line.hasOption("d")) {
 		System.out.println("Option -d [--debug] chosen");
 	    }
-	    
+
 	    if (line.hasOption("n")) {
 		String value = line.getOptionValue("n");
 		System.out.print("Option -n  [--numport] chosen");
@@ -78,23 +79,23 @@ public class ParseTest
 		    System.out.println(" without an optional port number");
 		}
 	    }
-	    
+
 	    if (line.hasOption("l")) {
 		System.out.print("Option -l ");
 		System.out.println("with parameter " + line.getOptionValue("l") + " chosen");
 	    }
-	    
+
 	    if (line.hasOption("m")) {
 		System.out.print("Option -m with parameters ");
 
 		String[] values = line.getOptionValues("m");
-		for (String s: values) {
+		for (String s : values) {
 		    System.out.print(s + " ");
 		}
 		System.out.println(" chosen");
 	    }
 	    // process other options...
-	    
+
 	} catch (ParseException exp) {
 	    System.out.println("ParseTest: " + exp.getMessage());
 	    printUsage(options);
