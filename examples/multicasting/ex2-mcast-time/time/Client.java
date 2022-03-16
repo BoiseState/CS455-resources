@@ -26,7 +26,7 @@ public class Client extends Thread
         try {
             client = InetAddress.getByName("230.230.230.230");
             server = InetAddress.getByName("230.230.230.230");
-           
+
             MulticastSocket s = new MulticastSocket(5800);
             MulticastSocket c = new MulticastSocket(5801);
             c.joinGroup(client);
