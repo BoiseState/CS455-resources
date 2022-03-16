@@ -107,6 +107,7 @@ public class ParseTest
             System.out.println("ParseTest: " + exp.getMessage());
             printUsage(options);
         }
+		    System.out.println(" without an optional port number");
     }
 
 }
