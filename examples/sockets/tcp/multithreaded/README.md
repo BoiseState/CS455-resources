@@ -14,4 +14,4 @@ Running the client (on same or another machine):
 Use localhost for hostname and 5005 for port.
 
 
-Use the test.sh script to launch multiple clients in parallel!
+Use the test.sh script to launch multiple clients in parallel. All tother servr examples in thie folder can be started the same way.

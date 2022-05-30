@@ -3,7 +3,7 @@ Go up two levels in the folder hierachy.
 
 cd ../..
 
-Running the server (uses hard-code 5005 for port):
+Running the server (uses hard-coded port 5005):
 
 	java tcp.singlethreaded.TimeServer 
 
