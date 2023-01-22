@@ -7,6 +7,7 @@ data class MioAlma(
     val birthDate: Date,
     @Transient val interests: String,
 ): Serializable {
+    // This class is the same as V2, but with serial version UID defined.
     companion object {
         // This is the same serial version UID as V1. V3 is now backwards
         // compatible with V1.
