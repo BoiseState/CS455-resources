@@ -20,7 +20,7 @@ examples/serialization/mio.ser
 examples/security/rmisslex1/resources/Client_Truststore
 examples/security/rmisslex1/resources/Server.cer
 examples/security/rmisslex1/resources/Server_Keystore
-
+examples/kotlin/serialization/*.ser
 
 out/
 .idea/

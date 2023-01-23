@@ -6,7 +6,7 @@ class SharedQueue(private val capacity: Int) {
     private val queue = ArrayList<String>(capacity)
     private val lock = Object()
 
-    @Synchronized fun put(item: String) {
+    fun put(item: String) = synchronized(this.lock) {
         while (this.queue.size == this.capacity) {
             this.lock.wait()
         }
@@ -15,7 +15,7 @@ class SharedQueue(private val capacity: Int) {
         this.lock.notifyAll()
     }
 
-    @Synchronized fun get(): String {
+    fun get(): String = synchronized(this.lock) {
         this.lock.notifyAll()
         while (this.queue.size == 0) {
             this.lock.wait()
