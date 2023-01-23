@@ -7,7 +7,7 @@ open class Account {
     // accessible only to a class and its subclasses, not the entire module. If
     // you want the equivalent of Java's protected modifier, use the internal
     // modifier in Kotlin instead.
-    var balance = 0.0
+    protected var balance = 0.0
 
     open fun deposit(amount: Double) {
         this.balance += amount
@@ -36,9 +36,8 @@ class SyncAccount: Account() {
 
 class TestAccount(
     private val iters: Int,
-//    private val account: Account
-): Thread() {
-    val account = Account()
+    private val account: Account
+): Runnable {
     override fun run() {
         for (i in 0 until iters) {
             this.account.deposit(1.0)
@@ -56,9 +55,18 @@ fun main(args: Array<String>) {
         println("max number of threads is 32")
     }
     val iters = args[1].toInt()
-    val threads = 0.until(numThreads).map { TestAccount(iters) }
+    val account = when(args[2]) {
+        "good" -> SyncAccount()
+        "bad" -> Account()
+        else -> {
+            println("state must be good or bad")
+            exitProcess(1)
+        }
+    }
+    val threads = 0.until(numThreads).map { Thread(TestAccount(iters, account)) }
     threads.forEach { it.start() }
     threads.forEach { it.join() }
-    val total = threads.sumOf { it.account.balance }
-    println("total amount: $total")
+    // Won't compile because protected means something different in Kotlin
+    // println("balance = ${account.balance}")
+    println(account)
 }
