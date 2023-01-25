@@ -9,6 +9,7 @@ import kotlin.system.exitProcess
 
 fun freeze(file: String) {
     val obj = MioAlma("hello", 1234, Date(), "food, soccer")
+    println(obj.toString())
     val objSink = ObjectOutputStream(FileOutputStream(file))
     objSink.writeObject(obj)
     objSink.close()
