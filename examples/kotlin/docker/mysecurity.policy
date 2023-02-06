@@ -1,0 +1,4 @@
+grant {
+    permission java.net.SocketPermission "*:5005", "resolve,listen,accept,connect";
+    permission java.io.FilePermission "/home/http_root/*", "read";
+};

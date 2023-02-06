@@ -1,0 +1,6 @@
+
+grant {
+    permission java.net.SocketPermission "*:1024-", "resolve,listen,accept,connect";
+    permission java.io.FilePermission "http_root/*", "read";
+};
+

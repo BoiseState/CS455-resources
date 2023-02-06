@@ -9,5 +9,8 @@ TcpEcho: TcpEcho.kt
 ObjectService: ObjectService.kt
 	kotlinc ObjectService.kt -include-runtime -d ObjectService.jar
 
+TinyHttpd: TinyHttpd.kt
+	kotlinc TinyHttpd.kt -include-runtime -d TinyHttpd.jar
+
 clean:
 	rm *.jar
