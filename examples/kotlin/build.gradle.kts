@@ -26,8 +26,11 @@ dependencies {
     toCopy("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     toCopy("io.grpc:grpc-kotlin-stub:1.3.0")
     toCopy("io.grpc:grpc-stub:1.52.1")
-    toCopy("io.grpc:grpc-netty:1.52.1")
+    toCopy("io.grpc:grpc-services:1.52.1")
+    toCopy("io.grpc:grpc-netty-shaded:1.52.1")
     toCopy("io.grpc:grpc-protobuf:1.52.1")
+    toCopy("io.netty:netty-all:4.1.79.Final")
+    toCopy("io.netty:netty-tcnative-boringssl-static:2.0.54.Final")
     toCopy("com.google.protobuf:protobuf-kotlin:3.21.12")
     toCopy("com.google.protobuf:protobuf-java:3.21.12")
 }
