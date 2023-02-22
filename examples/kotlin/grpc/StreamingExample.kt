@@ -1,7 +1,7 @@
-import io.grpc.ManagedChannelBuilder
-import io.grpc.ServerBuilder
 import io.grpc.Status
 import io.grpc.StatusRuntimeException
+import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts
+import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
@@ -9,17 +9,46 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder
+import io.grpc.netty.shaded.io.netty.handler.ssl.ClientAuth
+import io.grpc.netty.shaded.io.netty.handler.ssl.SslProvider
+import io.grpc.protobuf.services.ProtoReflectionService
 import servicegen.*
+import java.io.File
 import java.lang.Exception
 import kotlin.system.exitProcess
+import servicegen.StreamingServiceExampleGrpcKt.StreamingServiceExampleCoroutineStub
+
+object ENV {
+    val CERT = File(System.getenv("STREAM_SERVER_CERT"))
+    val PRIV = File(System.getenv("STREAM_SERVER_PRIVATE_KEY"))
+}
 
 class StreamingExampleServer(
-    port: Int
+    port: Int,
+    enableSsl: Boolean
 ): StreamingServiceExampleGrpcKt.StreamingServiceExampleCoroutineImplBase() {
-    val svr = ServerBuilder.forPort(port).addService(this).build()
+    val svr = if (enableSsl) {
+        NettyServerBuilder.forPort(port)
+            .sslContext(GrpcSslContexts
+                .forServer(ENV.CERT, ENV.PRIV, null)
+                .sslProvider(SslProvider.OPENSSL)
+                .clientAuth(ClientAuth.NONE)
+                .build()
+            )
+            .addService(this)
+            .addService(ProtoReflectionService.newInstance())
+            .build()
+    } else {
+        NettyServerBuilder
+            .forPort(port)
+            .addService(this)
+            .addService(ProtoReflectionService.newInstance())
+            .build()
+    }
 
     fun start() {
-        println("running grpc server")
+        println("running grpc server with reflection")
         svr.start()
         svr.awaitTermination()
     }
@@ -58,10 +87,23 @@ class StreamingExampleServer(
     }
 }
 
-class StreamingExampleClient(host: String, port: Int) {
-    private val client = StreamingServiceExampleGrpcKt.StreamingServiceExampleCoroutineStub(
-        ManagedChannelBuilder.forAddress(host, port).usePlaintext().build()
-    )
+class StreamingExampleClient(host: String, port: Int, enableSsl: Boolean) {
+    private val client = if (enableSsl)  {
+        StreamingServiceExampleCoroutineStub(NettyChannelBuilder
+            .forAddress(host, port)
+            .sslContext(GrpcSslContexts
+                .forClient()
+                .trustManager(ENV.CERT)
+                .sslProvider(SslProvider.OPENSSL)
+                .build()
+            )
+            .build()
+        )
+    } else {
+        StreamingServiceExampleCoroutineStub(
+            NettyChannelBuilder.forAddress(host, port).usePlaintext().build()
+        )
+    }
 
     suspend fun unary(error: Boolean) {
         try {
@@ -101,46 +143,30 @@ fun printUsage(stay: Boolean = false) {
     if (stay) {
         return
     }
-    println("""
-        Usage: 
-        StreamingExample server <port>
-        StreamingExample client <host> <port> unary <error_out>
-        StreamingExample client <host> <port> stream <error_out> <delay_ms> <amount>
-        """.trimIndent()
-    )
+    println("""Usage: 
+        StreamingExample server <enable_ssl> <port>
+        StreamingExample client <enable_ssl> <host> <port> unary <error_out>
+        StreamingExample client <enable_ssl> <host> <port> stream <error_out> <delay_ms> <amount>
+        """.trimIndent())
     exitProcess(1)
 }
 
 suspend fun main(args: Array<String>) {
-    val printUsage = { stay: Boolean, point: String ->
-        if (!stay) {
-            println(point)
-            println(args.joinToString(" ") { "\"$it\"" })
-            println("""
-                Usage: 
-                StreamingExample server <port>
-                StreamingExample client <host> <port> unary <error_out>
-                StreamingExample client <host> <port> stream <error_out> <delay_ms> <amount>
-                """.trimIndent()
-            )
-            exitProcess(1)
-        }
-    }
-    printUsage(args.size in setOf(2, 5, 7), "length check")
-    if (args.size == 2) {
-        printUsage(args[0] == "server", "server arg")
-        StreamingExampleServer(args[1].toInt()).start()
+    printUsage(args.size in setOf(3, 6, 8))
+    if (args.size == 3) {
+        printUsage(args[0] == "server")
+        StreamingExampleServer(args[2].toInt(), args[1].toBoolean()).start()
         return
     }
-    printUsage(args[0] == "client", "client arg")
-    val client = StreamingExampleClient(args[1], args[2].toInt())
-    if (args.size == 5) {
-        printUsage(args[3] == "unary", "unary arg")
+    printUsage(args[0] == "client")
+    val client = StreamingExampleClient(args[2], args[3].toInt(), args[1].toBoolean())
+    if (args.size == 6) {
+        printUsage(args[4] == "unary")
         client.unary(args[4].toBoolean())
         return
     }
-    if (args.size == 7) {
-        printUsage(args[3] == "stream", "stream arg")
+    if (args.size == 8) {
+        printUsage(args[4] == "stream")
         client.stream(args[4].toBoolean(), args[5].toLong(), args[6].toInt())
         return
     }
