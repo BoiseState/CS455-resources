@@ -21,7 +21,7 @@ import servicegen.StreamingServiceExampleGrpcKt.StreamingServiceExampleCoroutine
 
 object ENV {
     val CERT = File(System.getenv("STREAM_SERVER_CERT"))
-    val PRIV = File(System.getenv("STREAM_SERVER_PRIVATE_KEY"))
+    val PRIV = File(System.getenv("STREAM_SERVER_PRIVATE_KEY") ?: "")
 }
 
 class StreamingExampleServer(
@@ -55,7 +55,7 @@ class StreamingExampleServer(
 
     override suspend fun unaryCall(request: UnaryRequest): UnaryResponse {
         if (request.errorOut) {
-            val msg = "you've caused an error!"
+            val msg = "you caused a unary error!"
             val status = Status.INVALID_ARGUMENT.withDescription(msg)
             throw StatusRuntimeException(status)
         } else {
@@ -66,6 +66,11 @@ class StreamingExampleServer(
     @OptIn(DelicateCoroutinesApi::class)
     // A "flow" is a lazily evaluated sources of objects, that you consume on the client end.
     override fun grabSeries(request: GrabSeriesRequest): Flow<SeriesEntry> {
+        if (request.errorOut) {
+            val msg = "you caused a streaming error!"
+            val status = Status.INVALID_ARGUMENT.withDescription(msg)
+            throw StatusRuntimeException(status)
+        }
         // A channel is a thread-safe pipe for passing from senders to receivers on threads
         val chan = Channel<SeriesEntry>(20)
         // effectively a daemon thread, this doesn't belong to any coroutine
@@ -155,19 +160,19 @@ suspend fun main(args: Array<String>) {
     printUsage(args.size in setOf(3, 6, 8))
     if (args.size == 3) {
         printUsage(args[0] == "server")
-        StreamingExampleServer(args[2].toInt(), args[1].toBoolean()).start()
+        StreamingExampleServer(args[2].toInt(), args[1].toBooleanStrict()).start()
         return
     }
     printUsage(args[0] == "client")
-    val client = StreamingExampleClient(args[2], args[3].toInt(), args[1].toBoolean())
+    val client = StreamingExampleClient(args[2], args[3].toInt(), args[1].toBooleanStrict())
     if (args.size == 6) {
         printUsage(args[4] == "unary")
-        client.unary(args[4].toBoolean())
+        client.unary(args[5].toBooleanStrict())
         return
     }
     if (args.size == 8) {
         printUsage(args[4] == "stream")
-        client.stream(args[4].toBoolean(), args[5].toLong(), args[6].toInt())
+        client.stream(args[5].toBooleanStrict(), args[6].toLong(), args[7].toInt())
         return
     }
 }
