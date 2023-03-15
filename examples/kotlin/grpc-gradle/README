@@ -1,0 +1,8 @@
+To compile into a fat JAR, use this command:
+
+$ gradlew buildFatJar
+
+To run the test suite, use this command
+
+$ gradlew test
+
