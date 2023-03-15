@@ -1,0 +1,13 @@
+To compile into a fat JAR, use this command:
+
+$ gradlew buildFatJar
+
+To run the test suite, use this command
+
+$ gradlew test
+
+To generate a key pair and a certificate, use these commands. The second command is for translating
+the key to a specific format so Netty can use it.
+$ openssl genrsa -out mykey.pem
+$ openssl pkcs8 -topk8 -nocrypt -in mykey.pem -out mykey.pem.pkcs8
+$ openssl req -new -x509 -key mykey.pem -out certificate.cer -days 1825 -addext "subjectAltName = DNS:localhost"
