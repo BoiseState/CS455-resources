@@ -2,7 +2,8 @@
 import java.util.Random;
 
 /**
- * Runs the widget maker faster by using multiple threads.
+ * Runs the widget maker faster by using multiple threads. If your machine has 4 cores, try
+ * it for 4, 8, 16, 32, and 64 threads to see which is optimal for 100 widgets.
  * 
  * @author amit
  * @author taylor
