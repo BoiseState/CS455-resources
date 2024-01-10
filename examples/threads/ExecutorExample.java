@@ -18,7 +18,7 @@ public class ExecutorExample {
 	 */
 	public static void main(String[] args) {
 		if (args.length != 2) {
-			System.err.println("Usage: java ExecutorExample <n> <#tasks>");
+			System.err.println("Usage: java ExecutorExample <array size> <#tasks>");
 			System.exit(EXIT_FAILURE);
 		}
 

@@ -5,7 +5,7 @@ import java.io.IOException;
  * 
  * @author amit
  */
-public class MaxPrcoesses
+public class MaxProcesses
 {
     private static final int NUM_PROCESS = 50000;
 
@@ -13,7 +13,7 @@ public class MaxPrcoesses
     public static void main(String[] args) throws IOException, InterruptedException {
 	Process[] child = new Process[NUM_PROCESS];
 	for (int i = 0; i < NUM_PROCESS; i++) {
-	    child[i] = new ProcessBuilder("sleep", "20").start();
+	    child[i] = new ProcessBuilder("sleep", "30").start();
 	    System.out.println("Child process " + i + " created");
 	}
 	System.out.println();

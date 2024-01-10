@@ -1,4 +1,8 @@
 
+/**
+ * This is the canonical example of a simple calculation to use for distributed systems examples!
+ * 
+ */
 public class MyCalculation implements Runnable
 {
     private int[] values;
@@ -11,10 +15,8 @@ public class MyCalculation implements Runnable
     }
 
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Runnable#run()
+    /**
+     * {@inheritDoc}
      */
     public void run() {
         for (int i = 0; i < values.length; i++)

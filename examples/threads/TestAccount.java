@@ -1,4 +1,9 @@
 
+/**
+ * An example of race conditions and how to resolve them. 
+ * 
+ *  @author amit
+ */
 public class TestAccount
 {
 
@@ -10,7 +15,7 @@ public class TestAccount
 
         int numThreads = Integer.parseInt(args[0]);
         if (numThreads > 32) {
-            System.err.println("Maximum number of threads allowed is 32!");
+            System.err.println("Maximum number of threads allowed is 32.");
             System.exit(1);
         }
 
