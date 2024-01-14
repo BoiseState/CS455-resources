@@ -26,8 +26,8 @@ public class SynchronizedPingPong
 
 class Ping implements Runnable
 {
-    private String word; // what word to print
-    private int delay; // how long to pause (in milliseconds)
+    private String word; //what word to print
+    private int delay;   //how long to pause (in milliseconds)
     private Pong pong;
 
     public Ping(String whatToSay, int delayTime) {

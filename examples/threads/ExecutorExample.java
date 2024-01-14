@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A simple example of using an ExecutorService to manage a thread pool.
+ * A simple example of using an ExecutorService to manage a thread pool. 
  * 
  * @author amit
  */
@@ -30,9 +30,9 @@ public class ExecutorExample {
 			tasks[i] = new MyCalculation(n);
 			pool.execute(tasks[i]);
 		}
-		//shutdown the thread pool so it will not accept new tasks we don't really need it in this example 
-		//but it would be good in general when we are ending a program or a service. See the docs for
-		//ExecutorService for more details.
+		//shutdown the thread pool so it will not accept new tasks we don't really need it in this 
+		//example but it would be good in general when we are ending a program or a service. 
+		//See the javadocs for ExecutorService for more details.
 		pool.shutdown(); 		
 		try {
             pool.awaitTermination(Long.MAX_VALUE, TimeUnit.SECONDS);

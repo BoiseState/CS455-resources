@@ -1,6 +1,8 @@
 
 /**
- * This is the canonical example of a simple calculation to use for distributed systems examples!
+ * A canonical example of a simple calculation to use for distributed systems examples!
+ * This example does not protect against overflow if the value n is larger than 
+ * sqrt(Integer.MAX_INT)
  * 
  */
 public class MyCalculation implements Runnable
@@ -8,7 +10,7 @@ public class MyCalculation implements Runnable
     private int[] values;
 
     /**
-     * @param n      How many values to calculate.
+     * @param n how many values to calculate.
      */
     public MyCalculation(int n) {
         values = new int[n];

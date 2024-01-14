@@ -1,6 +1,6 @@
 
 /**
- * A simple thread example that sort of simulates ping pong.
+ * A simple thread example that simulates ping-pong, but badly!
  * 
  * @author amit
  */
