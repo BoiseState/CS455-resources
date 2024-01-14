@@ -29,8 +29,8 @@ JFLAGS=
 all: Account.class Consumer.class InterruptTest.class MaxThreads.class\
 	 PC.class PingPong.class Producer.class ThreadRunnableExample.class\
 	 SharedQueue.class SynchronizedAccount.class SynchronizedPingPong.class TestAccount.class\
-	 ThreadExample.class ThreadGroupExample.class ProcessExample.class MaxPrcoesses.class\
-	 ExecutorExample.class
+	 ThreadExample.class ProcessExample.class MaxProcesses.class ExecutorExample.class\
+	 WidgetMaker.class FasterWidgetMaker.class Dance.class
 		
 clean:
 	/bin/rm -f *.class
