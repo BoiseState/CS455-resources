@@ -3,7 +3,7 @@
 
 In on terminal:
 
-java -Djava.security.manager -Djava.security.policy=tinyhttpd/mysecurity.policy tinyhttpd.TinyHttpd port  
+java tinyhttpd.TinyHttpd <port>
 
 #Use a client to test
 

@@ -15,10 +15,10 @@ public class Server
             System.err.println("Usage: java Server <port>");
             System.exit(1);
         }
-        ServerSocket ss = new ServerSocket(Integer.parseInt(argv[0]));
+        ServerSocket serverSocket = new ServerSocket(Integer.parseInt(argv[0]));
         System.out.println("Server: ready");
         while (true)
-            new ServerConnection(ss.accept()).start();
+            new ServerConnection(serverSocket.accept()).start();
     }
 }
 

@@ -17,7 +17,7 @@ import java.net.InetAddress;
  */
 public class TimeServerImproved
 {
-    private ServerSocket ss;
+    private ServerSocket serverSocket;
     private final int MAX_THREADS = 4;
     private int numThreads = 0;
     private Object lock = new Object();
@@ -30,7 +30,7 @@ public class TimeServerImproved
      */
     public TimeServerImproved(int port) {
         try {
-            ss = new ServerSocket(port);
+            serverSocket = new ServerSocket(port);
             System.out.println("TimeServer: up and running on port " + port + " " + InetAddress.getLocalHost());
         } catch (IOException e) {
             System.err.println(e);
@@ -63,7 +63,7 @@ public class TimeServerImproved
         try {
             while (true) {
                 checkMaxThreads(); // block if max# threads are active
-                client = ss.accept();
+                client = serverSocket.accept();
                 System.out.println("TimeServer: Received connect from " + client.getInetAddress().getHostName() + " [ "
                         + client.getInetAddress().getHostAddress() + " ] ");
                 incNumThreads();

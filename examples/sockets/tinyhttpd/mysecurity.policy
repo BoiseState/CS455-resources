@@ -1,6 +1,0 @@
-
-grant {
-        permission java.net.SocketPermission
-                "*:1024-", "resolve,listen,accept,connect";
-};
-

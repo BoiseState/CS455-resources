@@ -16,7 +16,7 @@ import java.net.InetAddress;
  * @author amit
  */
 public class TimeServerExecutor {
-	private ServerSocket ss;
+	private ServerSocket serverSocket;
 	public static ExecutorService pool;
 
 
@@ -29,7 +29,7 @@ public class TimeServerExecutor {
 	public TimeServerExecutor(int port, int numThreads) {
 		try {
 		    pool = Executors.newFixedThreadPool(numThreads);
-			ss = new ServerSocket(port);
+			serverSocket = new ServerSocket(port);
 			System.out.println("TimeServer: up and running on port " + port + " " + InetAddress.getLocalHost());
 		} catch (IOException e) {
 			System.err.println(e);
@@ -45,7 +45,7 @@ public class TimeServerExecutor {
 		Socket client;
 		try {
 			while (true) {
-				client = ss.accept();
+				client = serverSocket.accept();
 				System.out.println("TimeServer: Received connect from " + client.getInetAddress().getHostName() + " [ "
 						+ client.getInetAddress().getHostAddress() + " ] ");
 				pool.execute(new ServerConnection(client));

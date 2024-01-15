@@ -21,9 +21,9 @@ import java.util.regex.Pattern;
  * 
  * java tinyhttpd.TinyHttpd 5005
  * 
- * Or with security manager enabled:
+ * Or with security policy defined:
  * 
- * java -Djava.security.manager -Djava.security.policy=mysecurity.policy TinyHttpd 5005
+ * java -Djava.security.policy=mysecurity.policy TinyHttpd 5005
  * 
  * Then point a web browser to localhost:5005
  * 
@@ -50,60 +50,75 @@ public class TinyHttpd {
 			System.out.println("Usage: java TinyHttpd <port#>");
 			System.exit(EXIT_FAILURE);
 		}
+		@SuppressWarnings("unused")
+		TinyHttpd server = new TinyHttpd(Integer.parseInt(argv[0]));
 
+	}
+
+	public TinyHttpd(int port) throws IOException {
 		@SuppressWarnings("resource")
-		ServerSocket ss = new ServerSocket(Integer.parseInt(argv[0]));
+		ServerSocket serverSocket = new ServerSocket(port);
 		System.out.println("TinyHttpd: server ready");
+		
 		while (true)
-			new Thread(new TinyHttpdConnection(ss.accept())).start();
-	}
-}
+			new Thread(new TinyHttpdConnection(serverSocket.accept())).start();
 
-class TinyHttpdConnection implements Runnable {
-	private Socket client;
-	private String basename = "tinyhttpd";
-
-	TinyHttpdConnection(Socket client) throws SocketException {
-		this.client = client;
 	}
 
-	public void run() {
-		try {
-			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream(), "8859_1"));
-			OutputStream out = client.getOutputStream();
-			PrintWriter pout = new PrintWriter(new OutputStreamWriter(out, "8859_1"), true);
-			String request = in.readLine();
-			System.out.println("TinyHttpd Received Request: " + request);
+	private class TinyHttpdConnection implements Runnable {
+		private Socket client;
+		private String basename = "tinyhttpd";
 
-			Matcher get = Pattern.compile("GET /?(\\S*).*").matcher(request);
-			if (get.matches()) {
-				request = get.group(1);
-				if (request.endsWith("/") || request.equals(""))
-					request = request + "index.html";
-				try {
-					pout.println("HTTP/1.1 200 OK");
-					pout.println("TinyHttpd Server");
-					pout.println("Content-Type: text/html");
-					pout.println();
-					request = basename + File.separator + request;
-					System.out.println(request);
-					FileInputStream fis = new FileInputStream(request);
-					byte[] data = new byte[64 * 1024];
-					for (int read; (read = fis.read(data)) > -1;)
-						out.write(data, 0, read);
-					out.flush();
-					fis.close();
-				} catch (FileNotFoundException e) {
-					pout.println("404 Object Not Found");
-				} catch (SecurityException e) {
-					pout.println("403 Forbidden");
+		TinyHttpdConnection(Socket client) throws SocketException {
+			this.client = client;
+		}
+
+		public void run() {
+			try {
+				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream(), "8859_1"));
+				OutputStream out = client.getOutputStream();
+				PrintWriter pout = new PrintWriter(new OutputStreamWriter(out, "8859_1"), true);
+				String request = in.readLine();
+				System.out.println("TinyHttpd Received Request: " + request);
+
+				Matcher get = Pattern.compile("GET /?(\\S*).*").matcher(request);
+				if (get.matches()) {
+					request = get.group(1);
+					if (request.endsWith("/") || request.equals("")) request = request + "index.html";
+					try {
+						pout.println("HTTP/1.1 200 OK");
+						pout.println("TinyHttpd Server");
+						pout.println("Content-Type: text/html");
+						pout.println();
+
+						request = basename + File.separator + request;
+						System.out.println(request);
+						checkRead(request);
+
+						FileInputStream fis = new FileInputStream(request);
+						byte[] data = new byte[64 * 1024];
+						for (int read; (read = fis.read(data)) > -1;)
+							out.write(data, 0, read);
+						out.flush();
+						fis.close();
+					} catch (FileNotFoundException e) {
+						pout.println("404 Object Not Found");
+					} catch (SecurityException e) {
+						pout.println("403 Forbidden");
+					}
+				} else {
+					pout.println("400 Bad Request");
 				}
-			} else {
-				pout.println("400 Bad Request");
+				client.close();
+			} catch (IOException e) {
+				System.out.println("I/O error " + e);
 			}
-			client.close();
-		} catch (IOException e) {
-			System.out.println("I/O error " + e);
+		}
+
+		private void checkRead(String s) {
+			if (new File(s).isAbsolute() || (s.indexOf("..") != -1))
+			    throw new SecurityException("Access to file: " + s + " denied.");
 		}
 	}
+
 }

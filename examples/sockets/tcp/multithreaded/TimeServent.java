@@ -122,7 +122,7 @@ public class TimeServent
                 oout.writeObject(new java.util.Date());
                 oout.flush();
 
-                // Thread.sleep(4000); // delay
+                // Thread.sleep(4000); // delay for demonstration purposes
                 client.close();
             } catch (IOException e) {
                 System.out.println("I/O error " + e);
