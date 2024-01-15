@@ -78,7 +78,7 @@ public class TimeServerExecutor {
 	            oout.writeObject(new java.util.Date());
 	            oout.flush();
 
-	            Thread.sleep(4000); //delay
+	            Thread.sleep(4000); //delay for demonstration purposes
 	            client.close();
 	        } catch (InterruptedException e) {
 	            System.out.println(e);

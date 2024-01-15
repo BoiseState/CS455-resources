@@ -87,7 +87,7 @@ public class TimeServerImproved
     /**
      * Handles one connection in a separate thread.
      */
-    class ServerConnection extends Thread
+    private class ServerConnection extends Thread
     {
         private Socket client;
 
@@ -106,7 +106,7 @@ public class TimeServerImproved
                 oout.writeObject(new java.util.Date());
                 oout.flush();
 
-                Thread.sleep(4000); // delay
+                Thread.sleep(4000); // delay for demonstration purposes
                 client.close();
                 decNumThreads();
                 synchronized (lock) {

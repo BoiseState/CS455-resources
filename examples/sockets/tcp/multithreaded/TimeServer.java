@@ -13,7 +13,8 @@ import java.net.InetAddress;
  * 
  * @author amit
  */
-public class TimeServer {
+public class TimeServer
+{
 	private ServerSocket ss;
 
 	/**
@@ -31,57 +32,61 @@ public class TimeServer {
 		}
 	}
 
+
 	/**
 	 * The main server method that accepts connections and starts off a new thread
 	 * to handle each accepted connection.
 	 */
-	public void runServer() {
+	public void runServer()
+	{
 		Socket client;
 		try {
 			while (true) {
 				client = ss.accept();
-				System.out.println("TimeServer: Received connect from " 
-				        + client.getInetAddress().getHostName() + " [ "
-						+ client.getInetAddress().getHostAddress() + " ] ");
+				System.out.println("TimeServer: Received connect from " + client.getInetAddress().getHostName() + " [ "
+				        + client.getInetAddress().getHostAddress() + " ] ");
 				new ServerConnection(client).start();
 			}
 		} catch (IOException e) {
 			System.err.println(e);
 		}
 	}
-	
+
 	/**
 	 * Handles one connection in a separate thread.
 	 */
-	class ServerConnection extends Thread {
-	    private Socket client;
+	private class ServerConnection extends Thread
+	{
+		private Socket client;
 
-	    ServerConnection(Socket client) throws SocketException {
-	        this.client = client;
-	        setPriority(NORM_PRIORITY - 1);
-	        System.out.println("Created thread " + this.getName());
-	    }
+		ServerConnection(Socket client) throws SocketException {
+			this.client = client;
+			setPriority(NORM_PRIORITY - 1);
+			System.out.println("Created thread " + this.getName());
+		}
 
-	    public void run() {
-	        try {
-	            OutputStream out = client.getOutputStream();
-	            ObjectOutputStream oout = new ObjectOutputStream(out);
 
-	            oout.writeObject(new java.util.Date());
-	            oout.flush();
+		public void run()
+		{
+			try {
+				OutputStream out = client.getOutputStream();
+				ObjectOutputStream oout = new ObjectOutputStream(out);
 
-	            Thread.sleep(4000); //delay
-	            client.close();
-	        } catch (InterruptedException e) {
-	            System.out.println(e);
-	        } catch (IOException e) {
-	            System.out.println("I/O error " + e);
-	        }
-	    }
+				oout.writeObject(new java.util.Date());
+				oout.flush();
+
+				Thread.sleep(4000); // delay for demonstration purposes
+				client.close();
+			} catch (InterruptedException e) {
+				System.out.println(e);
+			} catch (IOException e) {
+				System.out.println("I/O error " + e);
+			}
+		}
 	}
 
-
-	public static void main(String args[]) {
+	public static void main(String args[])
+	{
 		if (args.length < 1) {
 			System.err.println("Usage: java TimeServer <port>");
 			System.exit(1);
@@ -90,4 +95,3 @@ public class TimeServer {
 		server.runServer();
 	}
 }
-
