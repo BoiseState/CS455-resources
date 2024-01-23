@@ -1,0 +1,12 @@
+Name:
+README.md file (5 points):  
+Ping pong server/client: 
+	-Version 1 features [basic game with fixed roles, single-threaded server and client] (20 points):
+	-Version 2 features [distributed coin toss] (10 points):
+	-Version 3 features [multi-threaded server, single-threaded client] (15 points): 
+
+Multi-threaded servents (+5 extra credit): 
+
+Comments:
+
+Grade:  /50
