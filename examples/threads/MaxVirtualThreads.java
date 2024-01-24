@@ -7,7 +7,7 @@
  */
 public class MaxVirtualThreads
 {
-	final static int MAX = 100000;
+	final static int MAX = 500000;
 	private static Thread[] tids = new Thread[MAX];
 
 	public static void main(String args[]) throws InterruptedException
