@@ -53,11 +53,11 @@ public class TimeServer
                 System.out.println("TimeServer: Received connect from " + sock.getInetAddress().getHostAddress() + ": "
                         + sock.getPort());
 
-                ObjectOutputStream oout = new ObjectOutputStream(out);
-                oout.writeObject(new java.util.Date());
-                oout.flush();
+                ObjectOutputStream objout = new ObjectOutputStream(out);
+                objout.writeObject(new java.util.Date());
+                objout.flush();
 
-                Thread.sleep(4000); // 4 secs
+                Thread.sleep(4000); //4 secs
                 sock.close();
             } catch (InterruptedException e) {
                 System.err.println(e);

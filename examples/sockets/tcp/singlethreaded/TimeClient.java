@@ -22,9 +22,9 @@ public class TimeClient
         try {
             Socket s = new Socket(host, port);
             InputStream in = s.getInputStream();
-            ObjectInputStream oin = new ObjectInputStream(in);
+            ObjectInputStream objin = new ObjectInputStream(in);
 
-            Date date = (Date) oin.readObject();
+            Date date = (Date) objin.readObject();
             System.out.println("Time on host " + host + " is " + date);
             s.close();
         } catch (IOException e1) {
