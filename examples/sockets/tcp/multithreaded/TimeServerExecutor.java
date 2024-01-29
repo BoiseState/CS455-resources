@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 import java.net.InetAddress;
 
 /**
- * A multithreaded time server.
+ * A multithreaded time server using an Executor pattern.
  * 
  * @author amit
  */
@@ -73,10 +73,10 @@ public class TimeServerExecutor {
 	            System.out.println("Running on thread " + currentThread.getName());
 	            
 	            OutputStream out = client.getOutputStream();
-	            ObjectOutputStream oout = new ObjectOutputStream(out);
+	            ObjectOutputStream objout = new ObjectOutputStream(out);
 
-	            oout.writeObject(new java.util.Date());
-	            oout.flush();
+	            objout.writeObject(new java.util.Date());
+	            objout.flush();
 
 	            Thread.sleep(4000); //delay for demonstration purposes
 	            client.close();
