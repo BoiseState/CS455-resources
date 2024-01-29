@@ -36,7 +36,7 @@ largerhttpd: largerhttpd/LargerHttpd.class
 
 tcp: tcp.client tcp.singlethreaded tcp.multithreaded tcp.socketoptions tcp.objectserver
 
-tcp.client: tcp/client/DateAtHost.class
+tcp.client: tcp/client/DateAtHost.class tcp/client/PortScanner.class
 
 tcp.singlethreaded: tcp/singlethreaded/TimeServer.class tcp/singlethreaded/TimeClient.class
 
