@@ -21,10 +21,6 @@ import java.util.regex.Pattern;
  * 
  * java tinyhttpd.TinyHttpd 5005
  * 
- * Or with security policy defined:
- * 
- * java -Djava.security.policy=mysecurity.policy TinyHttpd 5005
- * 
  * Then point a web browser to localhost:5005
  * 
  * firefox localhost:5005
