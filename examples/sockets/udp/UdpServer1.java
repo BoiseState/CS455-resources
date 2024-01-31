@@ -17,12 +17,12 @@ public class UdpServer1
 
     public UdpServer1(int port) {
         try {
+            System.out.println("Staring UDP Server on port " + port);
             s = new DatagramSocket(port);
             packet = new DatagramPacket(new byte[1024], 1024);
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }
 
 

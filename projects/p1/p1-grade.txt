@@ -1,0 +1,39 @@
+
+Team#:
+
+Members:
+
+Grade:   /150 
+
+Late penalty:
+
+Testing:
+    -Build:  
+    -Basic operation: 
+        -Chat server:
+            -Basic functionality (80 points):
+                -connect:
+                -list:
+                -nick:
+                -join:
+                -leave:
+                -stats:
+                -help:
+                -quit:
+				-chat functionality:
+            -Multi-threaded with max thread limit (20 points):
+            -Web GUI (+10 extra credit):
+
+    -Auto self destruct (5 points):   
+    -Shutdown hook (5 points):
+
+Demonstration of functionality:
+    -Demo video (20 points):
+
+Code style and documentation (20 points): 
+    -README.md:
+    -Using Object-oriented protocol:  
+    -Javadocs:
+
+Comments:
+
