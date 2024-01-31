@@ -92,6 +92,7 @@ public class TinyHttpd {
 						checkRead(request);
 
 						FileInputStream fis = new FileInputStream(request);
+						// we are assuming that the file fits in 64K buffer data!
 						byte[] data = new byte[64 * 1024];
 						for (int read; (read = fis.read(data)) > -1;)
 							out.write(data, 0, read);
