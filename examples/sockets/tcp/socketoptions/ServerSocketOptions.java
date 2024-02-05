@@ -13,14 +13,17 @@ public class ServerSocketOptions
 		try {
 			ServerSocket s = new ServerSocket(5005, BACKLOG);
 
-			System.out.println("ServerSocket");
+			System.out.println("ServerSocketOptions: ServerSocket bound");
+			
 			System.out.println("SO_TIMEOUT = " + s.getSoTimeout());
-			System.out.println("Receive Buffer Size = " + s.getReceiveBufferSize());
 			s.setSoTimeout(30000); // timeout after 30 seconds
-			System.out.println("New SO_TIMEOUT = " + s.getSoTimeout());
-			System.out.println("SO_REUSEADDR  = " + s.getReuseAddress());
+			System.out.println("ServerSocketOptions: New SO_TIMEOUT = " + s.getSoTimeout());
+			
+			System.out.println("ServerSocketOptions: Receive Buffer Size = " + s.getReceiveBufferSize());
+			
+			System.out.println("ServerSocketOptions: SO_REUSEADDR  = " + s.getReuseAddress());
 
-			serverClients(s);
+			serveClients(s);
 
 		} catch (IOException e) {
 			System.err.println(e);
@@ -28,15 +31,15 @@ public class ServerSocketOptions
 	}
 
 
-	private static void serverClients(ServerSocket s) {
+	private static void serveClients(ServerSocket s) {
 		boolean shutdown = false;
 
 		while (!shutdown) {
 			try {
 				Socket conn = s.accept();
-				System.out.println("Connect from " + conn.getInetAddress());
+				System.out.println("ServerSocketOptions: Connect from " + conn.getInetAddress());
 			} catch (InterruptedIOException e) {
-				System.err.println("accept timed out");
+				System.err.println("ServerSocketOptions: accept timed out");
 				shutdown = true;
 			} catch (IOException e) {
 				System.err.println(e);

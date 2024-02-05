@@ -18,15 +18,18 @@ public class ClientSocketOptions
 	}
 	try {
 	    Socket s = new Socket(serverHost, 5005);
-	    System.out.println("Socket s");
-	    System.out.println("SO_TIMEOUT = " + s.getSoTimeout());
-	    System.out.println("Receive Buffer Size = " + s.getReceiveBufferSize());
-	    System.out.println("Send Buffer Size = " + s.getSendBufferSize());
-	    System.out.println("TCP_NODELAY  = " + s.getTcpNoDelay());
-	    System.out.println("SO_LINGER  = " + s.getSoLinger());
-	    System.out.println("TCP_KEEPALIVE  = " + s.getKeepAlive());
-	    System.out.println("SO_REUSEADDR  = " + s.getReuseAddress());
-	    System.out.println("Using local adress:port" + s.getLocalSocketAddress());
+	    
+	    System.out.println("ClientSocketOptions: Socket s");
+	    System.out.println("ClientSocketOptions: SO_TIMEOUT = " + s.getSoTimeout());
+	    System.out.println("ClientSocketOptions: Receive Buffer Size = " + s.getReceiveBufferSize());
+	    System.out.println("ClientSocketOptions: Send Buffer Size = " + s.getSendBufferSize());
+	    
+	    System.out.println("ClientSocketOptions: TCP_NODELAY  = " + s.getTcpNoDelay());
+	    System.out.println("ClientSocketOptions: SO_LINGER  = " + s.getSoLinger());
+	    System.out.println("ClientSocketOptions: TCP_KEEPALIVE  = " + s.getKeepAlive());
+	    System.out.println("ClientSocketOptions: SO_REUSEADDR  = " + s.getReuseAddress());
+	    
+	    System.out.println("ClientSocketOptions: Using local adress:port" + s.getLocalSocketAddress());
 	    s.close();
 	} catch (IOException e) {
 	    System.out.println(e);
