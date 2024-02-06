@@ -5,7 +5,7 @@ The repository consists of multiple projects instead of the more typical one pro
 style that you may be more use to from the past. Each of the top-level folder is a Java project
 (except for the `other-languages` subfolder)
 
-For example, create a new Java project in your repository and point the working folder to the
+For example, create a new Java project in your IDE and point the working folder to the
 `sockets` folder to run all the sockets examples.
 
 Eclipse notes
