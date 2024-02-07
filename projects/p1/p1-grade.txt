@@ -22,11 +22,14 @@ Testing:
                 -quit:
 				-chat functionality:
             -Multi-threaded with max thread limit (20 points):
-            -Web or Java GUI (+10 extra credit):
-			-Colored terminal prompts (+5 extra credit):
 
     -Auto self destruct (5 points):   
     -Shutdown hook (5 points):
+
+Extra credit:
+	-Colored terminal prompts (+5 extra credit):
+	-JSON objects instead of Java objects (+5 extra credit):
+	-Web or Java GUI (+10 extra credit):
 
 Demonstration of functionality:
     -Demo video (20 points):
