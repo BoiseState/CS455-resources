@@ -19,10 +19,10 @@ sleep 2
 echo
 echo "Starting four clients simultaneously"
 echo
-java -Djava.security.policy=mysecurity.policy synchronous.client.MyClient $serverHost $registryPort &
-java -Djava.security.policy=mysecurity.policy synchronous.client.MyClient $serverHost $registryPort &
-java -Djava.security.policy=mysecurity.policy synchronous.client.MyClient $serverHost $registryPort &
-java -Djava.security.policy=mysecurity.policy synchronous.client.MyClient $serverHost $registryPort &
+java  synchronous.client.MyClient $serverHost $registryPort &
+java  synchronous.client.MyClient $serverHost $registryPort &
+java  synchronous.client.MyClient $serverHost $registryPort &
+java  synchronous.client.MyClient $serverHost $registryPort &
 echo
 echo "Waiting for the clients to finish"
 echo

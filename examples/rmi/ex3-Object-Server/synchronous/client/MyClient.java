@@ -21,7 +21,6 @@ public class MyClient
             System.err.println("Usage: java synchronous.client.MyClient <server host> <registry port>");
             System.exit(1);
         }
-        System.setSecurityManager(new SecurityManager());
         String hostName = args[0];
         int registryPort = Integer.parseInt(args[1]);
         new MyClient(hostName, registryPort);
@@ -34,7 +33,6 @@ public class MyClient
             Server server = (Server) registry.lookup("NiftyObjectServer");
 
             System.out.println(server.getDate());
-            //System.out.println(server.getDate());
             System.out.println(server.execute(new MyCalculation(2)));
 
             StringEnumerationRequest se = server.getList();

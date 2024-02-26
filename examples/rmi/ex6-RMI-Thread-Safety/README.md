@@ -16,6 +16,8 @@ things happen, and clients report wildly varying values for "counter".
 
 
 Usage:
+
+```
 vim RMIThreadServerImpl.java	<-- change read() and update() declarations
 make
 rmiregistry 5130 &
@@ -26,6 +28,7 @@ rmiregistry 5130 &
 
 fg & kill runserver.sh
 fg & kill rmiregistry 5130
+```
 
 
 NOTE: This example assumes that the rmiregistry is running on port 1099. If that isn't the case,

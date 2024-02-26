@@ -11,33 +11,32 @@ import java.rmi.registry.*;
  * 
  */
 
-public class RMIThreadClient
-{
+public class RMIThreadClient {
 
-    RMIThreadServer remObj;
+	RMIThreadServer remObj;
 
-
-    public static void main(String[] args) {
-	RMIThreadClient myself = new RMIThreadClient(args[0]);
-    }
-
-
-    public RMIThreadClient(String host) {
-	try {
-	    int registryPort = 1099;
-	    Registry registry = LocateRegistry.getRegistry(host, registryPort);
-	    remObj = (RMIThreadServer) registry.lookup("RMIThreadServer");
-
-	    System.out.println("[client] (before) counter = " + remObj.read());
-	    remObj.update();
-	    System.out.println("[client] (after)  counter = " + remObj.read());
-
-	} catch (java.rmi.NotBoundException e) {
-	    System.err.println("RMI endpoint not bound: " + e);
-	    System.exit(2);
-	} catch (java.rmi.RemoteException e) {
-	    System.err.println("RMI RemoteException: " + e);
-	    System.exit(2);
+	public static void main(String[] args)
+	{
+		RMIThreadClient myself = new RMIThreadClient(args[0]);
 	}
-    }
+
+
+	public RMIThreadClient(String host) {
+		try {
+			int registryPort = 1099;
+			Registry registry = LocateRegistry.getRegistry(host, registryPort);
+			remObj = (RMIThreadServer) registry.lookup("RMIThreadServer");
+
+			System.out.println("[client] (before) counter = " + remObj.read());
+			remObj.update();
+			System.out.println("[client] (after)  counter = " + remObj.read());
+
+		} catch (java.rmi.NotBoundException e) {
+			System.err.println("RMI endpoint not bound: " + e);
+			System.exit(2);
+		} catch (java.rmi.RemoteException e) {
+			System.err.println("RMI RemoteException: " + e);
+			System.exit(2);
+		}
+	}
 }

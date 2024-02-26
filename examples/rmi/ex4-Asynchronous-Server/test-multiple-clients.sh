@@ -17,8 +17,8 @@ fi
 sleep 2
 
 echo "Starting four clients simultaneously"
-java -Djava.security.policy=mysecurity.policy asynchronous.client.MyClient $serverHost $registryPort &
-java -Djava.security.policy=mysecurity.policy asynchronous.client.MyClient $serverHost $registryPort &
-java -Djava.security.policy=mysecurity.policy asynchronous.client.MyClient $serverHost $registryPort &
-java -Djava.security.policy=mysecurity.policy asynchronous.client.MyClient $serverHost $registryPort &
+java asynchronous.client.MyClient $serverHost $registryPort &
+java asynchronous.client.MyClient $serverHost $registryPort &
+java asynchronous.client.MyClient $serverHost $registryPort &
+java asynchronous.client.MyClient $serverHost $registryPort &
 

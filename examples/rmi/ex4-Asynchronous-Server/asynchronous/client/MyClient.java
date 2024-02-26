@@ -28,7 +28,6 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
             System.err.println("Usage: java MyClient <server host> <registry port>");
             System.exit(1);
         }
-        System.setSecurityManager(new SecurityManager());
         String hostName = args[0];
         int registryPort = Integer.parseInt(args[1]);
         new MyClient(hostName, registryPort);

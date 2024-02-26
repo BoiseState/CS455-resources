@@ -10,9 +10,8 @@ public class LoadClient
             System.err.println("Usage: java LoadClient <remote URL>");
             System.exit(1);
         }
-        System.setSecurityManager(new mySecurityManager());
         try {
-            URL url = new URL(args[0]);
+            URL url = new URI(args[0]).toURL();
             Class<?> cl = RMIClassLoader.loadClass(url, "client.RunAway");
             System.out.println(cl);
             Runnable client = (Runnable) cl.getDeclaredConstructor().newInstance();
@@ -25,12 +24,3 @@ public class LoadClient
     }
 }
 
-class mySecurityManager extends SecurityManager
-{
-    public void checkConnect(String host, int port, Object context) {
-    }
-
-
-    public void checkPermission(Permission perm) {
-    }
-}

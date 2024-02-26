@@ -13,5 +13,5 @@ else
 	registryPort=$2
 fi
 
-java -Djava.security.policy=mysecurity.policy asynchronous.client.MyClient $serverHost $registryPort
+java asynchronous.client.MyClient $serverHost $registryPort
 

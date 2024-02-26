@@ -7,13 +7,15 @@ import java.rmi.server.ServerNotActiveException;
 import java.util.Date;
 
 public class MyServer extends java.rmi.server.UnicastRemoteObject implements Server {
-    
+
 	private static final long serialVersionUID = -7592865213304639584L;
 
 	public MyServer() throws RemoteException {
 	}
 
-	public Date getDate() throws RemoteException {
+
+	public Date getDate() throws RemoteException
+	{
 		printClientAddress();
 		// helps to show that the default RMI implementation is multi-threaded
 		System.out.println("MyServer: " + Thread.currentThread() + " going to sleep");
@@ -26,15 +28,21 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 		return new Date();
 	}
 
-	public Object execute(WorkRequest work) throws RemoteException {
+
+	public Object execute(WorkRequest work) throws RemoteException
+	{
 		return work.execute();
 	}
 
-	public StringEnumerationRequest getList() throws RemoteException {
+
+	public StringEnumerationRequest getList() throws RemoteException
+	{
 		return new StringEnumerator(new String[] { "Goo", "Goo", "Gaa", "Gaa" });
 	}
 
-	private void printClientAddress() {
+
+	private void printClientAddress()
+	{
 		try {
 			System.out.println(getClientHost());
 		} catch (ServerNotActiveException e) {
@@ -42,19 +50,18 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 		}
 	}
 
-	public static void main(String args[]) {
-		
+
+	public static void main(String args[])
+	{
+
 		if (args.length != 1) {
-		    System.err.println("Usage: java synchronous.server.MyServer <registry port>");
-		    System.exit(1);
+			System.err.println("Usage: java synchronous.server.MyServer <registry port>");
+			System.exit(1);
 		}
 		int registryPort = Integer.parseInt(args[0]);
-		System.setProperty("java.security.policy", "mysecurity.policy");
-		//int poolSize = Runtime.getRuntime().availableProcessors() * 2;
-		//System.setProperty("sun.rmi.transport.tcp.maxConnectionThreads", "" + "" + poolSize);
+		// int poolSize = Runtime.getRuntime().availableProcessors() * 2;
+		// System.setProperty("sun.rmi.transport.tcp.maxConnectionThreads", "" + "" + poolSize);
 		try {
-
-			System.setSecurityManager(new SecurityManager());
 			Server server = new MyServer();
 
 			Registry registry = LocateRegistry.getRegistry(registryPort);

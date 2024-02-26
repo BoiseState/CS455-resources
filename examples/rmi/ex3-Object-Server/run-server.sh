@@ -15,8 +15,11 @@ export CLASSPATH=$(pwd):$CLASSPATH
 
 rmiregistry &
 
+# wait for rmiregistry to start
+sleep 2
+
 echo
 echo "Starting server synchronous.server.MyServer"
-java  -Djava.security.policy=mysecurity.policy  synchronous.server.MyServer $registryPort
+java  synchronous.server.MyServer $registryPort
 echo
 
