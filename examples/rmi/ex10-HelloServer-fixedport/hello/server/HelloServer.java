@@ -37,9 +37,6 @@ public class HelloServer implements Hello {
 		registryPort = Integer.parseInt(args[1]);
 
 		try {
-			// Create and install a security manager
-			System.setSecurityManager(new SecurityManager());
-
 			Registry registry = LocateRegistry.getRegistry(registryPort);
 
 			HelloServer obj = new HelloServer("//HelloServer", port);
