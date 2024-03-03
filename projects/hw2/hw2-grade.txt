@@ -1,0 +1,7 @@
+Name:
+
+README.md file (10 points): 
+Time server test (40 points): 
+Comments:
+
+Grade:  /50
