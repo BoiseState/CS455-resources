@@ -3,26 +3,25 @@
 # if RMI is multi-threaded or not.
 
 case $# in
-0) echo "Usage: "`basename $0` " <server hostname> [<registry port>]"; exit 1;;
+0|1|2) echo "Usage: "`basename $0` " <server hostname> <registry port> <#clients>"; exit 1;;
 esac
+
 serverHost=$1
-if test "$2" = ""
-then
-    registryPort=1099
-else
-    registryPort=$2
-fi
+registryPort=$2
+n=$3
 
 
 sleep 2
 
 echo
-echo "Starting four clients simultaneously"
+echo "Starting $n clients simultaneously"
 echo
+
+for i in $(seq 1 $n)
+do
 java  synchronous.client.MyClient $serverHost $registryPort &
-java  synchronous.client.MyClient $serverHost $registryPort &
-java  synchronous.client.MyClient $serverHost $registryPort &
-java  synchronous.client.MyClient $serverHost $registryPort &
+done
+
 echo
 echo "Waiting for the clients to finish"
 echo

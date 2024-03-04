@@ -9,13 +9,11 @@ import synchronous.server.StringEnumerationRequest;
 import synchronous.server.WorkRequest;
 
 /**
- * A client that allows call
+ * A client that calls synchronous RMI methods on a server.
  *
  */
 public class MyClient 
 {
-    private static final long serialVersionUID = -6314695118464643327L;
-
     public static void main(String[] args) throws RemoteException {
         if (args.length != 2) {
             System.err.println("Usage: java synchronous.client.MyClient <server host> <registry port>");

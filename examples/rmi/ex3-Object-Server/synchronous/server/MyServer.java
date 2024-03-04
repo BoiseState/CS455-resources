@@ -20,7 +20,7 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 		// helps to show that the default RMI implementation is multi-threaded
 		System.out.println("MyServer: " + Thread.currentThread() + " going to sleep");
 		try {
-			Thread.sleep(1000); // 1 second
+			Thread.sleep(2000); // 2 seconds
 		} catch (InterruptedException e) {
 			System.err.println(e);
 		}
