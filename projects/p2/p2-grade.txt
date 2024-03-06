@@ -1,0 +1,49 @@
+
+Team:
+
+Members:
+
+Grade:   /150
+
+Late penalty:
+
+Submission quality:
+	-project layout:
+	-build:
+	-pregenerated server/client keystores and passwords (statically in the code is ok):
+	-scripts for running server and client:
+	-demo
+
+Features: 
+	-basic operations (80 points): 
+		-create:
+		-delete:
+		-lookup:
+		-reverse-lookup:
+		-modify:
+		-get users|uuids|all:
+	-security (10 points):
+		-encrypted passwords:
+		-SSL communication:
+	-persistence (10 points)
+		-save/restore state:
+		-shutdown handler:
+	-thread safety:
+    
+Testing (20 points):	
+	-quality of testing:
+	-testing documentation (in README):
+	
+Extra credit: 
+	-using embedded SQL database (+5 points): 
+	-using distributed no-SQL database (such as Redis) (+10 points): 
+
+Code style/documentation (15 points):  
+	-README file: 
+	-coding style:
+	-javadocs:
+
+Teamwork:
+	-Did each team member contribute meaningfully to the project?
+
+Comments:
