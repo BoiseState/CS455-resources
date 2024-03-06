@@ -28,7 +28,7 @@ modify the code to use the rmiregistry port.
 Then start the server with the appropriate security policy:
 
 ```
-java -Djava.security.policy=security.policy Server &
+java Server &
 ```
 
 Wait for ready message from the server before running the client. To run the
