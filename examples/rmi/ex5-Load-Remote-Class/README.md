@@ -1,10 +1,12 @@
 
+This example will not work as onyx is no longer running a webserver!
+
 The example LoadClient.java loads an object dynamically over the Internet.  It assumes that the
 object client RunAway (compiled class in bytecode format) lives on an accessible directory on
 another host that has a HTTPD server running on it. Try it out as follows:
 
 ```
-java LoadClient http://onyx.boisestate.edu/~amit/rmi/ex5-Load-Remote-Class/
+java -Djava.security.manager -Djava.security.policy=mysecurity.policy LoadClient http://onyx.boisestate.edu/~amit/rmi/ex5-Load-Remote-Class/
 ```
 
 The class `RunAway.class` lives on onyx under 
