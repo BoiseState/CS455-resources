@@ -11,6 +11,7 @@ public class LoadClient
             System.exit(1);
         }
         try {
+        	System.setSecurityManager(new MySecurityManager());
             String codebase = args[0];
             Class<?> cl = RMIClassLoader.loadClass(codebase, "client.RunAway");
             System.out.println(cl);
@@ -22,6 +23,10 @@ public class LoadClient
             e.printStackTrace();
         }
     }
+}
+
+class MySecurityManager extends SecurityManager{
+	
 }
 
 
