@@ -11,8 +11,8 @@ public class LoadClient
             System.exit(1);
         }
         try {
-            URL url = new URI(args[0]).toURL();
-            Class<?> cl = RMIClassLoader.loadClass(url, "client.RunAway");
+            String codebase = args[0];
+            Class<?> cl = RMIClassLoader.loadClass(codebase, "client.RunAway");
             System.out.println(cl);
             Runnable client = (Runnable) cl.getDeclaredConstructor().newInstance();
             client.run();
@@ -23,4 +23,5 @@ public class LoadClient
         }
     }
 }
+
 
