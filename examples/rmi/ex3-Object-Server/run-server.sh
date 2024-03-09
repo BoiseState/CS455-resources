@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 case $# in
 0) registryPort=1099;;
