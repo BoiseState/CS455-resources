@@ -71,9 +71,9 @@ public class DateServerImpl implements DateServer
 
 class TimedSslRMIClientSocketFactory extends SslRMIClientSocketFactory
 {
-    // private static final long serialVersionUID = 7280036713852974589L;
+    private static final long serialVersionUID = 7280036713852974589L;
 
-    public Socket createSocket(String host, int port) throws IOException {
+	public Socket createSocket(String host, int port) throws IOException {
         Socket s = super.createSocket(host, port);
         s.setSoTimeout(2000); // ms
         return s;
