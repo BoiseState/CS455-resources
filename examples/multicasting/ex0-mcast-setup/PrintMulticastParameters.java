@@ -9,12 +9,12 @@ public class PrintMulticastParameters
             System.err.println("Usage: java PrintNetworkInterfaces <interface>");
             System.exit(1);
         }
-        InetAddress group = InetAddress.getByName("228.5.6.7");
+        SocketAddress group = new InetSocketAddress(InetAddress.getByName("228.5.6.7"), 5500);
         MulticastSocket mcast = new MulticastSocket(5500);
-        mcast.joinGroup(group);
+        mcast.joinGroup(group, null);
 
         System.out.println();
-        System.out.println("interface used: " + mcast.getInterface());
+        
         System.out.println("interface used: " + mcast.getNetworkInterface());
         System.out.println("Loopback support: " + mcast.getLoopbackMode());
         System.out.println();
@@ -24,7 +24,7 @@ public class PrintMulticastParameters
         mcast.setNetworkInterface(netif);
 
         System.out.println();
-        System.out.println("interface used: " + mcast.getInterface());
+        
         System.out.println("interface used: " + mcast.getNetworkInterface());
         System.out.println("Loopback support: " + mcast.getLoopbackMode());
         System.out.println();

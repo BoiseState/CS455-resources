@@ -8,10 +8,9 @@ contain several projects in it (except for the `other-languages` subfolder)
 For example, create a new Java project in your IDE and point the working folder to the
 `sockets` folder to run all the sockets examples.
 
-The following folders are projects: threads, sockets, lambdas, reflection, serialization, java-service,
+The following folders are projects: threads, sockets, lambdas, reflection, serialization, security, java-service,
 
-the following folders cntain sunfolders, each of which is a project: rmi, multicasting, security,
-misc.
+the following folders cntain sunfolders, each of which is a project: rmi, multicasting, misc.
 
 Eclipse notes
 =============

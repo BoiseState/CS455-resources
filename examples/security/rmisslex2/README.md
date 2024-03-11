@@ -39,8 +39,8 @@ Certificate Signing Request(CSR) needs to be generated. The generated CSR, then,
 submitted along with other pertinent information to a Certification Authority such as VeriSign
 or USPS, who will then digitally sign the certificate.
 
-Usng with MongoDB or other fraemworks that also use SSL
-=======================================================
+Using with MongoDB or other frameworks that also use SSL
+========================================================
 Use the keytool to import our self-signed certificate into a copy of the default truststore,
 located in $JAVA_HOME/lib/security/cacerts. Then we can rename this (or not) and use it for our
 own truststore on the client and server. Because it includes all the default certs, it doesn't
