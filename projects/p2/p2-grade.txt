@@ -22,6 +22,7 @@ Features:
 		-reverse-lookup:
 		-modify:
 		-get users|uuids|all:
+	-using distributed no-SQL Redis database (10 points): 
 	-security (10 points):
 		-encrypted passwords:
 		-SSL communication:
@@ -31,14 +32,14 @@ Features:
 	-thread safety:
     
 Testing (20 points):	
-	-quality of testing:
 	-testing documentation (in README):
+	-quality of testing:
+		-While we aren't expecting full fledged unit testing -- make a plan for testing all the
+		 features and document the plan. The testing may simply be manual due to time limitation.
+		-In your plan, distinguish between manual unit testing vs integration testing
 	
-Extra credit: 
-	-using embedded SQL database (+5 points): 
-	-using distributed no-SQL database (such as Redis) (+10 points): 
 
-Code style/documentation (15 points):  
+Code style/documentation (20 points):  
 	-README file: 
 	-coding style:
 	-javadocs:

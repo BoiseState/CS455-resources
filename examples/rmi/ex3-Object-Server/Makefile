@@ -32,7 +32,7 @@ all: compile
 
 compile: compile-server compile-client
 
-compile-server: synchronous/server/MyServer.class synchronous/server/Request.class synchronous/server/Server.class synchronous/server/StringEnumerationRequest.class synchronous/server/StringEnumerator.class synchronous/server/WorkListener.class synchronous/server/WorkRequest.class
+compile-server: synchronous/server/MyServer.class synchronous/server/Request.class synchronous/server/Server.class synchronous/server/StringEnumerationRequest.class synchronous/server/StringEnumerator.class synchronous/server/WorkRequest.class
 
 
 rmi: compile
