@@ -6,14 +6,20 @@ import java.util.Map;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+/**
+ * Simple example showing connection with Redis (REmote DIctionary Server).
+ * 
+ */
+
 public class RedisExample1 {
     public static void main(String[] args) {
-        JedisPool pool = new JedisPool("localhost", 6379);
+    	//choose a port in your assigned range for the project
+        JedisPool pool = new JedisPool("localhost", 6379); 
 
         try (Jedis jedis = pool.getResource()) {
             // Store & Retrieve a simple string
-            jedis.set("foo", "bar");
-            System.out.println(jedis.get("foo")); // prints bar
+            jedis.set("goo goo", "gaa gaa");
+            System.out.println(jedis.get("goo goo")); // prints "gaa gaa"
             
             // Store & Retrieve a HashMap
             Map<String, String> hash = new HashMap<>();;
