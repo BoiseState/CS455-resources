@@ -4,6 +4,10 @@ import java.net.SocketException;
 import java.util.Collections;
 import java.util.Enumeration;
 
+/**
+ * Print the primary network interfaces found on this system.
+ * 
+ */
 public class GetAllNetworkInterfaces
 {
     public static void main(String[] args) {

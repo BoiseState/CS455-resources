@@ -2,12 +2,14 @@
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.NetworkInterface;
+import java.net.SocketAddress;
 import java.net.SocketTimeoutException;
 
 /**
- * Multicast hello world listener
+ * Multicast hello world listener.
  */
 public class Listener
 {
@@ -18,7 +20,6 @@ public class Listener
      * @param args
      * @throws IOException
      **/
-    @SuppressWarnings("deprecation")
     public static void main(String[] args) throws IOException {
         int n = 20;
         String networkInterface;
@@ -28,13 +29,16 @@ public class Listener
         }
         n = Integer.parseInt(args[0]);
         networkInterface = args[1];
-
-        InetAddress group = InetAddress.getByName("230.230.230.230");
+        
+        InetAddress addr = InetAddress.getByName("230.230.230.230");
+        SocketAddress group = new InetSocketAddress(addr, MULTICAST_PORT);
         MulticastSocket s = new MulticastSocket(MULTICAST_PORT);
         s.setSoTimeout(10000); // 10 seconds
+        
         NetworkInterface net = NetworkInterface.getByName(networkInterface);
         s.setNetworkInterface(net);
-        s.joinGroup(group);
+        
+        s.joinGroup(group, null);
 
         try {
             int count = 0;
@@ -54,7 +58,8 @@ public class Listener
             s.close();
         } catch (SocketTimeoutException e) {
             System.err.println(e);
-            s.leaveGroup(group);
+            s.leaveGroup(group, net);
+            s.close();
         }
     }
 }

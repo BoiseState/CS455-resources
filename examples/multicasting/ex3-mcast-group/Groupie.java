@@ -2,8 +2,10 @@
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.NetworkInterface;
+import java.net.SocketAddress;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Collections;
@@ -31,12 +33,16 @@ public class Groupie
     private static final int I_AM_HERE = 4;
 
     private Set<InetAddress> servers = Collections.synchronizedSet(new HashSet<InetAddress>());
-    private InetAddress group;
+    private InetAddress addr;
+    private SocketAddress group;
     private MulticastSocket s;
+    private NetworkInterface net;
 
-    public Groupie(InetAddress group, MulticastSocket s) {
+    public Groupie(InetAddress addr, SocketAddress group, MulticastSocket s, NetworkInterface net) {
         this.s = s;
+        this.addr = addr;
         this.group = group;
+        this.net = net;
         Runtime sys = Runtime.getRuntime();
         Thread CleanupThread = new CleanupThread(this);
         sys.addShutdownHook(CleanupThread);
@@ -68,13 +74,13 @@ public class Groupie
 
     private void initialize() throws IOException {
         byte[] buf = new byte[4];
-        DatagramPacket recv = new DatagramPacket(buf, buf.length, group, discoveryPort);
+        DatagramPacket recv = new DatagramPacket(buf, buf.length, addr, discoveryPort);
         servers.add(InetAddress.getLocalHost());
         System.out.println("In groupDance");
 
         try {
             s.setSoTimeout(timeout);
-            DatagramPacket hello = new DatagramPacket(Utility.getBytes(DISCOVER_GROUP), 4, group, discoveryPort);
+            DatagramPacket hello = new DatagramPacket(Utility.getBytes(DISCOVER_GROUP), 4, addr, discoveryPort);
             s.send(hello);
 
             s.receive(recv);
@@ -84,7 +90,7 @@ public class Groupie
                 if (debug == 1) printGroup();
             } else if (!recv.getAddress().equals(InetAddress.getLocalHost())) {
                 if (Utility.getInt(buf) == DISCOVER_GROUP) {
-                    DatagramPacket ack = new DatagramPacket(Utility.getBytes(I_AM_HERE), 4, group, discoveryPort);
+                    DatagramPacket ack = new DatagramPacket(Utility.getBytes(I_AM_HERE), 4, addr, discoveryPort);
                     s.send(ack);
                     if (!servers.contains(recv.getAddress())) servers.add(recv.getAddress());
                     if (debug == 1) printGroup();
@@ -92,7 +98,7 @@ public class Groupie
                 } else if (Utility.getInt(buf) == I_AM_HERE) {
                     if (!servers.contains(recv.getAddress())) servers.add(recv.getAddress());
                     if (debug == 1) {
-                        System.err.println("Found a group");
+                        System.err.println("Found a addr");
                         printGroup();
                     }
                 }
@@ -104,37 +110,36 @@ public class Groupie
                     servers.remove(recv.getAddress());
                     if (debug == 1) printGroup();
                 } else if (Utility.getInt(buf) == DISCOVER_GROUP) {
-                    DatagramPacket ack = new DatagramPacket(Utility.getBytes(I_AM_HERE), 4, group, discoveryPort);
+                    DatagramPacket ack = new DatagramPacket(Utility.getBytes(I_AM_HERE), 4, addr, discoveryPort);
                     s.send(ack);
                     if (!servers.contains(recv.getAddress())) servers.add(recv.getAddress());
                     if (debug == 1) printGroup();
                 } else if (Utility.getInt(buf) == I_AM_HERE) {
                     if (!servers.contains(recv.getAddress())) servers.add(recv.getAddress());
                     if (debug == 1) {
-                        System.err.println("Found a group");
+                        System.err.println("Found a addr");
                         printGroup();
                     }
                 }
             }
         } catch (SocketTimeoutException e) {
-            // no one responded, so start a new group
+            // no one responded, so start a new addr
             s.setSoTimeout(default_timeout);
             if (debug == 1) {
-                System.err.println("No response for discover group. Starting a new group");
+                System.err.println("No response for discover addr. Starting a new addr");
                 printGroup();
             }
         }
         s.setSoTimeout(default_timeout);
     }
 
-
-    @SuppressWarnings("deprecation")
+    
     public void leave() {
         try {
-            DatagramPacket bye = new DatagramPacket(Utility.getBytes(LEAVE_GROUP), 4, group, discoveryPort);
+            DatagramPacket bye = new DatagramPacket(Utility.getBytes(LEAVE_GROUP), 4, addr, discoveryPort);
             s.send(bye);
             servers.clear();
-            s.leaveGroup(group);
+            s.leaveGroup(group, net);
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -143,7 +148,7 @@ public class Groupie
 
     private void groupDance() throws IOException {
         byte[] buf = new byte[4];
-        DatagramPacket recv = new DatagramPacket(buf, buf.length, group, discoveryPort);
+        DatagramPacket recv = new DatagramPacket(buf, buf.length, addr, discoveryPort);
         System.out.println("In groupDance");
 
         while (true) {
@@ -151,7 +156,7 @@ public class Groupie
             printDatagram(recv);
             if (!recv.getAddress().equals(InetAddress.getLocalHost())) {
                 if (Utility.getInt(buf) == DISCOVER_GROUP) {
-                    DatagramPacket ack = new DatagramPacket(Utility.getBytes(I_AM_HERE), 4, group, discoveryPort);
+                    DatagramPacket ack = new DatagramPacket(Utility.getBytes(I_AM_HERE), 4, addr, discoveryPort);
                     s.send(ack);
                     if (!servers.contains(recv.getAddress())) servers.add(recv.getAddress());
                     if (debug == 1) printGroup();
@@ -181,7 +186,6 @@ public class Groupie
     /**
      * @param args
      */
-    @SuppressWarnings("deprecation")
     public static void main(String[] args) {
 
         String networkInterface;
@@ -192,12 +196,15 @@ public class Groupie
         networkInterface = args[0];
 
         try {
-            InetAddress group = InetAddress.getByName(mcastAddress);
+            InetAddress addr = InetAddress.getByName(mcastAddress);
+            SocketAddress group = new InetSocketAddress(addr, discoveryPort);
             MulticastSocket s = new MulticastSocket(discoveryPort);
             NetworkInterface net = NetworkInterface.getByName(networkInterface);
+            
             s.setNetworkInterface(net);
-            s.joinGroup(group);
-            Groupie g = new Groupie(group, s);
+            s.joinGroup(group, null);
+            
+            Groupie g = new Groupie(addr, group, s, net);
             g.initialize();
             g.groupDance();
 

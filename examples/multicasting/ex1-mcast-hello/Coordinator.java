@@ -3,11 +3,14 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.NetworkInterface;
+import java.net.SocketAddress;
 
 /**
- * Multicast hello world example
+ * Multicast hello world example.
+ * @author amit
  *
  */
 public class Coordinator
@@ -19,7 +22,6 @@ public class Coordinator
      * @param args
      * @throws IOException
      **/
-    @SuppressWarnings("deprecation")
     public static void main(String[] args) throws IOException {
         int n = 20;
         String networkInterface;
@@ -31,18 +33,22 @@ public class Coordinator
         networkInterface = args[1];
 
         String msg = "Hello";
-        InetAddress group = InetAddress.getByName("230.230.230.230");
+        InetAddress addr = InetAddress.getByName("230.230.230.230");
+        SocketAddress group = new InetSocketAddress(addr, MULTICAST_PORT);
         MulticastSocket s = new MulticastSocket(MULTICAST_PORT);
         NetworkInterface net = NetworkInterface.getByName(networkInterface);
+        
         s.setNetworkInterface(net);
-        s.joinGroup(group);
+        s.joinGroup(group, null);
 
         int count = 0;
         while (count < n) {
             StringWriter str = new StringWriter();
             str.write(msg + ":" + count);
-            DatagramPacket hi = new DatagramPacket(str.toString().getBytes(), str.toString().length(), group,
-                    MULTICAST_PORT);
+            DatagramPacket hi = new DatagramPacket(str.toString().getBytes(), 
+            										str.toString().length(), 
+            										addr, 
+            										MULTICAST_PORT);
             s.send(hi);
 
             // get their responses!
@@ -59,6 +65,7 @@ public class Coordinator
             }
         }
         // OK, I'm done talking, leave the group...
-        s.leaveGroup(group);
+        s.leaveGroup(group, net);
+        s.close();
     }
 }

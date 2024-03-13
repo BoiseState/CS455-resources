@@ -3,7 +3,9 @@ package time;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
+import java.net.SocketAddress;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
@@ -16,19 +18,19 @@ import java.net.UnknownHostException;
  */
 public class Server extends Thread
 {
-
-    @SuppressWarnings({ "deprecation", "resource" })
     public void run() {
         // join a Multicast group and send the group salutations
 
-        InetAddress server;
+        InetAddress addr;
+        final int MULTICAST_PORT = 5800;
 
         try {
-            // Server receives answers on 5800 and sends on 5801
-            server = InetAddress.getByName("230.230.230.230");
-            MulticastSocket s = new MulticastSocket(5800);
+            addr = InetAddress.getByName("230.230.230.230");
+            SocketAddress group = new InetSocketAddress(addr, MULTICAST_PORT);
+            @SuppressWarnings("resource")
+			MulticastSocket s = new MulticastSocket(MULTICAST_PORT);			
 
-            s.joinGroup(server);
+            s.joinGroup(group, null);
             s.setSoTimeout(60000);
 
             // Loop and get the responses
@@ -48,6 +50,6 @@ public class Server extends Thread
             System.err.println(e);
         } catch (IOException e) {
             System.err.println(e);
-        }
+        } 
     }
 }
