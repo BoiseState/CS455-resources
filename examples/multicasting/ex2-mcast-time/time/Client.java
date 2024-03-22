@@ -42,7 +42,7 @@ public class Client extends Thread {
 				byte bytes[] = Helpers.getBytes(current);
 				DatagramPacket response = new DatagramPacket(bytes, bytes.length, 
 															 serverAddr, 5800);
-															 s.send(response);
+				s.send(response);
 			}
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
