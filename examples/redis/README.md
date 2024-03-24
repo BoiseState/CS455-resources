@@ -3,5 +3,5 @@
 How to run (from command line)
 =============================
 
-java -cp .:.libs/*.jar  RedisExample1
+java -cp .:./libs/*  RedisExample1
 
