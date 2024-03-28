@@ -8,19 +8,19 @@ import org.apache.commons.cli.ParseException;
 
 /**
  * Example with short and long options with one or more required values. Make sure to
- * include the commons-cli jar file in the classpath.
+ * include the commons-cli jar file in the classpath. Test it with the following command:
+ * 
+ * java -cp .:../commons-cli-1.4/commons-cli-1.4.jar ParseTest -l amit -m  amit timal  -n 5005 -p test123
  */
 
-/**
- * @author amit
- *
- */
 public class ParseTest
 {
 
     public static void printUsage(Options options) {
         HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("ParseTest ", options);
+        String header = "       Identity Server - phase I: <authors>";
+        String footer = "\n Please report issues to youremail@boisestate.edu";
+        formatter.printHelp("java ParseTest <options>", header, options, footer);
     }
 
 
@@ -29,7 +29,7 @@ public class ParseTest
         Options options = new Options();
 
         // option with no value after it
-        options.addOption("d", "debug", false, "debug level");
+        options.addOption("h", "help", false, "");
 
         // one option with optional value
         Option portOption = new Option("n", "numport", true, "optional port number on server");
@@ -107,7 +107,6 @@ public class ParseTest
             System.out.println("ParseTest: " + exp.getMessage());
             printUsage(options);
         }
-		    System.out.println(" without an optional port number");
     }
 
 }
