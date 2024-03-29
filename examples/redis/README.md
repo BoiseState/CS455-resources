@@ -39,4 +39,4 @@ You can then start up the redis client to play with the data store:
 redis-cli
 ```
 
-Try some commands such as `hgetall user-session:123`
+Try some commands such as `hgetall user-account1`
