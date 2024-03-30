@@ -1,0 +1,37 @@
+
+Members:
+
+Grade: /200
+
+Late penalty:
+
+Submission quality:
+	-project layout:
+	-build:
+	-pregenerated server/client keystores and passwords (statically in the code is ok):
+
+Features:
+	-Election algorithm implementation (50 points):
+	-Consistency implementation (30 points):
+	-Fault tolerance (40 points):
+		-Backup server failure and recovery:
+		-Coordinator failure and recovery:
+
+	-Uses SSL (10 points): 
+	-Checkpointing (10 points): 
+
+Video (20 points):
+	-Demonstrate servers on multiple onyxnode (required): 
+	-Demonstrate servers on multiple docker instances or AWS instances (required):
+	-Demonstrate on all three platforms (extra credit: +10)
+
+White Paper (20 points): 
+
+Code style and documentation (20 points): 
+	-README.md file:
+	-testing:
+	-Scripts for running project on onyx lab and on localhost (10 points):
+	-coding style:
+	-Javadocs: 
+
+Comments:
