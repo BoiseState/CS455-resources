@@ -1,0 +1,7 @@
+Name:
+README.md file (5 points):
+Setup EC2 instance (20 points):
+Run TimeServer in EC2 (15 points):
+Demonstrate fault tolerance using client (10 points):
+Custom AMI (extra credit: 5 points):
+Grade:  /50

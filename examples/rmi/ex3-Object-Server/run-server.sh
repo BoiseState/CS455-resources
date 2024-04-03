@@ -13,7 +13,7 @@ echo
 echo "Starting new rmiregistry from $(pwd)"
 export CLASSPATH=$(pwd):$CLASSPATH
 
-rmiregistry &
+rmiregistry $registryPort &
 
 # wait for rmiregistry to start
 sleep 2
