@@ -41,6 +41,7 @@ public class ParseTest
 
         // this option requires one value (but we will only look for it if a password is required)
         Option passwordOption = new Option("p", "password", true, "supply password (if needed)");
+        passwordOption.setArgName("password");
         options.addOption(passwordOption);
         
         // one way to create an option that requires multiple values
