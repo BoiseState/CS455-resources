@@ -34,11 +34,14 @@ public class ParseTest
         // one option with optional value
         Option portOption = new Option("n", "numport", true, "optional port number on server");
         portOption.setOptionalArg(true);
+        portOption.setArgName("port#");
         options.addOption(portOption);
 
         // this option requires one value
-        options.addOption("l", "lookup", true, "lookup an account with the given login name");
-
+        Option lookupOption = new Option("l", "lookup", true, "lookup an account");
+        lookupOption.setArgName("loginname");
+        options.addOption(lookupOption);
+        
         // this option requires one value (but we will only look for it if a password is required)
         Option passwordOption = new Option("p", "password", true, "supply password (if needed)");
         passwordOption.setArgName("password");
@@ -47,6 +50,7 @@ public class ParseTest
         // one way to create an option that requires multiple values
         Option modifyOption = new Option("m", "modify", true, "modify existing login name");
         modifyOption.setArgs(2);
+        modifyOption.setArgName("login> <newlogin");
         options.addOption(modifyOption);
 
         return options;
