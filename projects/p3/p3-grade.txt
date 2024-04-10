@@ -1,4 +1,6 @@
 
+Team:
+
 Members:
 
 Grade: /200
@@ -21,8 +23,8 @@ Features:
 	-Checkpointing (10 points): 
 
 Video (20 points):
-	-Demonstrate servers on multiple onyxnode (required): 
-	-Demonstrate servers on multiple docker instances or AWS instances (required):
+	-Demonstrate servers on two of three platforms: onyxnodes (or cscluster nodes),
+	 multiple docker instances or AWS instances (required):
 	-Demonstrate on all three platforms (extra credit: +10)
 
 White Paper (20 points): 
@@ -30,7 +32,7 @@ White Paper (20 points):
 Code style and documentation (20 points): 
 	-README.md file:
 	-testing:
-	-Scripts for running project on onyx lab and on localhost (10 points):
+	-Scripts for running project on localhost and on onx (or cscluster lab) (10 points):
 	-coding style:
 	-Javadocs: 
 
