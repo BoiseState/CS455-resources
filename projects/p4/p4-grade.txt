@@ -1,0 +1,29 @@
+
+Members:
+
+Grade: /100
+
+Early bonus (up to 10 points):
+
+Submission quality:
+    -project layout:
+    -build:
+    -pregenerated server/client keystores and passwords (statically in the code is ok):
+
+Features:
+    -Issues fixed from previous project:
+    -Connect to multiple servers (40 points):
+        -Enumerate various tests to show functionaltiy with 
+         multiple servers (without knowing the coordinator):
+    -Coordinated checkpoint (20 points):
+    -Scripts for running project on onyx lab and on localhost (10 points):
+
+Video (20 points):
+
+Documentation (10 points): 
+    -README.md file:
+        -Describes clearly the changes from p3 to p4:
+    -coding style:
+    -Javadocs: 
+
+Comments:
