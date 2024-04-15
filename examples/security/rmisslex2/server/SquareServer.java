@@ -45,7 +45,7 @@ public class SquareServer implements Square
 
     public static void main(String args[]) {
         if (args.length == 0) {
-            System.err.println("Usage: java rmisslex2.server.SquaerServer <registryPort>");
+            System.err.println("Usage: java rmisslex2.server.SquareServer <registryPort>");
             System.exit(1);
         }
         registryPort = Integer.parseInt(args[0]);
