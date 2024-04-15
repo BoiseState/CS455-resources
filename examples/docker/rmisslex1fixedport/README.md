@@ -1,27 +1,40 @@
 
-Running the example
-===================
+
+Running this example on Docker
+==============================
 
 This example shows how to create a custom socket factory that uses a fixed port for all RMI communication 
 over SSL. Note that rmiregistry is still on a separate port. Read the SSL section below to **make sure you
 have setup the SSL part (below)** correctly.
 
-Now change back to the top-level security examples directory. 
 
-1. To run the server:
+Review Dockerfile and edit if necessary:
 
-java rmisslex1fixedport.DateServerImpl &
+vim Dockerfile
 
-2. To run the client:
+sudo docker build -t dockerrmi .
+sudo docker image ls
 
-java rmisslex1fixedport.DateClient localhost 
+Make sure to use --net=host option for RMI to work!
 
-3. (Optional) To see all the network transmissions, try
+[amit@kohinoor docker(master)]$ sudo docker run --net=host dockerrmi
 
-java -Djavax.net.debug=all rmisslex1fixedport.DateClient localhost
+DateServerImpl: Setting System Properties....
+DateServerImpl: Created registry at port 5111
+DateServerImpl: DateServerImpl bound in registry
+===>Note the port and IP address printed out
+
+In another console, run the client:
+java rmisslex1fixedport.DateClient 172.17.0.2
+
+To stop the instance, find the instance name using the following command:
+
+sudo docker ps
+
+sudo docker stop <instance_name>
 
 
-Setting up SSL:
+Setting up SSL
 ===============
 
 Change to subdirectory resources/ to do Steps 1-5. Use password test123 (as it is embedded in the code).
@@ -61,33 +74,4 @@ Certificate Signing Request(CSR) needs to be generated. The generated CSR, then,
 submitted along with other pertinent information to a Certification Authority such as VeriSign
 or USPS, who will then digitally sign the certificate.
 
-
-
-Running this example on Docker
-==============================
-
-
-Review Dockerfile and edit if necessary:
-
-vim Dockerfile
-
-sudo docker build -t dockerrmi .
-sudo docker image ls
-
-Make sure to use --net=host option for RMI to work!
-
-[amit@kohinoor hw4(master)]$ sudo docker run --net=host dockerrmi
-DateServerImpl: Setting System Properties....
-DateServerImpl: Created registry at port 5111
-DateServerImpl: DateServerImpl bound in registry
-===>Note the port and IP address printed out
-
-In another console, run the client:
-java rmisslex1fixedport.DateClient 172.17.0.2
-
-To stop the instance, find the instance name using the following command:
-
-sudo docker ps
-
-sudo docker stop <instance_name>
 
