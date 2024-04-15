@@ -33,6 +33,10 @@ sudo docker ps
 
 sudo docker stop <instance_name>
 
+We can test the image by running it in an interactive mode as follows:
+
+sudo docker run -it dockerrmi /bin/bash
+
 
 Setting up SSL
 ===============
