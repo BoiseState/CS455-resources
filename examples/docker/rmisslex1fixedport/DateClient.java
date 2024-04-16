@@ -22,13 +22,16 @@ public class DateClient
         System.setProperty("javax.net.ssl.trustStorePassword", "test123");
         System.setProperty("java.security.policy", "resources/mysecurity.policy");
 
-        if (argv.length != 1) {
-            System.out.println("usage: java DateClient <date server address>");
+        int registryPort = DateServerImpl.REGISTRY_PORT;
+        if (argv.length < 1) {
+            System.out.println("usage: java DateClient <date server address> [<rmiregistry port>]");
             System.exit(1);
+        } else if (argv.length == 2) {
+        	registryPort = Integer.parseInt(argv[1]);
         }
 
         DateClient client = new DateClient();
-        client.perform();
+        client.perform(registryPort);
     }
 
 
@@ -36,10 +39,10 @@ public class DateClient
      * Locate server and perform RMI call. Print server object to verify the port
      * used is the one set in the Server's custom socket factory.
      */
-    private void perform() {
+    private void perform(int registryPort) {
         try {
             // bind server object to object in client
-            Registry reg = LocateRegistry.getRegistry(DateServerImpl.REGISTRY_PORT);
+            Registry reg = LocateRegistry.getRegistry(registryPort);
             DateServer server = (DateServer) reg.lookup("DateServerImpl");
 
             System.out.println("\nDateClient: RMI connection successful.\n");
