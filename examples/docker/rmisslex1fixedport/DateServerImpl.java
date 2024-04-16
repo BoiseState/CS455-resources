@@ -39,11 +39,11 @@ public class DateServerImpl implements DateServer {
 	 * @param name
 	 *            the registered name of the service
 	 */
-	public void bind(String name)
+	public void bind(String name, int registryPort)
 	{
 		try {
-			Registry registry = LocateRegistry.createRegistry(DateServerImpl.REGISTRY_PORT);
-			System.out.println("DateServerImpl: Created registry at port " + DateServerImpl.REGISTRY_PORT);
+			Registry registry = LocateRegistry.createRegistry(registryPort);
+			System.out.println("DateServerImpl: Created registry at port " + registryPort);
 
 			RMIClientSocketFactory rmiClientSocketFactory = new FixedPortSslRMIClientSocketFactory();
 			RMIServerSocketFactory rmiServerSocketFactory = new FixedPortSslRMIServerSocketFactory();
@@ -83,9 +83,14 @@ public class DateServerImpl implements DateServer {
 		// stored encrypted in a file outside the program.
 		System.setProperty("javax.net.ssl.keyStorePassword", "test123");
 		System.setProperty("java.security.policy", "resources/mysecurity.policy");
+		
+		int registryPort = REGISTRY_PORT;
+		if (args.length > 0) {
+		    registryPort = Integer.parseInt(args[0]);
+		}
 		try {
 			DateServerImpl server = new DateServerImpl();
-			server.bind("DateServerImpl");
+			server.bind("DateServerImpl", registryPort);
 		} catch (Throwable th) {
 			th.printStackTrace();
 			System.out.println("DateServerImpl: Exception occurred: " + th);

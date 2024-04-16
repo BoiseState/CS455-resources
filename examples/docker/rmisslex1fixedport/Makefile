@@ -1,7 +1,7 @@
 
 
 all:
-	(cd ../; make rmisslex1)
+	javac *.java
 
 clean:
 	/bin/rm -f *.class
