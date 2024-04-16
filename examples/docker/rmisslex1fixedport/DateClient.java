@@ -23,12 +23,11 @@ public class DateClient
         System.setProperty("java.security.policy", "resources/mysecurity.policy");
 
         int registryPort = DateServerImpl.REGISTRY_PORT;
-        if (argv.length < 1) {
+        if (argv.length != 2) {
             System.out.println("usage: java DateClient <date server address> [<rmiregistry port>]");
             System.exit(1);
-        } else if (argv.length == 2) {
-        	registryPort = Integer.parseInt(argv[1]);
-        }
+        } 
+        registryPort = Integer.parseInt(argv[1]);
 
         DateClient client = new DateClient();
         client.perform(registryPort);

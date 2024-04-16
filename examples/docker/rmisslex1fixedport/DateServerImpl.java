@@ -85,6 +85,10 @@ public class DateServerImpl implements DateServer {
 		System.setProperty("java.security.policy", "resources/mysecurity.policy");
 		
 		int registryPort = REGISTRY_PORT;
+		if (args.length == 0) {
+		    System.out.println("Usage: java DateServerImpl <rmiregistry port>");
+		    System.exit(1);
+		}
 		if (args.length > 0) {
 		    registryPort = Integer.parseInt(args[0]);
 		}

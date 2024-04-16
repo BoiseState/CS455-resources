@@ -10,32 +10,102 @@ have setup the SSL part (below)** correctly.
 
 Review Dockerfile and edit if necessary:
 
+```
 vim Dockerfile
 
-sudo docker build -t dockerrmi .
+sudo docker build -t dockerrmi-5111 .
 sudo docker image ls
+```
 
-Make sure to use --net=host option for RMI to work!
+Make sure to use --net=host option for RMI to work! Or simply publish the rmiregistry port (5111)
+with the -p 5111:5111 option to the dcker run command.
 
-[amit@kohinoor docker(master)]$ sudo docker run --net=host dockerrmi
+```
+[amit@kohinoor docker(master)]$ sudo docker -p 5111:5111 dockerrmi-5111
 
 DateServerImpl: Setting System Properties....
 DateServerImpl: Created registry at port 5111
 DateServerImpl: DateServerImpl bound in registry
 ===>Note the port and IP address printed out
+```
 
 In another console, run the client:
-java rmisslex1fixedport.DateClient 172.17.0.2
+```
+java rmisslex1fixedport.DateClient 172.17.0.2 5111
+```
 
 To stop the instance, find the instance name using the following command:
 
+```
 sudo docker ps
 
 sudo docker stop <instance_name>
+```
 
 We can test the image by running it in an interactive mode as follows:
 
+```
 sudo docker run -it dockerrmi /bin/bash
+```
+
+Cleanups:
+
+Remove all docker builds, caches, images etc
+
+```
+sudo docker prune -a 
+```
+
+List all stopped (including stopped) containers.
+```
+sudo docker ps -a
+```
+
+Now remove specific containers:
+
+```
+sudo docker rm <containerid> [<containerid>...]
+sudo docker rmi <imageid> [<imageid>...]
+```
+
+
+Running multiple instances on docker
+====================================
+
+
+For security reasons, rmiregistry only accepts bind from a server running on the same host
+(in this case, a docker container).  So for multiple docker containers, each container needs
+its own rmiregistry running and they need to be on different ports so clients can see them
+all. 
+
+The --net=host isn't strictly necessary as we can just publish the specific rmiregistry ports. The
+one downside is that you would have to make multiple docker images with a different registry
+port argument to the server in each -- but that is easy. Just modify the Dockerfile and generate a
+new image -- it is super fast. 
+
+In one terminal:
+
+```
+sudo docker run -p 5111:5111 dockerrmi-5111
+```
+
+In another terminal:
+
+```
+sudo docker run -p 5112:5112 dockerrmi-5112
+```
+
+
+
+Now the client can connect to either one:
+
+```
+java DateClient 172.17.0.2 5111
+
+java DateClient 172.17.0.3 5112
+```
+
+
 
 
 Setting up SSL
