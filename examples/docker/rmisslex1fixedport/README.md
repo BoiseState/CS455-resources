@@ -53,7 +53,7 @@ Cleanups:
 Remove all docker builds, caches, images etc
 
 ```
-sudo docker prune -a 
+sudo docker system prune -a 
 ```
 
 List all stopped (including stopped) containers.
