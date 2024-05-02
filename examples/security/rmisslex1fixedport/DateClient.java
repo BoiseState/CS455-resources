@@ -27,9 +27,10 @@ public class DateClient
             System.out.println("usage: java DateClient <date server address>");
             System.exit(1);
         }
+		String serverHost = argv[0];
 
         DateClient client = new DateClient();
-        client.perform();
+        client.perform(serverHost);
     }
 
 
@@ -37,10 +38,10 @@ public class DateClient
      * Locate server and perform RMI call. Print server object to verify the port
      * used is the one set in the Server's custom socket factory.
      */
-    private void perform() {
+    private void perform(String serverHost) {
         try {
             // bind server object to object in client
-            Registry reg = LocateRegistry.getRegistry(DateServerImpl.REGISTRY_PORT);
+            Registry reg = LocateRegistry.getRegistry(serverHost, DateServerImpl.REGISTRY_PORT);
             DateServer server = (DateServer) reg.lookup("DateServerImpl");
 
             System.out.println("\nDateClient: RMI connection successful.\n");

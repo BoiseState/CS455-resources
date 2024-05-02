@@ -31,7 +31,7 @@ public class DateClient
     private void perform() {
         try {
             // bind server object to object in client
-            Registry reg = LocateRegistry.getRegistry(2004);
+            Registry reg = LocateRegistry.getRegistry(serverName,2004);
             DateServer server = (DateServer) reg.lookup("DateServerImpl");
             System.out.println("RMI connection successful");
 
