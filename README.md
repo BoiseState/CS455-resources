@@ -6,3 +6,5 @@ examples: All the code examples used in the course. See the README.md for an imp
 notes: class notes (in PDF)
 
 readings: Supplementary reading materials.
+
+Amit
