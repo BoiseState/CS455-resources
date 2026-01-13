@@ -23,6 +23,7 @@ public class HelloClient {
 		int registryPort;
 		host = args[0];
 		registryPort = Integer.parseInt(args[1]);
+		System.setProperty("java.rmi.server.hostname",host);
 
 		try {
 			Registry registry = LocateRegistry.getRegistry(host, registryPort);
