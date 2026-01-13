@@ -26,7 +26,7 @@ import java.util.Date;
  */
 public class DateServerImpl implements DateServer {
 	public static final int PREFERRED_PORT = 5005;
-	public static final int REGISTRY_PORT = 5111;
+	public static final int REGISTRY_PORT = 5004;
 
 	public DateServerImpl() throws RemoteException {
 	}
