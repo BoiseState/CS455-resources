@@ -1,5 +1,5 @@
-# CS455-Go-Examples
-Examples for the CS 455 Distributed Systems class transposed from various languages to Go
+# CS455-555-Go-Examples
+Examples for the CS 455-555 Distributed Systems class transposed from various languages to Go
 
 ## Information
 In order to run most examples you can use the command `go run ExampleFile.go`. In some cases when there are multiple files included in an example you will want to build the example then run the build. In order to do this use the command `go build MainFile.go Dependency1.go ...`, then you can run the command `./MainFile arg1 arg2 ...`.
