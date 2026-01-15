@@ -7,11 +7,11 @@ import (
 	"time"
 )
 
-const MAX = 5000000
+const MAX = 1000000
 
 func run(i int, wg *sync.WaitGroup){
 	fmt.Println("Thread Number: ", i)
-	time.Sleep(time.Second*60)
+	time.Sleep(time.Second*20)
 	wg.Done()
 }
 
