@@ -46,6 +46,6 @@ func main() {
 	run(newElement("air"), &wg)
 	run(newElement("void"), &wg)
 
-	//this will halt the program until we are done.
+	//this will pause the program until we are done.
 	wg.Wait()
 }
