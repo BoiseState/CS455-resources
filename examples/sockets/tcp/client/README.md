@@ -22,7 +22,7 @@ A simple port scanner that attempts to connect to a server at every port in the 
 white hat security tool! For example, try the following:
 
 ```
-cd ../
+cd ../../
 java tcp.client.PortScanner localhost 1 65535 
 ```
 
@@ -30,14 +30,14 @@ A multithreaded port scanner that attempts to connect to a server at every port 
 white hat security tool that is much faster! For example, try the following:
 
 ```
-cd ../
+cd ../../
 java tcp.client.PortScannerThreadPool localhost 1 65535 
 ```
 
 Here is the same but now using lambda expressions:
 
 ```
-cd ../
+cd ../../
 java tcp.client.PortScannerThreadPoolLambda localhost 1 65535
 ```
 
