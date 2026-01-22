@@ -26,6 +26,19 @@ cd ../
 java tcp.client.PortScanner localhost 1 65535 
 ```
 
+A multithreaded port scanner that attempts to connect to a server at every port in the given range. A
+white hat security tool that is much faster! For example, try the following:
 
+```
+cd ../
+java tcp.client.PortScannerThreadPool localhost 1 65535 
+```
+
+Here is the same but now using lambda expressions:
+
+```
+cd ../
+java tcp.client.PortScannerThreadPoolLambda localhost 1 65535
+```
 
 
