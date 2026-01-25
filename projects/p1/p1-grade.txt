@@ -3,7 +3,7 @@ Team#:
 
 Members:
 
-Grade:   /150 
+Grade:   /100 
 
 Late penalty:
 
@@ -31,7 +31,7 @@ Testing:
 Extra credit:
 	-Colored terminal prompts (+5 extra credit):
 	-JSON objects instead of Java objects (+5 extra credit):
-	-Web or Java GUI (+10 extra credit):
+	-Web GUI (+10 extra credit):
 
 Demonstration of functionality:
     -Demo video (20 points):
@@ -40,5 +40,6 @@ Code style and documentation (20 points):
     -README.md:
     -Using Object-oriented protocol:  
     -Javadocs:
+	-AI usage (vi comments or via the video):
 
 
