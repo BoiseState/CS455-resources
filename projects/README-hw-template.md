@@ -22,6 +22,12 @@ This section should describe how you tested your code (if relevant).  For a home
 expect much but this section should have some content.  List known bugs that you weren't able
 to fix (or ran out of time to fix).
 
+### AI Usage
+
+Describe any use of AI tools (e.g., ChatGPT, GitHub Copilot, etc.) in completing this homework.
+Please note that it is acceptable to use AI tools to ask questions and help you debug code, but you
+must not use AI tools to generate code or complete homework for you.  The homework is to help you
+solidify concepts you are learning in class, and using AI to generate code defeats that purpose. 
 
 ## Reflection
 

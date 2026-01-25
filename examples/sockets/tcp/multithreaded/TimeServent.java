@@ -24,8 +24,6 @@ import java.net.InetAddress;
  * 
  * java TimeServent 2 5006 localhost 5005
  * 
- * Make sure to to start the second servent within 10 seconds!
- * 
  * @author amit
  */
 public class TimeServent

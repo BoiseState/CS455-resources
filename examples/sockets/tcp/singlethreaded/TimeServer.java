@@ -57,7 +57,7 @@ public class TimeServer
                 objout.writeObject(new java.util.Date());
                 objout.flush();
 
-                Thread.sleep(4000); //4 secs
+                Thread.sleep(4000); //4 secs, to reinforce single threaded nature of this server
                 sock.close();
             } catch (InterruptedException e) {
                 System.err.println(e);
