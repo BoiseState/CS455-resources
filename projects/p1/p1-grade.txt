@@ -7,6 +7,8 @@ Grade:   /150
 
 Late penalty:
 
+Comments:
+
 Testing:
     -Build:  
     -Basic operation: 
@@ -39,5 +41,4 @@ Code style and documentation (20 points):
     -Using Object-oriented protocol:  
     -Javadocs:
 
-Comments:
 
