@@ -23,7 +23,7 @@ public class LargerHttpd
         clientSelector = Selector.open();
         ServerSocketChannel ssc = ServerSocketChannel.open();
         ssc.configureBlocking(false);
-        InetSocketAddress sa = new InetSocketAddress(InetAddress.getLocalHost(), port);
+        InetSocketAddress sa = new InetSocketAddress(port);
         ssc.socket().bind(sa);
         ssc.register(clientSelector, SelectionKey.OP_ACCEPT);
 
