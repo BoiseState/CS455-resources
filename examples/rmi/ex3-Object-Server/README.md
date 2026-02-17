@@ -2,7 +2,9 @@
 RMI example3: Overview
 ----------------------
 
-This example demonstrates a a client that makes synchronous RMI calls to a RMI server. The RMI server is multithreaded (like any RMI server). The assumption is that the relevant class files are available on both server and client.
+This example demonstrates a a client that makes synchronous RMI calls to a RMI server. The RMI
+server is multithreaded (like any RMI server). The assumption is that the relevant class files
+are available on both server and client.
 
 To build and run
 ----------------

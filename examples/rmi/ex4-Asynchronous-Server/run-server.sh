@@ -10,7 +10,8 @@ echo "Killing existing rmiregistry"
 killall -9 rmiregistry >& /dev/null
 
 echo
-echo "Starting new rmiregistry from $(pwd)"
+echo "Starting new rmiregistry from $(pwd) on port $registryPort"
+echo
 export CLASSPATH=$(pwd):$CLASSPATH
 
 rmiregistry &

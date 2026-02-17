@@ -15,7 +15,9 @@ export CLASSPATH=$(pwd):$CLASSPATH
 rmiregistry <registryPort>
 ```
 
-The default port is 1099. That is typically used if the registry is being shared by various servers on the same machine. Otherwise start up a private copy of the registry using your own port in the range assigned to your team.
+The default port is 1099. That is typically used if the registry is being shared by various
+servers on the same machine. Otherwise start up a private copy of the registry using your own
+port in the range assigned to your team.
 
 
 Then start the server:

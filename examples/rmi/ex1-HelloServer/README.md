@@ -8,25 +8,20 @@ make
 
 To run:
 
-Start up the registry on the server.
+
+The default port or rmiregistry is 1099. That is typically used if the registry is being shared by various
+servers. Otherwise we can start up a private copy of the registry using our own assigned port. We do
+that in the main method in the server code.
+
+
+To run the server, use (e.g. use 5005 as the registry port):
 
 ```
-export CLASSPATH=$(pwd):$CLASSPATH
-rmiregistry <registryPort>
+java hello.server.HelloServer <registryPort>
 ```
 
-The default port is 1099. That is typically used if the registry is being shared by various
-servers. Otherwise start up a private copy of the registry using our own assigned port. You
-will need to do that on the onyx cluster.
-
-
-Then start the server:
-
-```
-java hello.server.HelloServer <registryPort>&
-```
-
-Wait for ready message from the server before running the client. To run the client, use:
+Wait for ready message from the server before running the client. To run the client, in a seprate
+terminal, use:
 
 ```
 java hello.client.HelloClient <hostname> <registryPort>

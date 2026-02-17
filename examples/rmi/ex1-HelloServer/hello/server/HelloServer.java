@@ -6,7 +6,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
- * An implementation of the Hello remote interface.
+ * An implementation of the Hello remote interface. 
  */
 public class HelloServer extends UnicastRemoteObject implements Hello {
 	private static final long serialVersionUID = 8510538827054962873L;
@@ -34,7 +34,10 @@ public class HelloServer extends UnicastRemoteObject implements Hello {
 		}
 		registryPort = Integer.parseInt(args[0]);
 		try {
-			Registry registry = LocateRegistry.getRegistry(registryPort);
+			// Creates the rmiregistry -- sufficient for simple servers
+			// If rmiregistry was running externally, then we will instead
+			// call getRegistry method below.
+			Registry registry = LocateRegistry.createRegistry(registryPort);
 
 			HelloServer obj = new HelloServer("//HelloServer");
 			registry.rebind("HelloServer", obj);
