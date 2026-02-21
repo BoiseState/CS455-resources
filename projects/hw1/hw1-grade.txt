@@ -9,4 +9,4 @@ Multi-threaded servents (+5 extra credit):
 
 Comments:
 
-Grade:  /50
+Grade:  /20
