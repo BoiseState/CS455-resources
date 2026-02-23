@@ -5,8 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.RedisClient;
 
 /**
  * A redis example where we store objects into a byte array to store into Redis and to revide from Redis. 
@@ -37,16 +36,14 @@ public class RedisExample2
     public static void main(String[] args)
     {
 	
-	// choose a port in your assigned range for the project
-	JedisPool pool = new JedisPool("localhost", 6379);
+		// choose a port in your assigned range for the project
+		RedisClient pool = RedisClient.create("redis://localhost:6379");
 
-	try (Jedis jedis = pool.getResource()) {
 		// Store & Retrieve a simple string
-		jedis.set("goo goo", "gaa gaa");
-		System.out.println(jedis.get("goo goo")); // prints "gaa gaa"
+		pool.set("goo goo", "gaa gaa");
+		System.out.println(pool.get("goo goo")); // prints "gaa gaa"
 		
-	}
-	pool.close();
+		pool.close();
     }
 
 }

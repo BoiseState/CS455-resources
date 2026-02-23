@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.RedisClient;
 
 /**
  * Simple example showing connection with Redis (REmote DIctionary Server).
@@ -16,9 +15,8 @@ public class RedisExample1 {
 	public static void main(String[] args)
 	{
 		// choose a port in your assigned range for the project
-		JedisPool pool = new JedisPool("localhost", 6379);
+		RedisClient jedis = RedisClient.create("redis://localhost:6379");
 
-		try (Jedis jedis = pool.getResource()) {
 			// Store & Retrieve a simple string
 			jedis.set("goo goo", "gaa gaa");
 			System.out.println(jedis.get("goo goo")); // prints "gaa gaa"
@@ -78,7 +76,6 @@ public class RedisExample1 {
 			for (int i = 0; i < jedis.llen("list"); i++) {
 				System.out.println(jedis.lindex("list", i));
 			}
-		}
-		pool.close();
+		jedis.close();
 	}
 }

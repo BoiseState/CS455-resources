@@ -24,7 +24,14 @@ redis-cli ping
 should reply-->PONG
 ```
 
-The example requires jar files in the `libs/` subfolder. To compile:
+The example requires jar files in the `libs/` subfolder.  (or use Maven to automatically
+download them). We are using the following versiona for connecting to Redis using Java:
+
+```
+commons-pool2-2.13.0.jar  jedis-7.3.0.jar  slf4j-api-2.0.17.jar  slf4j-simple-2.0.17.jar
+```
+
+To compile:
 
 javac -cp .:./libs/*  RedisExample1.java
 
