@@ -3,50 +3,55 @@ Team:
 
 Members:
 
-Grade:   /150
+Grade:   /100
 
 Late penalty:
 
 Comments:
 
 Submission quality:
+	-Note that some elements are expected at this level so there are points for not doing them.
+	 These are tagged as required.
+
 	-project layout:
 	-build:
 	-pregenerated server/client keystores and passwords (statically in the code is ok):
 	-scripts for running server and client:
-	-demo:
 
 Features: 
-	-basic operations (80 points): 
+	-basic operations (6 x 8 = 48 points): 
 		-create:
 		-delete:
 		-lookup:
 		-reverse-lookup:
 		-modify:
 		-get users|uuids|all:
-	-using distributed no-SQL Redis database (10 points): 
-	-security (10 points):
+	-security (12 points):
 		-encrypted passwords:
 		-SSL communication:
 	-persistence (10 points)
 		-save/restore state:
 		-shutdown handler:
-	-thread safety:
+	-using distributed no-SQL Redis database (required): 
+	-thread safety (required):
     
 Testing (20 points):	
-	-testing documentation (in README):
+	-testing documentation (required, in the README.md):
 	-quality of testing:
 		-While we aren't expecting full fledged unit testing -- make a plan for testing all the
 		 features and document the plan. The testing may simply be manual due to time limitation.
 		-In your plan, distinguish between manual unit testing vs integration testing
 	
 
-Code style/documentation (20 points):  
-	-README file: 
-	-coding style:
-	-javadocs:
+Code style/documentation:  
+	-Demo video (required, 10 points):
+	-README file (required): 
+	-coding style (required):
+	-javadocs (required):
+
 
 Teamwork:
-	-Did each team member contribute meaningfully to the project?
+	-Did each team member contribute meaningfully to the project? This should be evident in the
+	commit history, the demo video, and reflection.
 
 
