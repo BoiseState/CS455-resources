@@ -7,12 +7,14 @@ Grade:   /150
 
 Late penalty:
 
+Comments:
+
 Submission quality:
 	-project layout:
 	-build:
 	-pregenerated server/client keystores and passwords (statically in the code is ok):
 	-scripts for running server and client:
-	-demo
+	-demo:
 
 Features: 
 	-basic operations (80 points): 
@@ -47,4 +49,4 @@ Code style/documentation (20 points):
 Teamwork:
 	-Did each team member contribute meaningfully to the project?
 
-Comments:
+
