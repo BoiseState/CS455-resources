@@ -12,8 +12,9 @@ import asynchronous.server.WorkRequest;
 import asynchronous.client.MyClient;
 
 /**
- * Shows a client making multiple asynchronous calls to a server. However the
- * client now needs to keep track of the number of outstanding asynchronous
+ * Shows a client making multiple asynchronous calls to a server, so it is also 
+ * acts as a  server now as it can receive callbacks from the server. The client 
+ * now needs to keep track of the number of outstanding asynchronous
  * calls so that it doesn't quit too early. This requires synchronization.
  */
 public class MyClient extends java.rmi.server.UnicastRemoteObject implements WorkListener
@@ -59,13 +60,13 @@ public class MyClient extends java.rmi.server.UnicastRemoteObject implements Wor
             server.asyncExecute(new MyCalculation(50), this);
             requestsSent = true;
 
-            try {
-                synchronized (allDone) {
-                    allDone.wait();
-                }
-            } catch (InterruptedException e) {
-                System.err.println(e);
-            }
+			try {
+				synchronized (allDone) {
+					allDone.wait();
+				}
+			} catch (InterruptedException e) {
+				System.err.println(e);
+			}
             System.out.println(server.getDate());
             System.exit(0);
 

@@ -7,8 +7,8 @@ import java.rmi.server.ServerNotActiveException;
 import java.util.Date;
 
 /**
- * Shows a RMI server implementation. Also demonstrates the use a custom
- * security manager.
+ * Shows a RMI server implementation that uses threads to execute client requests 
+ * asynchronously with callback to the client to denote when request is done.
  *
  */
 public class MyServer extends java.rmi.server.UnicastRemoteObject implements Server {
@@ -66,6 +66,10 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 		}
 	}
 
+	/**
+	 * Implements an execute request asynchronously in a separate thread. Makes a callback to
+	 * listener (the client).
+	 */
 	private class AsyncExecuteThread extends Thread {
 		WorkRequest request;
 		WorkListener listener;
@@ -97,7 +101,6 @@ public class MyServer extends java.rmi.server.UnicastRemoteObject implements Ser
 			System.exit(1);
 		}
 		registryPort = Integer.parseInt(args[0]);
-		System.setProperty("java.security.policy", "mysecurity.policy");
 
 		try {
 			Server server = new MyServer();

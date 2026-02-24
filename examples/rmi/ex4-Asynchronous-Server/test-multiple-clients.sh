@@ -5,7 +5,9 @@
 case $# in
 0) echo "Usage: "`basename $0` " <server hostname> [<registry port>]"; exit 1;;
 esac
+
 serverHost=$1
+registryPort=$2
 if test "$2" = ""
 then
     registryPort=1099

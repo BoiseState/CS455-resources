@@ -14,11 +14,16 @@ echo "Starting new rmiregistry from $(pwd) on port $registryPort"
 echo
 export CLASSPATH=$(pwd):$CLASSPATH
 
-rmiregistry &
+rmiregistry $registryPort >& /dev/null &
+if test "$?" -ne 0
+then
+  echo "Failed to start rmiregistry"
+  exit 1
+fi
 sleep 2
 
 echo
-echo "Starting server clientcallback.server.MyServer"
+echo "Starting server clientcallback.server.MyServer with registry port $registryPort"
 java  asynchronous.server.MyServer $registryPort
 echo
 
