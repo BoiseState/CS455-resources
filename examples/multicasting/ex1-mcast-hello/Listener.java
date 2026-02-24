@@ -57,7 +57,10 @@ public class Listener
             }
             s.close();
         } catch (SocketTimeoutException e) {
-            System.err.println(e);
+        	System.err.println();
+            System.err.println("Listener: " + e);
+            System.err.println("Listener: No one around on multicast group. I am leaving!");
+            System.err.println();
             s.leaveGroup(group, net);
             s.close();
         }

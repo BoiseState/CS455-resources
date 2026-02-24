@@ -41,8 +41,9 @@ public class Server extends Thread
                 s.receive(recv); // Block until we get responses
                 buf = recv.getData();
                 Long clientDate = (Long) Helpers.getObject(buf);
-                System.out.println(
-                        "Client " + recv.getAddress().toString() + " thinks the time is " + clientDate.longValue());
+                System.out.println("Client " + recv.getAddress().toString() + 
+                		" thinks the time is " + clientDate.longValue());
+                System.out.println();
             }
         } catch (UnknownHostException e) {
             System.err.println(e);
