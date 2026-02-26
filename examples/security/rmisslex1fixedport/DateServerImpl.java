@@ -76,14 +76,14 @@ public class DateServerImpl implements DateServer {
 	}
 
 
-	public static void main(String args[])
+	public static void main(String args[]) throws InterruptedException
 	{
 		System.out.println("DateServerImpl: Setting System Properties....");
 		System.setProperty("javax.net.ssl.keyStore", "rmisslex1timeout/resources/Server_Keystore");
 		// Warning: change to match your password! Also the password should be
 		// stored encrypted in a file outside the program.
 		System.setProperty("javax.net.ssl.keyStorePassword", "test123");
-		System.setProperty("java.security.policy", "rmisslex1timeout/resources/mysecurity.policy");
+
 		try {
 			DateServerImpl server = new DateServerImpl();
 			server.bind("DateServerImpl");
@@ -91,6 +91,8 @@ public class DateServerImpl implements DateServer {
 			th.printStackTrace();
 			System.out.println("DateServerImpl: Exception occurred: " + th);
 		}
+		// needed to avoid the garbage collector from unexporting the server
+		while (true) Thread.sleep(Integer.MAX_VALUE); 
 	}
 }
 

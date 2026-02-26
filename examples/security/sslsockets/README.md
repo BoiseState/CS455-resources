@@ -57,4 +57,7 @@ To see all the network transmissions, try
 
 java -Djavax.net.debug=all sslsockets.Client localhost 5005
 
+To see all the ssl transmissions, try
+
+java -Djavax.net.debug=ssl,handshake sslsockets.Client localhost 5005
 
