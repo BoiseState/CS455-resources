@@ -14,6 +14,11 @@ import javax.rmi.ssl.SslRMIServerSocketFactory;
 import java.util.Date;
 
 public class DateServerImpl implements DateServer {
+	
+	public final static int REGISTRY_PORT = 5000;
+	private static DateServer  ccAuth;
+	private static Registry registry;
+	
 	public DateServerImpl() throws RemoteException {
 	}
 
@@ -23,9 +28,9 @@ public class DateServerImpl implements DateServer {
 		try {
 			RMIClientSocketFactory rmiClientSocketFactory = new SslRMIClientSocketFactory();
 			RMIServerSocketFactory rmiServerSocketFactory = new SslRMIServerSocketFactory();
-			DateServer ccAuth = (DateServer) UnicastRemoteObject.exportObject(this, 0, rmiClientSocketFactory,
+			ccAuth = (DateServer) UnicastRemoteObject.exportObject(this, 0, rmiClientSocketFactory,
 			        rmiServerSocketFactory);
-			Registry registry = LocateRegistry.createRegistry(2004);
+			registry = LocateRegistry.createRegistry(REGISTRY_PORT);
 			registry.rebind(name, ccAuth);
 			System.out.println(name + " bound in registry");
 		} catch (Exception e) {
@@ -46,14 +51,13 @@ public class DateServerImpl implements DateServer {
 	}
 
 
-	public static void main(String args[])
+	public static void main(String args[]) throws InterruptedException
 	{
 		System.out.println("Setting System Properties....");
 		System.setProperty("javax.net.ssl.keyStore", "rmisslex1/resources/Server_Keystore");
 		// Warning: change to match your password! Also the password should be
-		// stored encrypted in a file outside the program.
+		// stored encrypted in a file outside the program!
 		System.setProperty("javax.net.ssl.keyStorePassword", "test123");
-		System.setProperty("java.security.policy", "rmisslex1/resources/mysecurity.policy");
 		try {
 			DateServerImpl server = new DateServerImpl();
 			server.bind("DateServerImpl");
@@ -61,5 +65,6 @@ public class DateServerImpl implements DateServer {
 			th.printStackTrace();
 			System.out.println("Exception occurred: " + th);
 		}
+		Thread.sleep(Integer.MAX_VALUE);
 	}
 }

@@ -7,12 +7,11 @@ import java.util.Date;
 public class DateClient
 {
     private String serverName;
+    public final static int REGISTRY_PORT = 5000;
 
     public static void main(String[] argv) {
         System.setProperty("javax.net.ssl.trustStore", "rmisslex1/resources/Client_Truststore");
-        System.setProperty("java.security.policy", "rmisslex1/resources/mysecurity.policy");
         System.setProperty("javax.net.ssl.trustStorePassword", "test123");
-        /* System.setSecurityManager(new RMISecurityManager()); */
 
         if (argv.length != 1) {
             System.out.println("usage: java DateClient <date server address>");
@@ -31,7 +30,7 @@ public class DateClient
     private void perform() {
         try {
             // bind server object to object in client
-            Registry reg = LocateRegistry.getRegistry(serverName,2004);
+            Registry reg = LocateRegistry.getRegistry(serverName,REGISTRY_PORT);
             DateServer server = (DateServer) reg.lookup("DateServerImpl");
             System.out.println("RMI connection successful");
 

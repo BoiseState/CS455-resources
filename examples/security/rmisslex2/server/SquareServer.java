@@ -43,7 +43,7 @@ public class SquareServer implements Square
     }
 
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InterruptedException {
         if (args.length == 0) {
             System.err.println("Usage: java rmisslex2.server.SquareServer <registryPort>");
             System.exit(1);
@@ -55,7 +55,7 @@ public class SquareServer implements Square
         // Warning: change to match your password! Also the password should be
         // stored encrypted in a file outside the program or provided on the fly.
         System.setProperty("javax.net.ssl.keyStorePassword", "test123");
-        System.setProperty("java.security.policy", "rmisslex2/resources/mysecurity.policy");
+        
         try {
             SquareServer server = new SquareServer("SquareServer");
             server.bind("SquareServer", registryPort);
@@ -63,5 +63,6 @@ public class SquareServer implements Square
             th.printStackTrace();
             System.out.println("Exception occurred: " + th);
         }
+        Thread.sleep(Integer.MAX_VALUE);
     }
 }

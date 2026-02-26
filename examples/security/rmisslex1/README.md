@@ -1,7 +1,7 @@
 
 #How to setup SSL
 
-Change to subdirectory resources/ to do Steps 1-5. Use password test123 (as it is embedded in the code).
+Change to subdirectory resources/ to do Steps 1-5. Use password `test123` (as it is embedded in the code)
 
 1. 	Generate a keystore that has a key pair (public and private key) along with a
 	self-signed certificate. (PKCS12 is an industry standard store type)
@@ -45,16 +45,22 @@ Now change back to the top-level security examples directory.
 
 To run the server:
 
+```
 java rmisslex1.DateServerImpl &
+```
 
 
 To run the client:
 
+```
 java rmisslex1.DateClient localhost 
+```
 
 
 To see all the network transmissions, try
 
+```
 java -Djavax.net.debug=all rmisslex1.DateClient localhost
 
+```
 

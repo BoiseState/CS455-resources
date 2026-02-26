@@ -48,6 +48,7 @@ break Mongo's security.
 
 
 #To run the server:
+
 Change back to the top level examples/security directory to run the example.  
 
 cd ..
@@ -64,6 +65,7 @@ java rmisslex2.server.SquareServer <registryPort> &
 
 
 #To run the client:
+From the top level examples/security directory to run the example.  
 
 java rmisslex2.client.SquareClient  localhost <value> <numcalls> <registryPort>
 

@@ -31,7 +31,6 @@ public class SquareClient
         try {
             System.setProperty("javax.net.ssl.trustStore", "rmisslex2/resources/Client_Truststore");
             System.setProperty("javax.net.ssl.trustStorePassword", "test123");
-            System.setProperty("java.security.policy", "rmisslex2/resources/mysecurity.policy");
 
             Registry registry = LocateRegistry.getRegistry(host, registryPort);
             Square stub = (Square) registry.lookup("SquareServer");
