@@ -63,6 +63,8 @@ public class SquareServer implements Square
             th.printStackTrace();
             System.out.println("Exception occurred: " + th);
         }
-        Thread.sleep(Integer.MAX_VALUE);
+        
+        // needed to avoid the garbage collector from unexporting the server!
+        while (true) Thread.sleep(Integer.MAX_VALUE); 
     }
 }
