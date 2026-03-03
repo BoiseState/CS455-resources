@@ -10,10 +10,8 @@ import java.net.InetAddress;
 import java.util.HashMap;
 
 /**
- * Utility functions to support converting objects to bytes and vice versa.
- * 
+ * Utility functions to support converting objects to an array of bytes and vice versa.
  * @author amit
- *
  */
 public class Utility {
 
@@ -35,7 +33,6 @@ public class Utility {
 		byte[] data = bos.toByteArray();
 		return data;
 	}
-
 
 	/**
 	 * Converts a byte array to an Object.
@@ -72,8 +69,5 @@ public class Utility {
 		
 		byte[] hashbytes = getBytes(test2);
 		System.out.println(getObject(hashbytes));
-		
-		
 	}
-
 }

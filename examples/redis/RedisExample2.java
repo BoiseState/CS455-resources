@@ -8,9 +8,9 @@ import java.util.UUID;
 import redis.clients.jedis.RedisClient;
 
 /**
- * A redis example where we store objects into a byte array to store into Redis and to revide from Redis. 
+ * A redis example where we store objects into a byte array to store into Redis and to revive from Redis. 
  * This is convenient but not necessarily desirable approach since we will have large byte arrays in Redis 
- * that are opqaue so we cannot fully benefit from the capabilities of Redis.
+ * that are opaque so we cannot fully benefit from the capabilities of Redis.
  * 
  * @author
  */
