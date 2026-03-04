@@ -1,13 +1,16 @@
+import com.fasterxml.jackson.core.JacksonException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import redis.clients.jedis.Jedis;
-import tools.jackson.databind.*;
+
 
 public class RedisJsonExample {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws JacksonException {
 
         Jedis jedis = new Jedis("localhost", 6379);
-        tools.jackson.databind.ObjectMapper mapper = new ObjectMapper();
-
+        ObjectMapper mapper = new ObjectMapper();
+        
         User user = new User("1", "Alice", 30);
 
         // Serialize to JSON string

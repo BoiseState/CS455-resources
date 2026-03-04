@@ -210,7 +210,7 @@ OK
 127.0.0.1:6379> hdel poet:Dickinson born died
 (integer) 2
 
-
+```
 
 
 Using Redis from a Java application
@@ -237,3 +237,5 @@ java -cp .:./libs/*  RedisExample1
 Then connect via the redis-cli and check the data that was inserted by the Java application.
 
 For example: try some commands such as `hgetall user-account1`
+
+For using Jackson library for JSON objetcs, sticl to version 2.21 (avoid the latest versions for now)
