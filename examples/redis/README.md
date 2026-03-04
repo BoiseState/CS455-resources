@@ -33,7 +33,6 @@ You can then start up the redis client to play with the data store:
 redis-cli
 ```
 
-
 Sample session:
 
 ```
@@ -61,8 +60,6 @@ OK
 3) "World"
 127.0.0.1:6379> set keyNum 1
 OK
-127.0.0.1:6379> incre keyNum
-(error) ERR unknown command 'incre', with args beginning with: 'keyNum' 
 127.0.0.1:6379> incr keyNum
 (integer) 2
 127.0.0.1:6379> incrby keyNum 3
@@ -239,4 +236,4 @@ java -cp .:./libs/*  RedisExample1
 
 Then connect via the redis-cli and check the data that was inserted by the Java application.
 
-For example: try some commands such as `hgetall user-account0`
+For example: try some commands such as `hgetall user-account1`
