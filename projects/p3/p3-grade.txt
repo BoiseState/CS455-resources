@@ -7,6 +7,8 @@ Grade: /200
 
 Late penalty:
 
+Comments:
+
 Submission quality:
 	-project layout:
 	-build:
@@ -35,5 +37,3 @@ Code style and documentation (20 points):
 	-Scripts for running project on localhost and on onx (or cscluster lab) (10 points):
 	-coding style:
 	-Javadocs: 
-
-Comments:
