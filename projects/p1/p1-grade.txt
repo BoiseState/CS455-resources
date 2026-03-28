@@ -1,9 +1,9 @@
 
-Team#: 01
+Team#: 
 
-Members: Anh Bui, Van Nguyen
+Members:
 
-Grade:   /100 
+Grade:   105/100 
 
 Late penalty:
 
@@ -21,7 +21,7 @@ Testing:
                 -help:
                 -quit:
 				-chat functionality:
-            -Multi-threaded with max thread limit (10 points):
+            -Multi-threaded with max thread limit but no limit on #clients (10 points): 
 
     -Auto self destruct (5 points):   
     -Shutdown hook (5 points):
