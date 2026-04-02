@@ -5,6 +5,8 @@ Grade: /100
 
 Early bonus (up to 10 points):
 
+Comments:
+
 Submission quality:
     -project layout:
     -build:
@@ -25,5 +27,3 @@ Documentation (10 points):
         -Describes clearly the changes from p3 to p4:
     -coding style:
     -Javadocs: 
-
-Comments:
