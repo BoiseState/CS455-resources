@@ -19,14 +19,14 @@ Submission quality:
 	-scripts for running server and client:
 
 Features: 
-	-basic operations (6 x 8 = 48 points): 
+	-basic operations (5 x 8 = 40 points): 
 		-create:
 		-delete:
 		-lookup:
 		-reverse-lookup:
 		-modify:
 		-get users|uuids|all:
-	-security (12 points):
+	-security (10 points):
 		-encrypted passwords:
 		-SSL communication:
 	-persistence (10 points)
@@ -44,7 +44,7 @@ Testing (20 points):
 	
 
 Code style/documentation:  
-	-Demo video (required, 10 points):
+	-Demo video (required, 20 points):
 	-README file (required): 
 	-coding style (required):
 	-javadocs (required):
