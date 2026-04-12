@@ -38,7 +38,13 @@ purposes) Change to subfolder resources/ for Steps 1-6.
 
 8. Now run the client:
 
-	java sslsockets.Client  localhost 5005
+	java -Djdk.rmi.ssl.client.enableEndpointIdentification=false sslsockets.Client  localhost 5005
+
+    The options `-Djdk.rmi.ssl.client.enableEndpointIdentification=false` is needed to disable
+    endpoint identification, which is a security feature that prevents man-in-the-middle
+    attacks. Since we are using a self-signed certificate, the client will not be able to verify
+    the server's identity, and thus endpoint identification needs to be disabled for this example.
+
 
 #Notes
 

@@ -67,7 +67,12 @@ java rmisslex2.server.SquareServer <registryPort> &
 #To run the client:
 From the top level examples/security directory to run the example.  
 
-java rmisslex2.client.SquareClient  localhost <value> <numcalls> <registryPort>
+java -Djdk.rmi.ssl.client.enableEndpointIdentification=false rmisslex2.client.SquareClient  localhost <value> <numcalls> <registryPort>
+
+The options `-Djdk.rmi.ssl.client.enableEndpointIdentification=false` is needed to disable endpoint
+identification, which is a security feature that prevents man-in-the-middle attacks. Since we are
+using a self-signed certificate, the client will not be able to verify the server's identity, and
+thus endpoint identification needs to be disabled for this example.
 
 
 To see all the network transmissions, try
