@@ -21,9 +21,12 @@ Features:
     -Scripts for running project on onyx lab and on localhost (10 points):
 
 Video (20 points):
+	-The video is required -- the project will not be graded without it.
 
 Documentation (10 points): 
     -README.md file:
         -Describes clearly the changes from p3 to p4:
     -coding style:
     -Javadocs: 
+
+
