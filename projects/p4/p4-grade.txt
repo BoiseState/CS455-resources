@@ -3,7 +3,6 @@ Members:
 
 Grade: /100
 
-Early bonus (up to 10 points):
 
 Comments:
 
@@ -18,12 +17,15 @@ Features:
         -Enumerate various tests to show functionaltiy with 
          multiple servers (without knowing the coordinator):
     -Coordinated checkpoint (20 points):
-    -Scripts for running project on onyx lab and on localhost (10 points):
+    -Scripts for running project on cscluster lab and on localhost (or docker) (10 points):
 
 Video (20 points):
+	-The video is required -- the project will not be graded without it.
 
 Documentation (10 points): 
     -README.md file:
         -Describes clearly the changes from p3 to p4:
     -coding style:
     -Javadocs: 
+
+
